@@ -1,0 +1,9599 @@
+[
+  {
+    "point": "110.38347 -7.78614",
+    "stop_name": "AA YKPN",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Demangan"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Demangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36637 -7.79000",
+    "stop_name": "Abu Bakar Ali",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Abadi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36798 -7.77581",
+    "stop_name": "AM Sangaji - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Timur"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36772 -7.77733",
+    "stop_name": "AM Sangaji - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Batas Kota Jll. Monjali - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40179 -7.78329",
+    "stop_name": "Ambarukmo - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gedung Wanita"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gedung Wanita"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40244 -7.78319",
+    "stop_name": "Ambarukmo - B",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Selatan"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Selatan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38482 -7.79846",
+    "stop_name": "Among Rogo - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mandala Krida - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38485 -7.79849",
+    "stop_name": "Among Rogo - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Gajah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39335 -7.79107",
+    "stop_name": "APMD - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timoho - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39325 -7.79159",
+    "stop_name": "APMD - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "UIN Sunan Kalijaga - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36207 -7.75643",
+    "stop_name": "Atakrib Jl. Magelang",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41222 -7.77397",
+    "stop_name": "Babarsari - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kledokan"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "STIE YKPN - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41210 -7.77392",
+    "stop_name": "Babarsari - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dishub DIY - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35791 -7.78809",
+    "stop_name": "Badran",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 14"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43571 -7.78450",
+    "stop_name": "Bandara Adisujtipto",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Sorogenen",
+          "Hyundai"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": true,
+        "destinations": [
+          "Hyundai"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "KKP Yogyakarta"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hyundai"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hyundai"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": true,
+        "destinations": [
+          "KKP Yogyakarta"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40216 -7.80780",
+    "stop_name": "Banguntapan - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gembira Loka - B"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "JEC"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40221 -7.80729",
+    "stop_name": "Banguntapan - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Poltekkes BSI"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Poltekkes BSI"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39511 -7.81909",
+    "stop_name": "Basen",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Perintis Kemerdekaan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36857 -7.77049",
+    "stop_name": "Batas Kota Jl. Monjali - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "AM Sangaji - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36849 -7.77065",
+    "stop_name": "Batas Kota Jll. Monjali - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangjati - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33719 -7.80035",
+    "stop_name": "Bayeman - A",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Hotel Nataputra"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33703 -7.80040",
+    "stop_name": "Bayeman - B",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pelem Gurih - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36210 -7.79931",
+    "stop_name": "Bhayangkara",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pathuk"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pathuk"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pathuk"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43070 -7.77444",
+    "stop_name": "Binamarga",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37690 -7.76529",
+    "stop_name": "Biologi UGM",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35619 -7.78247",
+    "stop_name": "BKD - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pingit - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pingit - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35586 -7.78246",
+    "stop_name": "BKD - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40235 -7.80037",
+    "stop_name": "BKPM",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gembira Loka - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Banguntapan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40991 -7.79724",
+    "stop_name": "Blok O",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Utara"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Utara"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36203 -7.77884",
+    "stop_name": "Borobudur Plaza",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 3"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 3"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41727 -7.68751",
+    "stop_name": "Boulevard UII",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "UII (Barat Jalan)",
+          "UII (Timur Jalan)"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "UII (Barat Jalan)",
+          "UII (Timur Jalan)"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31867 -7.80161",
+    "stop_name": "BPD Gamping",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Park and Ride Gamping"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Park and Ride Gamping"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.45606 -7.77856",
+    "stop_name": "BPD Kalasan",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kalasan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33232 -7.88199",
+    "stop_name": "BRI Bantul",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 2 Bantul - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43419 -7.74294",
+    "stop_name": "Budi Mulia Dua - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Indomaret Pokoh Sambiroto - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43424 -7.74320",
+    "stop_name": "Budi Mulia Dua - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "UNRIYO - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37471 -7.78497",
+    "stop_name": "Bulog",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridsono"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37510 -7.78236",
+    "stop_name": "Cik Di Tiro",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.45617 -7.77859",
+    "stop_name": "Cupuwatu",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "KR - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36199 -7.75641",
+    "stop_name": "Daytrans Jl. Magelang",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - B"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39389 -7.78309",
+    "stop_name": "De Britto",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ambarukmo - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UIN Sunan Kalijaga - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ambarukmo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33201 -7.77650",
+    "stop_name": "Demak Ijo - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Metro Nogotirto - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33204 -7.77578",
+    "stop_name": "Demak Ijo - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Nogosaren"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38867 -7.78305",
+    "stop_name": "Demangan",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "De Britto"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "De Britto"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "De Britto"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34374 -7.77978",
+    "stop_name": "Dentes Godean",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Tlogorejo - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Tlogorejo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39512 -7.81904",
+    "stop_name": "Diklat PU",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 9 - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36255 -7.78289",
+    "stop_name": "Diponegoro",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Samsat"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41503 -7.77797",
+    "stop_name": "Dishub DIY - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Babarsari - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Babarsari - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41508 -7.77804",
+    "stop_name": "Dishub DIY - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Babarsari"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43117 -7.76936",
+    "stop_name": "Disnakertrans - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Instiper - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 1 Depok - Jl. Raya Tajem - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43148 -7.76786",
+    "stop_name": "Disnakertrans - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Selokan Mataram Maguwo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35380 -7.83019",
+    "stop_name": "Dongkelan - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasty - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35399 -7.82919",
+    "stop_name": "Dongkelan - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Niten - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37521 -7.78122",
+    "stop_name": "Dr. Yap",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - A"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - A"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - A"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - A"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36641 -7.83387",
+    "stop_name": "Druwo - A",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogokariyan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36660 -7.83363",
+    "stop_name": "Druwo - B",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "UAD Ring Road Selatan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35517 -7.82169",
+    "stop_name": "Dukuh - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gereja Pugeran - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35534 -7.82093",
+    "stop_name": "Dukuh - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasty - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41737 -7.67264",
+    "stop_name": "Dusun Kledokan - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Panti Nugroho"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Panti Nugroho"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41740 -7.67273",
+    "stop_name": "Dusun Kledokan - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Raminten - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Raminten - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34388 -7.74484",
+    "stop_name": "Dusun Ngawen",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Westlake - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.48265 -7.75675",
+    "stop_name": "Edotel Kalasan - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bhayangkara - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.48261 -7.75664",
+    "stop_name": "Edotel Kalasan - B",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Prambanan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37791 -7.79228",
+    "stop_name": "Eks Bioskop Mataram",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34890 -7.80088",
+    "stop_name": "Eks Hotel Nataputra",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMP Muh 3"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37013 -7.78925",
+    "stop_name": "Eks Menara Kopi - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37004 -7.78939",
+    "stop_name": "Eks Menara Kopi - B",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32932 -7.88739",
+    "stop_name": "Eks Stasiun Bantul",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polres Bantul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37250 -7.77585",
+    "stop_name": "Fisipol UGM - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kosudgama"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37253 -7.77587",
+    "stop_name": "Fisipol UGM - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 6"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37512 -7.77135",
+    "stop_name": "FKG UGM - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kopma UGM"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kopma UGM"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kopma UGM"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kopma UGM"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37530 -7.77148",
+    "stop_name": "FKG UGM - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - B"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37802 -7.79078",
+    "stop_name": "Flyover Lempuyangan",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMP Kanisius Gayam - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMP Kanisius Gayam - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37932 -7.78235",
+    "stop_name": "Galeria Mall",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lembah UGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39105 -7.81689",
+    "stop_name": "Gambiran - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Perintis Kemerdekaan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39096 -7.81698",
+    "stop_name": "Gambiran - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Veteran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39246 -7.73925",
+    "stop_name": "Gardu PLN - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Palem Raya - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39278 -7.73878",
+    "stop_name": "Gardu PLN - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kolombo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39271 -7.78319",
+    "stop_name": "Gedung Wanita",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "LPP"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RRI Gejayan"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "LPP"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39997 -7.80226",
+    "stop_name": "Gembira Loka - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "JEC"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Banguntapan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39880 -7.80226",
+    "stop_name": "Gembira Loka - B",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - B"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35590 -7.81660",
+    "stop_name": "Gereja Pugeran - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35594 -7.81642",
+    "stop_name": "Gereja Pugeran - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dukuh - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35073 -7.80622",
+    "stop_name": "GKJ Wirobrajan",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mualimin - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38998 -7.82716",
+    "stop_name": "Gudang SGM - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tegal Gendu - A"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tegal Turi - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMK Muh 3"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMK Muh 3"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39004 -7.82727",
+    "stop_name": "Gudang SGM - B",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Giwangan - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Giwangan - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Giwangan - B"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Giwangan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37263 -7.79568",
+    "stop_name": "Hayam Wuruk - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Lempuyangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37276 -7.79461",
+    "stop_name": "Hayam Wuruk - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pakualaman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38195 -7.75776",
+    "stop_name": "Hokben Jakal - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD Jakal"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD Jakal"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD Jakal"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD Jakal"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38195 -7.75761",
+    "stop_name": "Hokben Jakal - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kentungan"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kentungan"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kentungan"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Superindo Jakal - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36324 -7.79002",
+    "stop_name": "Hotel Abadi",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Yogyakarta"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35150 -7.80207",
+    "stop_name": "Hotel Andika Putera",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Bahari"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36839 -7.81567",
+    "stop_name": "Hotel Noola",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogokariyan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36539 -7.82158",
+    "stop_name": "Hotel Pramesthi",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ruba Graha - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36094 -7.78041",
+    "stop_name": "Hotel Utara - A",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Samsat"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Selatan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36088 -7.78041",
+    "stop_name": "Hotel Utara - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Borobudur Plaza"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kricak"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kricak"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38021 -7.76179",
+    "stop_name": "Hotel Vidi",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - B"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42835 -7.78352",
+    "stop_name": "Hyundai",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jayakarta"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jayakarta"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jayakarta"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jayakarta"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36235 -7.75082",
+    "stop_name": "Indogrosir",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31175 -7.77225",
+    "stop_name": "Indomaret Klajuran - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Gesikan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31181 -7.77234",
+    "stop_name": "Indomaret Klajuran - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Neutron Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43461 -7.73555",
+    "stop_name": "Indomaret Pokoh Sambiroto - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Wedomartani - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43462 -7.73608",
+    "stop_name": "Indomaret Pokoh Sambiroto - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Budi Mulia Dua - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42363 -7.76446",
+    "stop_name": "Instiper - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Depok Timur - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42354 -7.76432",
+    "stop_name": "Instiper - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 1 Depok - Ring Road Utara"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41048 -7.78577",
+    "stop_name": "Janti Selatan",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ambarukmo - A",
+          "Janti Utara"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Utara"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ambarukmo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41167 -7.78321",
+    "stop_name": "Janti Utara",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Babarsari"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sahid J-Walk",
+          "Mirota Babarsari"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Babarsari"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sahid J-Walk"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41941 -7.78340",
+    "stop_name": "Jayakarta",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Selatan"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Utara"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Angkasa"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Janti Selatan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40292 -7.79859",
+    "stop_name": "JEC",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Blok O"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Blok O"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36955 -7.78299",
+    "stop_name": "Jend. Sudirman - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 1"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Diponegoro"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36882 -7.78288",
+    "stop_name": "Jend. Sudirman - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dr. Yap"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36806 -7.79421",
+    "stop_name": "Jl. Mataram",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teras 2"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teras 2"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teras 2"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teras 2"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teras 2"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44284 -7.71320",
+    "stop_name": "Jl. Raya Kabunan - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Kemasan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44192 -7.71456",
+    "stop_name": "Jl. Raya Kabunan - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kabunan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37467 -7.78452",
+    "stop_name": "Jl. Suroto",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dr. Yap"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35887 -7.78947",
+    "stop_name": "Jlagran",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Letjen Suprapto"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Badran"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Godean - B"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Badran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36222 -7.75330",
+    "stop_name": "Jogja City Mall - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Atakrib Jl. Magelang"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Atakrib Jl. Magelang"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Atakrib Jl. Magelang"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36216 -7.75308",
+    "stop_name": "Jogja City Mall - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "MMTC Yogyakarta"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "MMTC Yogyakarta"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "MMTC Yogyakarta"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36930 -7.80622",
+    "stop_name": "Jogjatronik",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Purawisata - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36774 -7.82335",
+    "stop_name": "Jogokariyan - A",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jokteng Wetan"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Pramesthi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36781 -7.82325",
+    "stop_name": "Jogokariyan - B",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Druwo - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Telo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35735 -7.81325",
+    "stop_name": "Jokteng Kulon",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plengkung Gading - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plengkung Gading - A"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryodiningratan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36722 -7.81466",
+    "stop_name": "Jokteng Wetan",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plengkung Gading - B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plengkung Gading - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33952 -7.86337",
+    "stop_name": "Kantor Kal. Pendowoharjo - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kesbangpol - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33950 -7.86369",
+    "stop_name": "Kantor Kal. Pendowoharjo - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 2 Bantul - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32537 -7.77558",
+    "stop_name": "Kantor Kal. Sidoarum - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Toko Saerah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32527 -7.77561",
+    "stop_name": "Kantor Kal. Sidoarum - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Bantulan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42511 -7.70384",
+    "stop_name": "Kantor Kal. Sukoharjo - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Selomulyo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42523 -7.70383",
+    "stop_name": "Kantor Kal. Sukoharjo - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lap. Klidon - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43483 -7.73150",
+    "stop_name": "Kantor Kal. Wedomartani - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Babadan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43487 -7.73130",
+    "stop_name": "Kantor Kal. Wedomartani - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Indomaret Pokoh Sambiroto - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33183 -7.88354",
+    "stop_name": "Kantor Kap. Bantul",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Bantul - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30024 -7.76937",
+    "stop_name": "Kantor Kap. Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Mandungan (Iwak Kalen) - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30014 -7.76938",
+    "stop_name": "Kantor Kap. Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Belut Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40127 -7.72410",
+    "stop_name": "Kantor Kap. Ngaglik",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Puskesmas Ngaglik - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34140 -7.85632",
+    "stop_name": "Kantor Kesbangpol - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kasongan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34138 -7.85674",
+    "stop_name": "Kantor Kesbangpol - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Pendowoharjo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33596 -7.77803",
+    "stop_name": "Kantor Pos Demak Ijo - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Demak Ijo - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Demak Ijo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33598 -7.77808",
+    "stop_name": "Kantor Pos Demak Ijo - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Metro Nogotirto - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Metro Nogotirto - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42399 -7.78330",
+    "stop_name": "Kanwil DJPb",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Maguwo Sambilegi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36924 -7.76403",
+    "stop_name": "Karangjati - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Batas Kota Jll. Monjali - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36915 -7.76445",
+    "stop_name": "Karangjati - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Monjali - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36133 -7.77226",
+    "stop_name": "Karangwaru - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Borobudur Plaza"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogja City Mall - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36131 -7.77127",
+    "stop_name": "Karangwaru - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI- B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI- B"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "TVRI- B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36921 -7.80272",
+    "stop_name": "Katamso",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Senopati - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40121 -7.81957",
+    "stop_name": "Kehutanan - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pilar"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pilar"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40181 -7.81811",
+    "stop_name": "Kehutanan - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 9 - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pegadaian"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38463 -7.75610",
+    "stop_name": "Kentungan",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36013 -7.80128",
+    "stop_name": "KHA Dahlan - A",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36062 -7.80124",
+    "stop_name": "KHA Dahlan - B",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bhayangkara"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bhayangkara"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42990 -7.78205",
+    "stop_name": "KKP Yogyakarta",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Disnakertrans - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Disnakertrans - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40854 -7.77832",
+    "stop_name": "Kledokan",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Angkasa"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33294 -7.77744",
+    "stop_name": "Kompi Senapan-C",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Demak Ijo - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Toko Saerah - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37512 -7.77433",
+    "stop_name": "Kopma UGM",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - B"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "MAN 1"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kosudgama"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30686 -7.77101",
+    "stop_name": "Koramil Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30681 -7.77107",
+    "stop_name": "Koramil Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Mandungan (Iwak Kalen) - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37861 -7.77617",
+    "stop_name": "Kosudgama",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UNY Colombo"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "UNY Colombo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37140 -7.78466",
+    "stop_name": "Kotabaru",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38432 -7.80110",
+    "stop_name": "KPPN",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Among Rogo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.45050 -7.78169",
+    "stop_name": "KR - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisutjipto"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44872 -7.78255",
+    "stop_name": "KR - B",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "BPD Kalasan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36117 -7.77433",
+    "stop_name": "Kricak",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - B"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37537 -7.78732",
+    "stop_name": "Kridosono",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "AA YKPN"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UKDW"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lempuyangan"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UKDW"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lempuyangan"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "AA YKPN"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Suroto"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lempuyangan"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kotabaru"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35641 -7.79869",
+    "stop_name": "KS Tubun",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43379 -7.75555",
+    "stop_name": "KUA Depok - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "MAN 2 Sleman - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43387 -7.75547",
+    "stop_name": "KUA Depok - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Depok - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39653 -7.82238",
+    "stop_name": "Lap. Karang - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMA N 5"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39660 -7.82239",
+    "stop_name": "Lap. Karang - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tegal Gendu - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32814 -7.82499",
+    "stop_name": "Lap. Kasihan - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tamantirto - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32899 -7.82624",
+    "stop_name": "Lap. Kasihan - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Diklat DIY - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42657 -7.70422",
+    "stop_name": "Lap. Klidon - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Sukoharjo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42646 -7.70415",
+    "stop_name": "Lap. Klidon - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Mindi - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37825 -7.80396",
+    "stop_name": "Lapas Wirogunan - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Sentul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37825 -7.80420",
+    "stop_name": "Lapas Wirogunan - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "STSRD Visi Tamansiswa"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37364 -7.79044",
+    "stop_name": "Lempuyangan",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Lempuyangan"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hayam Wuruk - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Lempuyangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35744 -7.79084",
+    "stop_name": "Letjen Suprapto",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Gedong Tengen"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37603 -7.81702",
+    "stop_name": "Lowanu - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UNU"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37602 -7.81681",
+    "stop_name": "Lowanu - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Perjuangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38614 -7.78311",
+    "stop_name": "LPP",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Superindo Urip Sumoharjo"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Superindo Urip Sumoharjo"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Superindo Urip Sumoharjo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34434 -7.82878",
+    "stop_name": "Madukismo - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Diklat DIY - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34435 -7.82848",
+    "stop_name": "Madukismo - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 Kasihan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43099 -7.78341",
+    "stop_name": "Maguwo Sambilegi",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bandara Adisujtipto"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38746 -7.80196",
+    "stop_name": "Makam Gajah - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - A"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38740 -7.80199",
+    "stop_name": "Makam Gajah - B",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Makam Pahlawan - B"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "KPPN"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38796 -7.80742",
+    "stop_name": "Makam Prajurit",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "XT Square"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39069 -7.76962",
+    "stop_name": "Makam Santrean",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sanata Dharma"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sanata Dharma"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sanata Dharma"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44125 -7.78344",
+    "stop_name": "Makam Sorogenen",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "KR - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36612 -7.79085",
+    "stop_name": "Malioboro 1",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 2"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36559 -7.79522",
+    "stop_name": "Malioboro 2",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 3"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36500 -7.79990",
+    "stop_name": "Malioboro 3",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Pintar"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bhayangkara"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37392 -7.77713",
+    "stop_name": "MAN 1",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "PDIN"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43455 -7.75038",
+    "stop_name": "MAN 2 Sleman - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "UNRIYO - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43459 -7.75041",
+    "stop_name": "MAN 2 Sleman - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "KUA Depok - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38322 -7.79751",
+    "stop_name": "Mandala Krida - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMP Kanisius Gayam - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38335 -7.79748",
+    "stop_name": "Mandala Krida - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Among Rogo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38647 -7.75805",
+    "stop_name": "Manggung",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Monjali - B"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36686 -7.78476",
+    "stop_name": "Mangkubumi 1",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 2"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 2"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 2"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 2"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36650 -7.78767",
+    "stop_name": "Mangkubumi 2",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34209 -7.77939",
+    "stop_name": "McD",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Godean - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37990 -7.76278",
+    "stop_name": "McD Jakal",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Biologi UGM"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Biologi UGM"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Biologi UGM"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33436 -7.77769",
+    "stop_name": "Metro Nogotirto - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Pos Demak Ijo - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Pos Demak Ijo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33435 -7.77773",
+    "stop_name": "Metro Nogotirto - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kompi Senapan-C"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kompi Senapan-C"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41484 -7.78326",
+    "stop_name": "Mirota Babarsari",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Transmart"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Transmart"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Transmart"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Transmart"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34972 -7.78108",
+    "stop_name": "Mirota Godean - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "BKD - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "BKD - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35037 -7.78126",
+    "stop_name": "Mirota Godean - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dentes Godean"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dentes Godean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37700 -7.76502",
+    "stop_name": "MM UGM",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Vidi"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Bulaksumur - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Vidi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36226 -7.75066",
+    "stop_name": "MMTC Yogyakarta",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36763 -7.75056",
+    "stop_name": "Monjali - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "PDAM Monjali - A"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kentungan"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "PDAM Monjali - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36875 -7.75080",
+    "stop_name": "Monjali - B",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35095 -7.80788",
+    "stop_name": "Mualimin - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35226 -7.80811",
+    "stop_name": "Mualimin - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Legi - A"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMA Muh 3"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34928 -7.80098",
+    "stop_name": "Museum Bahari",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bayeman - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37415 -7.80163",
+    "stop_name": "Museum Biologi",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Senopati - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hayam Wuruk - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37186 -7.81514",
+    "stop_name": "Museum Perjuangan",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Purawisata - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jokteng Wetan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31030 -7.77187",
+    "stop_name": "Neutron Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Indomaret Klajuran - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31049 -7.77199",
+    "stop_name": "Neutron Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35624 -7.80372",
+    "stop_name": "Ngabean",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Serangann - A"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tamansari"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B",
+          "Mualimin - B"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Serangan - A",
+          "Tamansari"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B",
+          "Mualimin - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Serangan - A",
+          "Tamansari"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Serangan - A"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - B",
+          "Tamansari"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37998 -7.82480",
+    "stop_name": "Nitikan",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Widya Wiwaha - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33326 -7.77210",
+    "stop_name": "Nogosaren",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Universitas Aisyiyah"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37696 -7.81093",
+    "stop_name": "Nyutran Tamansiswa",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lapas Wirogunan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38876 -7.80419",
+    "stop_name": "Olive Glagahsari",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39070 -7.76934",
+    "stop_name": "Ombudsman",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Santren"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Santren"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Santren"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37577 -7.80165",
+    "stop_name": "Pakualaman",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Makam Pahlawan - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Taman Makam Pahlawan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39948 -7.75816",
+    "stop_name": "Pakuwon Mall - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39864 -7.75804",
+    "stop_name": "Pakuwon Mall - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS JIH"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS JIH"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38640 -7.81578",
+    "stop_name": "Pandeyan",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "UTY Glagahsari - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31488 -7.80245",
+    "stop_name": "Park and Ride Gamping",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": true,
+        "destinations": [
+          "PKU Gamping"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": true,
+        "destinations": [
+          "PKU Gamping"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41017 -7.79171",
+    "stop_name": "Pasar Angkasa",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS HArdjolukito"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS HArdjolukito"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33105 -7.88525",
+    "stop_name": "Pasar Bantul - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "BRI Bantul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33120 -7.88512",
+    "stop_name": "Pasar Bantul - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Stasiun Bantul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29359 -7.76752",
+    "stop_name": "Pasar Belut Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kap. Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29353 -7.76753",
+    "stop_name": "Pasar Belut Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Induk Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38840 -7.77953",
+    "stop_name": "Pasar Demangan",
+    "services": []
+  },
+  {
+    "point": "110.32381 -7.80063",
+    "stop_name": "Pasar Gamping - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Universitas BSI - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pelem Gurih - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32355 -7.80074",
+    "stop_name": "Pasar Gamping - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "BPD Gamping"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "BPD Gamping"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39001 -7.83151",
+    "stop_name": "Pasar Giwangan - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - A"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - A"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39020 -7.83248",
+    "stop_name": "Pasar Giwangan - B",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29063 -7.76652",
+    "stop_name": "Pasar Induk Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Belut Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29048 -7.76651",
+    "stop_name": "Pasar Induk Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 Godean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44733 -7.70211",
+    "stop_name": "Pasar Jangkang - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Puskesmas Ngemplak - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44742 -7.70205",
+    "stop_name": "Pasar Jangkang - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kenti - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.46899 -7.76991",
+    "stop_name": "Pasar Kalasan -  B",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bhayangkara - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.46963 -7.76938",
+    "stop_name": "Pasar Kalasan - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cupuwatu"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38887 -7.74535",
+    "stop_name": "Pasar Kolombo - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gardu PLN - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38932 -7.74466",
+    "stop_name": "Pasar Kolombo - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Superindo Jakal - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36566 -7.78285",
+    "stop_name": "Pasar Kranggan Selatan",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - B"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - B"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 1"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36723 -7.78184",
+    "stop_name": "Pasar Kranggan Timur",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mangkubumi 1"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35009 -7.80911",
+    "stop_name": "Pasar Legi - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMK Seni - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34965 -7.81095",
+    "stop_name": "Pasar Legi - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mualimin - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37348 -7.79242",
+    "stop_name": "Pasar Lempuyangan",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Lempuyangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35053 -7.83879",
+    "stop_name": "Pasar Niten - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dongkelan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35118 -7.83811",
+    "stop_name": "Pasar Niten - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kasongan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36187 -7.79599",
+    "stop_name": "Pasar Pathuk",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sosrowijayan"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sosrowijayan"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Sosrowijayan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35876 -7.78281",
+    "stop_name": "Pasar Pingit - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Selatan"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Selatan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35910 -7.78288",
+    "stop_name": "Pasar Pingit - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "BKD - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37677 -7.80172",
+    "stop_name": "Pasar Sentul",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Biologi"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Biologi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38036 -7.81636",
+    "stop_name": "Pasar Sepeda",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Perjuangan"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Nyutran Tamansiswa"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35424 -7.80111",
+    "stop_name": "Pasar Serangan - A",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - A"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35318 -7.80100",
+    "stop_name": "Pasar Serangan - B",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37332 -7.82438",
+    "stop_name": "Pasar Telo - A",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogokariyan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37347 -7.82569",
+    "stop_name": "Pasar Telo - B",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wojo (Randubellang) - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33947 -7.77881",
+    "stop_name": "Pasar Tlogorejo - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "McD"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33933 -7.77881",
+    "stop_name": "Pasar Tlogorejo - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Demak Ijo - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Demak Ijo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35448 -7.82569",
+    "stop_name": "Pasty - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dukuh - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35451 -7.82577",
+    "stop_name": "Pasty - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dongkelan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36991 -7.75602",
+    "stop_name": "PDAM Monjali - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Monjali - A"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Monjali - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36986 -7.75573",
+    "stop_name": "PDAM Monjali - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Monjali - B"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Monjali - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37253 -7.78202",
+    "stop_name": "PDIN",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40017 -7.82277",
+    "stop_name": "Pegadaian",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lap. Karang - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33062 -7.79990",
+    "stop_name": "Pelem Gurih - A",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bayeman - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33074 -7.79998",
+    "stop_name": "Pelem Gurih - B",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Gamping - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39228 -7.81833",
+    "stop_name": "Perintis Kemerdekaan - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Diklat PU"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39193 -7.81831",
+    "stop_name": "Perintis Kemerdekaan - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gambiran - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33616 -7.76369",
+    "stop_name": "Perumahan Nogotirto",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Demak Ijo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40208 -7.81348",
+    "stop_name": "Pilar",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Banguntapan - A"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Banguntapan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31679 -7.80188",
+    "stop_name": "PKU Gamping",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Gamping - A"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Gamping - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38914 -7.77514",
+    "stop_name": "Plaza UNY",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ombudsman"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ombudsman"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ombudsman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36390 -7.81417",
+    "stop_name": "Plengkung Gading - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pujokusuman"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Noola"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36431 -7.81426",
+    "stop_name": "Plengkung Gading - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 7"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 7"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32651 -7.88980",
+    "stop_name": "Polres Bantul",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Gose - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41551 -7.76257",
+    "stop_name": "Polsek Depok Timur - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UPN Veteran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41526 -7.76239",
+    "stop_name": "Polsek Depok Timur - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Instiper - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30907 -7.77156",
+    "stop_name": "Polsek Godean - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Neutron Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30901 -7.77161",
+    "stop_name": "Polsek Godean - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Koramil Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38510 -7.81700",
+    "stop_name": "Polsek Umbulharjo",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UAD Jl. Pramuka"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "UAD Jl. Pramuka"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40211 -7.81437",
+    "stop_name": "Poltekkes BSI",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kehutanan - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kehutanan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38737 -7.81852",
+    "stop_name": "Pramuka",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Sepeda"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pandeyan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39359 -7.76347",
+    "stop_name": "Prayan - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Concat - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Concat - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Concat - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39364 -7.76358",
+    "stop_name": "Prayan - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Susteran Novisiat"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Susteran Novisiat"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Susteran Novisiat"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36931 -7.79803",
+    "stop_name": "Progo",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37006 -7.81482",
+    "stop_name": "Pujokusuman",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "STIE Kerjasama"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lowanu - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36913 -7.80877",
+    "stop_name": "Purawisata - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Kintelan 1"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36910 -7.80812",
+    "stop_name": "Purawisata - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Katamso"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40256 -7.72189",
+    "stop_name": "Puskesmas Ngaglik - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 2 Ngaglik - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40252 -7.72203",
+    "stop_name": "Puskesmas Ngaglik - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "TK BIAS"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44468 -7.70293",
+    "stop_name": "Puskesmas Ngemplak - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tugu Batas Desa Yapah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44455 -7.70295",
+    "stop_name": "Puskesmas Ngemplak - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Jangkang - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41726 -7.67598",
+    "stop_name": "Raminten - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dusun Kledokan - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dusun Kledokan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41731 -7.67615",
+    "stop_name": "Raminten - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Degolan - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Degolan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38832 -7.77951",
+    "stop_name": "RRI Gejayan",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plaza UNY"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37802 -7.78304",
+    "stop_name": "RS Bethesda",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jend. Sudirman - A"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dr. Yap"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dr. Yap"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Bulog"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.47151 -7.76720",
+    "stop_name": "RS Bhayangkara - A",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kalasan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.47174 -7.76672",
+    "stop_name": "RS Bhayangkara - B",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Edotel Kalasan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41002 -7.79737",
+    "stop_name": "RS Hardjolukito",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wonocatur"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wonocatur"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38779 -7.81560",
+    "stop_name": "RS Hidayatullah",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gambiran - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40308 -7.75887",
+    "stop_name": "RS JIH",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stikes Guna Bangsa"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stikes Guna Bangsa"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44804 -7.71328",
+    "stop_name": "RS Kemasan - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kenti - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44780 -7.71373",
+    "stop_name": "RS Kemasan - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Raya Kabunan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41759 -7.66927",
+    "stop_name": "RS Panti Nugroho",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Pakem"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Pakem"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37822 -7.77625",
+    "stop_name": "RS Panti Rapih",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Vokasi UGM"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37428 -7.76782",
+    "stop_name": "RS Sardjito - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - A"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37421 -7.76781",
+    "stop_name": "RS Sardjito - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "MM UGM"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "MM UGM"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teknik UGM - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "MM UGM"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41699 -7.70113",
+    "stop_name": "RSU Gramedika - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Besi Jakal - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41699 -7.70109",
+    "stop_name": "RSU Gramedika - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Selomulyo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36199 -7.82088",
+    "stop_name": "Ruba Graha - A",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryodiningratan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36223 -7.82089",
+    "stop_name": "Ruba Graha - B",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogokariyan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41470 -7.77957",
+    "stop_name": "Sahid J-Walk",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dishub DIY - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dishub DIY - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38751 -7.77765",
+    "stop_name": "Samirono",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kosudgama - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kosudgama - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35976 -7.78716",
+    "stop_name": "Samsat",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Saudagaran"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Saudagaran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38925 -7.77508",
+    "stop_name": "Sanata Dharma",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Samirono",
+          "Pasar Demangan"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Samirono"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39198 -7.76637",
+    "stop_name": "Santren",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - A"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35356 -7.79251",
+    "stop_name": "Saudagaran",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32400 -7.89508",
+    "stop_name": "SD Unggulan Aisyiyah - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Gose - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32403 -7.89517",
+    "stop_name": "SD Unggulan Aisyiyah - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 Bantul - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33681 -7.77822",
+    "stop_name": "SDN 1 Demak Ijo - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Tlogorejo - A"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Tlogorejo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33676 -7.77827",
+    "stop_name": "SDN 1 Demak Ijo - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Pos Demak Ijo - B"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Pos Demak Ijo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43292 -7.76076",
+    "stop_name": "SDN 1 Depok -  A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "KUA Depok - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43295 -7.76091",
+    "stop_name": "SDN 1 Depok - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 1 Depok - Jl. Raya Tajem - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35693 -7.79265",
+    "stop_name": "SDN Gedong Tengen",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "KS Tubun"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36890 -7.81205",
+    "stop_name": "SDN Kintelan 1",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pujokusuman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41770 -7.66840",
+    "stop_name": "SDN Percobaan 3 Pakem",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 4 Pakem"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 4 Pakem"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42072 -7.70239",
+    "stop_name": "SDN Selomulyo - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "RSU Gramedika - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42045 -7.70224",
+    "stop_name": "SDN Selomulyo - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Sukoharjo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43104 -7.77096",
+    "stop_name": "Selokan Mataram Maguwo",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Binamarga"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36704 -7.80150",
+    "stop_name": "Senopati",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "KHA Dahlan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39303 -7.80208",
+    "stop_name": "SGM Kusumanegara - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gembira Loka - A"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gembira Loka - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 5 - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39338 -7.80216",
+    "stop_name": "SGM Kusumanegara - B",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Gajah - B"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Gajah - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UTY Glagahsari - A"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timoho - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43547 -7.72315",
+    "stop_name": "Simpang Babadan - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Selomartani - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43544 -7.72329",
+    "stop_name": "Simpang Babadan - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Wedomartani - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32230 -7.77480",
+    "stop_name": "Simpang Bantulan - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Sidoarum - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32117 -7.77460",
+    "stop_name": "Simpang Bantulan - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Munggur - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41539 -7.70021",
+    "stop_name": "Simpang Besi Jakal - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "YAKKUM - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "YAKKUM - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41544 -7.70022",
+    "stop_name": "Simpang Besi Jakal - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wedangan Kampoeng - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "RSU Gramedika - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41917 -7.68407",
+    "stop_name": "Simpang Degolan - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Raminten - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Raminten - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41921 -7.68410",
+    "stop_name": "Simpang Degolan - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Boulevard UII"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Boulevard UII"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33250 -7.82880",
+    "stop_name": "Simpang Diklat DIY - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lapangan Kasihan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33163 -7.82855",
+    "stop_name": "Simpang Diklat DIY - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Madukismo - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31645 -7.77357",
+    "stop_name": "Simpang Gesikan - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Munggur - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31656 -7.77366",
+    "stop_name": "Simpang Gesikan - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Indomaret Klajuran - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32539 -7.89182",
+    "stop_name": "Simpang Gose - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tugu Adipura"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32544 -7.89193",
+    "stop_name": "Simpang Gose - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "SD Unggulan Aisyiyah - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43856 -7.71859",
+    "stop_name": "Simpang Kabunan - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Raya Kabunan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43823 -7.71950",
+    "stop_name": "Simpang Kabunan - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Selomartani - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34454 -7.84633",
+    "stop_name": "Simpang Kasongan - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Niten - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34348 -7.84862",
+    "stop_name": "Simpang Kasongan - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kesbangpol - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44808 -7.70353",
+    "stop_name": "Simpang Kenti - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Jangkang - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44811 -7.70351",
+    "stop_name": "Simpang Kenti - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Kemasan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43301 -7.70485",
+    "stop_name": "Simpang Losari - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Mindi - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43314 -7.70480",
+    "stop_name": "Simpang Losari - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 2 Ngaglik - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30302 -7.77005",
+    "stop_name": "Simpang Mandungan (Iwak Kalen) - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Koramil Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.30300 -7.77010",
+    "stop_name": "Simpang Mandungan (Iwak Kalen) - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kap. Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31835 -7.77394",
+    "stop_name": "Simpang Munggur - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Bantulan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31829 -7.77398",
+    "stop_name": "Simpang Munggur - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Gesikan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39756 -7.73055",
+    "stop_name": "Simpang Palem Raya - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kap. Ngaglik"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39768 -7.73043",
+    "stop_name": "Simpang Palem Raya - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gardu PLN - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43811 -7.72233",
+    "stop_name": "Simpang Selomartani - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Kabunan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43797 -7.72239",
+    "stop_name": "Simpang Selomartani - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Babadan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37378 -7.83637",
+    "stop_name": "Simpang Wojo",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Druwo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35054 -7.80673",
+    "stop_name": "SMA Muh 3",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Andika Putera"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39916 -7.82256",
+    "stop_name": "SMA N 5",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kehutanan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35212 -7.79935",
+    "stop_name": "SMAN 1 - A",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 11"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 11"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 11"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 11"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35223 -7.79911",
+    "stop_name": "SMAN 1 - B",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32302 -7.89738",
+    "stop_name": "SMAN 1 Bantul - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "SD Unggulan Aisyiyah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32274 -7.89817",
+    "stop_name": "SMAN 1 Bantul - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Palbapang"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34823 -7.81835",
+    "stop_name": "SMAN 1 Kasihan - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Madukismo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34821 -7.81833",
+    "stop_name": "SMAN 1 Kasihan - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMK Seni - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43501 -7.70486",
+    "stop_name": "SMAN 2 Ngaglik - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Losari - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43499 -7.70481",
+    "stop_name": "SMAN 2 Ngaglik - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timur Jembatan Yapah - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35813 -7.81342",
+    "stop_name": "SMAN 7",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tejokusuman"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38966 -7.82256",
+    "stop_name": "SMK Muh 3",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pramuka"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pramuka"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29114 -7.76209",
+    "stop_name": "SMK Negeri 2 Godean",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Induk Godean - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34899 -7.81446",
+    "stop_name": "SMK Seni - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 1 Kasihan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34878 -7.81534",
+    "stop_name": "SMK Seni - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Legi - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43148 -7.76524",
+    "stop_name": "SMKN 1 Depok - Jl. Raya Tajem - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN 1 Depok -  A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43156 -7.76525",
+    "stop_name": "SMKN 1 Depok - Jl. Raya Tajem - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Disnakertrans - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43110 -7.76648",
+    "stop_name": "SMKN 1 Depok - Ring Road Utara",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Binamarga"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36683 -7.77798",
+    "stop_name": "SMKN 3",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "AM Sangaji - B"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fisipol UGM - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39506 -7.80036",
+    "stop_name": "SMKN 5 - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "SGM Kusumanegara - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39451 -7.80024",
+    "stop_name": "SMKN 5 - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timoho - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37775 -7.79582",
+    "stop_name": "SMP Kanisius Gayam - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Bioskop Mataram"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37778 -7.79570",
+    "stop_name": "SMP Kanisius Gayam - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mandala Krida - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jl. Mataram"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35140 -7.80292",
+    "stop_name": "SMP Muh 3",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "GKJ Wirobrajan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37581 -7.77747",
+    "stop_name": "SMPN 1 - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kosudgama"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Vokasi UGM"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Vokasi UGM"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fisipol UGM - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 1 - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37585 -7.77781",
+    "stop_name": "SMPN 1 - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cik Di Tiro"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cik Di Tiro"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cik Di Tiro"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cik Di Tiro"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Cik Di Tiro"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29104 -7.76227",
+    "stop_name": "SMPN 1 Godean",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stadion TGP"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35340 -7.79297",
+    "stop_name": "SMPN 11",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Badran"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Badran"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Badran"
+        ]
+      },
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Mirota Godean - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35999 -7.78658",
+    "stop_name": "SMPN 14",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Utara - B"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Selatan"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Pingit - B"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Utara - B"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kranggan Selatan"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hotel Utara - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33582 -7.87433",
+    "stop_name": "SMPN 2 Bantul - A",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Pendowoharjo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33574 -7.87491",
+    "stop_name": "SMPN 2 Bantul - B",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kap. Bantul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40604 -7.71582",
+    "stop_name": "SMPN 2 Ngaglik - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Kaliurang - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40601 -7.71597",
+    "stop_name": "SMPN 2 Ngaglik - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Puskesmas Ngaglik - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41764 -7.66922",
+    "stop_name": "SMPN 4 Pakem",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dusun Kledokan - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dusun Kledokan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36699 -7.77808",
+    "stop_name": "SMPN 6",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39802 -7.81980",
+    "stop_name": "SMPN 9 - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kehutanan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39803 -7.81985",
+    "stop_name": "SMPN 9 - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Basen"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36162 -7.79207",
+    "stop_name": "Sosrowijayan",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Yogyakarta"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Yogyakarta"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Stasiun Yogyakarta"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39494 -7.75999",
+    "stop_name": "SPBU Concat - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Condongcatur"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39520 -7.75968",
+    "stop_name": "SPBU Concat - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Prayan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40891 -7.71084",
+    "stop_name": "SPBU Kaliurang - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wedangan Kampoeng - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40889 -7.71096",
+    "stop_name": "SPBU Kaliurang - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMPN 2 Ngaglik - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43103 -7.70486",
+    "stop_name": "SPBU Mindi - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lap. Klidon - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43117 -7.70481",
+    "stop_name": "SPBU Mindi - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Losari - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36953 -7.76014",
+    "stop_name": "SPBU Monjali - A",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangjati - A"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Teknik UGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36946 -7.76015",
+    "stop_name": "SPBU Monjali - B",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "PDAM Monjali - B"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "PDAM Monjali - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.29289 -7.75711",
+    "stop_name": "Stadion TGP",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": true,
+        "destinations": [
+          "SMK Negeri 2 Godean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37739 -7.79025",
+    "stop_name": "Stasiun Lempuyangan",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Flyover Lempuyangan"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tarumartani - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36172 -7.78965",
+    "stop_name": "Stasiun Yogyakarta",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jlagran"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jlagran"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jlagran"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jlagran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38285 -7.81666",
+    "stop_name": "STIE Kerjasama",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Hidayatullah"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Umbulharjo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41041 -7.76702",
+    "stop_name": "STIE YKPN - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "UPN Veteran"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41014 -7.76844",
+    "stop_name": "STIE YKPN - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Babarsari - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40896 -7.76077",
+    "stop_name": "Stikes Guna Bangsa",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Depok Timur - B"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "STIE YKPN - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37654 -7.81371",
+    "stop_name": "STSRD Visi Tamansiswa",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "STIE Kerjasama"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38464 -7.75258",
+    "stop_name": "Superindo Jakal - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Kolombo - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38465 -7.75264",
+    "stop_name": "Superindo Jakal - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Hokben Jakal - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38233 -7.78309",
+    "stop_name": "Superindo Urip Sumoharjo",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bethesda"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Galeria Mall"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bethesda"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36211 -7.81846",
+    "stop_name": "Suryodiningratan - A",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 7"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36213 -7.81852",
+    "stop_name": "Suryodiningratan - B",
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ruba Graha - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36931 -7.79926",
+    "stop_name": "Suryotomo",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Progo"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Progo"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Progo"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Progo"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Progo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39215 -7.76613",
+    "stop_name": "Susteran Novisiat",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Santrean"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Santrean"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Santrean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38347 -7.80184",
+    "stop_name": "Taman Makam Pahlawan - A",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Gajah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38215 -7.80184",
+    "stop_name": "Taman Makam Pahlawan - B",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Sentul"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36715 -7.80142",
+    "stop_name": "Taman Pintar",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryotomo"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Museum Biologi"
+        ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jogjatronik"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryotomo"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryotomo"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Suryotomo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35601 -7.80984",
+    "stop_name": "Tamansari",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jokteng Kulon"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jokteng Kulon"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jokteng Kulon"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gereja Pugeran - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32429 -7.81447",
+    "stop_name": "Tamantirto - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "UMY - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32427 -7.81604",
+    "stop_name": "Tamantirto - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Universitas Alma Ata"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38199 -7.79050",
+    "stop_name": "Tarumartani - A",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "TNI AL - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38200 -7.79054",
+    "stop_name": "Tarumartani - B",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Flyover Lempuyangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39176 -7.82605",
+    "stop_name": "Tegal Gendu - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lap. Karang - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39136 -7.82585",
+    "stop_name": "Tegal Gendu - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38710 -7.82539",
+    "stop_name": "Tegal Turi - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38693 -7.82542",
+    "stop_name": "Tegal Turi - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Nitikan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35601 -7.80792",
+    "stop_name": "Tejokusuman",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Ngabean"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37462 -7.76424",
+    "stop_name": "Teknik UGM - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Monjali - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37470 -7.76412",
+    "stop_name": "Teknik UGM - B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Sardjito - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36759 -7.79179",
+    "stop_name": "Teras 2",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - A"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Abu Bakar Ali"
+        ]
+      },
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - A",
+          "Malioboro 1"
+        ]
+      },
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39588 -7.75662",
+    "stop_name": "Terminal Condongcatur",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": true,
+        "destinations": [
+          "Manggung"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": true,
+        "destinations": [
+          "SPBU Concat - B"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Manggung"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pakuwon Mall - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Concat - B"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Manggung"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Manggung"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pakuwon Mall - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": true,
+        "destinations": [
+          "SPBU Concat - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39184 -7.83418",
+    "stop_name": "Terminal Giwangan",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": true,
+        "destinations": [
+          "Pasar Giwangan - A"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": true,
+        "destinations": [
+          "Pasar Giwangan - A"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": true,
+        "destinations": [
+          "Pasar Giwangan - A"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": true,
+        "destinations": [
+          "Pasar Giwangan - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": true,
+        "destinations": [
+          "UAD Ring Road Selatan - A"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": true,
+        "destinations": [
+          "UAD Ring Road Selatan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36124 -7.74740",
+    "stop_name": "Terminal Jombor",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Monjali - A"
+        ]
+      },
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Monjali - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": true,
+        "destinations": [
+          "Indogrosir"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": true,
+        "destinations": [
+          "Monjali - A"
+        ]
+      },
+      {
+        "route": "8",
+        "is_departure_hub": true,
+        "destinations": [
+          "UTY Ring Road Utara - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Indogrosir"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": true,
+        "destinations": [
+          "Indogrosir"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41999 -7.66686",
+    "stop_name": "Terminal Pakem",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Percobaan 3 Pakem"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SDN Percobaan 3 Pakem"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.31843 -7.90532",
+    "stop_name": "Terminal Palbapang",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": true,
+        "destinations": []
+      }
+    ]
+  },
+  {
+    "point": "110.48982 -7.75566",
+    "stop_name": "Terminal Prambanan",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": true,
+        "destinations": [
+          "Edotel Kalasan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39282 -7.79531",
+    "stop_name": "Timoho - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 5 - A"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMKN 5 - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39258 -7.79683",
+    "stop_name": "Timoho - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "APMD - B"
+        ]
+      },
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "TNI AL - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43919 -7.70505",
+    "stop_name": "Timur Jembatan Yapah - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "SMAN 2 Ngaglik - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43930 -7.70502",
+    "stop_name": "Timur Jembatan Yapah - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tugu Batas Desa Yapah - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40125 -7.72423",
+    "stop_name": "TK BIAS",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Palem Raya - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39095 -7.79232",
+    "stop_name": "TNI AL - A",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timoho - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39234 -7.79257",
+    "stop_name": "TNI AL - B",
+    "services": [
+      {
+        "route": "10",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tarumartani - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32779 -7.77618",
+    "stop_name": "Toko Saerah - A",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Metro Nogotirto - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32787 -7.77627",
+    "stop_name": "Toko Saerah - B",
+    "services": [
+      {
+        "route": "13",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kantor Kal. Sidoarum - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.42017 -7.78329",
+    "stop_name": "Transmart",
+    "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kanwil DJJPb"
+        ]
+      },
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kanwil DJJPb"
+        ]
+      },
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kanwil DJJPb"
+        ]
+      },
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kanwil DJJPb"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32704 -7.88922",
+    "stop_name": "Tugu Adipura",
+    "services": [
+      {
+        "route": "15",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Bantul - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44261 -7.70380",
+    "stop_name": "Tugu Batas Desa Yapah - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Timur Jembatan Yapah - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.44265 -7.70374",
+    "stop_name": "Tugu Batas Desa Yapah - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Puskesmas Ngemplak - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36165 -7.76527",
+    "stop_name": "TVRI - A",
+    "services": [
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - A"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - A"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Karangwaru - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.36159 -7.76540",
+    "stop_name": "TVRI- B",
+    "services": [
+      {
+        "route": "5B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Daytrans Jl. Magelang"
+        ]
+      },
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Daytrans Jl. Magelang"
+        ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Daytrans Jl. Magelang"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38859 -7.82057",
+    "stop_name": "UAD Jl. Pramuka",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - B"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gudang SGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38291 -7.83513",
+    "stop_name": "UAD Ring Road Selatan - A",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38327 -7.83492",
+    "stop_name": "UAD Ring Road Selatan - B",
+    "services": [
+      {
+        "route": "9",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      },
+      {
+        "route": "11",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Giwangan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41878 -7.68732",
+    "stop_name": "UII (Barat Jalan)",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Degolan - A"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Degolan - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41881 -7.68778",
+    "stop_name": "UII (Timur Jalan)",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "YAKKUM - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "YAKKUM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39484 -7.78619",
+    "stop_name": "UIN Sunan Kalijaga - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "APMD - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.39478 -7.78591",
+    "stop_name": "UIN Sunan Kalijaga - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Gedung Wanita"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37884 -7.78552",
+    "stop_name": "UKDW",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bethesda"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "RS Bethesda"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32451 -7.81070",
+    "stop_name": "UMY - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Universitas BSI - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32457 -7.81090",
+    "stop_name": "UMY - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tamantirto - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.33454 -7.76822",
+    "stop_name": "Universitas Aisyiyah",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Westlake - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32413 -7.81841",
+    "stop_name": "Universitas Alma Ata",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lapangan Kasihan - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32518 -7.80270",
+    "stop_name": "Universitas BSI - A",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Gamping - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.32527 -7.80288",
+    "stop_name": "Universitas BSI - B",
+    "services": [
+      {
+        "route": "6",
+        "is_departure_hub": false,
+        "destinations": [
+          "UMY - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43417 -7.74633",
+    "stop_name": "UNRIYO - A",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Budi Mulia Dua - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.43422 -7.74630",
+    "stop_name": "UNRIYO - B",
+    "services": [
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "MAN 2 Sleman - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37646 -7.81977",
+    "stop_name": "UNU",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Widya Wiwaha - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38669 -7.77776",
+    "stop_name": "UNY Colombo",
+    "services": [
+      {
+        "route": "2A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plaza UNY"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Plaza UNY"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.40813 -7.76064",
+    "stop_name": "UPN Veteran",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pakuwon Mall - A"
+        ]
+      },
+      {
+        "route": "5A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pakuwon Mall - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38844 -7.80553",
+    "stop_name": "UTY Glagahsari - A",
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Makam Prajurit"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38833 -7.80567",
+    "stop_name": "UTY Glagahsari - B",
+    "services": [
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Olive Glagahsari"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35658 -7.74726",
+    "stop_name": "UTY Ring Road Utara - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Dusun Ngawen"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.35652 -7.74716",
+    "stop_name": "UTY Ring Road Utara - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Terminal Jombor"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38914 -7.81523",
+    "stop_name": "Veteran",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "XT Square"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37498 -7.77452",
+    "stop_name": "Vokasi UGM",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - B"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - B"
+        ]
+      },
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "FKG UGM - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41358 -7.70274",
+    "stop_name": "Wedangan Kampoeng - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Besi Jakal - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41357 -7.70282",
+    "stop_name": "Wedangan Kampoeng - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "SPBU Kaliurang - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34111 -7.74924",
+    "stop_name": "Westlake - A",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "Perumahan Nogotirto"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.34083 -7.74963",
+    "stop_name": "Westlake - B",
+    "services": [
+      {
+        "route": "8",
+        "is_departure_hub": false,
+        "destinations": [
+          "UTY Ring Road Utara - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37762 -7.82272",
+    "stop_name": "Widya Wiwaha - A",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wirosaban"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37754 -7.82261",
+    "stop_name": "Widya Wiwaha - B",
+    "services": [
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Lowanu - B"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37925 -7.82478",
+    "stop_name": "Wirosaban",
+    "services": [
+      {
+        "route": "3A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Tegal Turi - A"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37392 -7.83142",
+    "stop_name": "Wojo (Randubelang) - A",
+    "services": []
+  },
+  {
+    "point": "110.37385 -7.83019",
+    "stop_name": "Wojo (Randubelang) - B",
+    "services": []
+  },
+  {
+    "point": "110.40641 -7.79862",
+    "stop_name": "Wonocatur",
+    "services": [
+      {
+        "route": "1B",
+        "is_departure_hub": false,
+        "destinations": [
+          "BKPM"
+        ]
+      },
+      {
+        "route": "3B",
+        "is_departure_hub": false,
+        "destinations": [
+          "BKPM"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38597 -7.81623",
+    "stop_name": "XT Square",
+    "services": [
+      {
+        "route": "2B",
+        "is_departure_hub": false,
+        "destinations": [
+          "Pasar Sepeda"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Polsek Umbulharjo"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41802 -7.69559",
+    "stop_name": "YAKKUM - A",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Boulevard UII"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Boulevard UII"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.41812 -7.69549",
+    "stop_name": "YAKKUM - B",
+    "services": [
+      {
+        "route": "12",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wedangan Kampoeng - B"
+        ]
+      },
+      {
+        "route": "14",
+        "is_departure_hub": false,
+        "destinations": [
+          "Simpang Besi Jakal - B"
+        ]
+      }
+    ]
+  }
+]

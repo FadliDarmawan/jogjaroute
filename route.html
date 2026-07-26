@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting… — Surabaya route map</title>
+</head>
+<body>
+<script>
+  // Route detail views now live inside index.html itself, reached via a
+  // URL hash (index.html#/routes/1A) instead of a separate page -- picking
+  // a route no longer reloads anything; it just re-renders the same map
+  // in place, the same way busrouter.sg's #/ vs #/routes/<id> works.
+  // This file is kept only so old ?route=1A links (from before that
+  // change) keep working.
+  const id = new URLSearchParams(location.search).get("route");
+  const hash = id ? `#/routes/${encodeURIComponent(id.toUpperCase())}` : "#/";
+  location.replace(`index.html${hash}`);
+</script>
+<noscript>
+  <p>JavaScript is required. <a href="index.html">Go to the map</a>.</p>
+</noscript>
+</body>
+</html>
