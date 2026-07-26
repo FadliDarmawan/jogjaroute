@@ -38,38 +38,40 @@ Dari 21 file rute yang kamu kirim, **19 sekarang valid dan siap pakai**:
   resmi terminalnya, atau bisa jadi rutenya sudah berubah dari yang
   dideskripsikan di web.
 
-## 🚫 BLOKIR — gak aku lanjutin, butuh data darimu
+## ✅ UPDATE — SiBulan sudah beres
 
-### 1. SiBulan1 & SiBulan2 — dipindah ke `_blocked (butuh data lagi)/`
-`stops/stops.json` yang kamu kirim **sama sekali gak punya entri stop untuk
-SiBulan** — bukan cuma belum ada `departures` (timetable), tapi stop-nya
-sendiri belum terdaftar sebagai dilayani rute ini. `build-route-shapes.js`
-butuh minimal 1 stop yang nge-tag `"route": "SIBULAN1"` di stops.json buat
-bisa jalan sama sekali — tanpa itu dia langsung gagal ("No stops... reference
-route X").
+Sudah dikasih data terminus dari kamu, jadi ini sekarang WIRED IN:
 
-Aku sempat coba tebak dari alamat di file mentahnya ("TJ Bandara Adisucipto"
-buat SiBulan2, area Tridadi/Sleman buat SiBulan1) — ketemu kandidat
-"Bandara Adisujtipto" yang udah ada di stops.json, tapi dia belum di-tag
-melayani SIBULAN2. **Aku sengaja gak nebak dan langsung nambahin tag ini
-sendiri** — ini data transportasi publik beneran, kalau tebakanku salah,
-orang bisa salah naik bus. Yang aku butuh dari kamu:
-- Nama + koordinat stop untuk kedua terminus SiBulan1 dan SiBulan2 (2 titik
-  masing-masing, karena ini loop/round-trip)
-- Kalau salah satu ternyata sama dengan stop yang sudah ada (misal
-  "Bandara Adisujtipto"), tinggal konfirmasi itu aja.
+- **SIBULAN1**: 2 stop baru (`Pasar Godean`, `Kantor Dishub Sleman`)
+  ditambahkan ke `stops.json`. Titik awal geometrinya (`--start`) dicek dan
+  cocok persis ke koordinat "Kantor Dishub Sleman" yang kamu kasih
+  (selisih ~5m) — dikonfirmasi lewat `build-route-shapes.js`, bukan cuma
+  dipercaya mentah-mentah. 2/2 stop matched.
+- **SIBULAN2**: 74 stop rute 14 ditag ulang jadi juga melayani `SIBULAN2`
+  (setelah dicek dulu titik awal geometrinya SIBULAN2 memang cocok persis
+  ke "Bandara Adisujtipto", terminus rute 14 — jadi klaim "sama kaya halte
+  14" itu diverifikasi, bukan cuma diterima gitu aja). 74/74 stop matched.
+  `is_departure_hub` juga dicontek dari cara rute 14 nandain dirinya
+  sendiri (true di Bandara Adisujtipto, false di Terminal Pakem).
+- Timetable fixed (`06:00, 07:00, 13:00, 14:00, 15:00, 15:30`) ditempel di
+  2 terminus SIBULAN2 (`departures` field, bukan di `ROUTE_META`).
+- Jendela operasional tentatif SIBULAN1 (`06:00-07:00`, `14:00-15:00`) dan
+  jam ringkas SIBULAN2 masuk ke `ROUTE_META[id].schedule.hours`.
+- **Dimming baseline sudah diimplementasi beneran** (bukan cuma dijanjikan
+  kemarin) — `isRouteActiveToday(id)` baca `ROUTE_META[id].schedule.type`,
+  dan default tampilan peta (bukan cuma pas di-klik/di-hover) sekarang
+  ngikut: SIBULAN1/SIBULAN2 otomatis dim di akhir pekan, rute lain gak
+  kesentuh. Ini nyentuh 3 titik: paint awal layer `route-line`, sama reset
+  branch di `setRouteDimming()` dan `setRouteOverview()`.
 
-Begitu ada, aku tinggal: tag stop-nya di stops.json → jalanin
-`build-route-shapes.js` → nambah entri `SIBULAN1`/`SIBULAN2` di `ROUTE_META`
-dengan `schedule.type: "weekday-only"` → baru masuk ke bagian dimming/
-timetable yang kita diskusiin kemarin.
+## 🚫 Masih BLOKIR
 
-### 2. `ROUTE_DIRECTIONS` — SAMA SEKALI BELUM DIISI buat Yogyakarta
+### `ROUTE_DIRECTIONS` — SAMA SEKALI BELUM DIISI buat Yogyakarta
 Ini yang paling penting kamu tau. Tabel ini nge-drive tombol "tujuan" tiap
 stop (leg "berangkat" vs "pulang") — dan sebelumnya isinya **100% ID rute
 Surabaya** (`R5`, `FD2`, `FD3`, dst). Aku hapus semuanya karena gak ada satu
 pun yang cocok ke Yogyakarta — tapi aku **belum isi ulang** buat 19 rute
-Trans Jogja, dan ini bukan pekerjaan kosmetik kayak judul/warna:
+Trans Jogja (atau SiBulan), dan ini bukan pekerjaan kosmetik kayak judul/warna:
 
 - Butuh titik **wayback (turnaround)** yang tervalidasi ke geometri asli per
   rute — index.html sendiri punya `validateRouteDirections()` yang bakal

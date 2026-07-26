@@ -1034,6 +1034,22 @@ const ROUTE_META = {
   "14":  { title: "Bandara Adisutjipto - Terminal Pakem", color: "#467800" },
   "15":  { title: "Terminal Palbapang - Malioboro", color: "#6F42C1" }, // PROVISIONAL color
   "L1":  { title: "Terminal Jombor - Malioboro", color: "#495057" }, // PROVISIONAL color
+
+  // Bus Sekolah Sleman (SiBulan). Weekday-only -- unlike FD3 in the old
+  // Surabaya build, these don't swap to a different geometry file when
+  // inactive; the SAME shape stays loaded every day, just dimmed on
+  // non-operating days (weekends). See isRouteActiveToday()/the dimming
+  // hook below routeFileFor().
+  "SIBULAN1": {
+    title: "Pasar Godean - Kantor Dishub Sleman",
+    color: "#FFB703",
+    schedule: { type: "weekday-only", hours: ["06:00-07:00", "14:00-15:00"] } // tentative -- operating windows, not a real timetable
+  },
+  "SIBULAN2": {
+    title: "Bandara Adisutjipto - Terminal Pakem (rute Bus Sekolah, sama halte dgn 14)",
+    color: "#FB8500",
+    schedule: { type: "weekday-only", hours: ["06:00-15:30"] } // fixed -- see per-stop `departures` in routes/SIBULAN2.json for the real timetable
+  },
 };
 // Explicit display order — NOT Object.keys(ROUTE_META). JS silently
 // reorders object keys that look like plain integers ("6", "8", "9",
@@ -1041,9 +1057,7 @@ const ROUTE_META = {
 // "L1", regardless of how the object literal was written. That reordering
 // is exactly what made the rail show 6, 8, 9, 10...15, 1A, 1B, 2A... instead
 // of the intended 1A, 1B, 2A, ... 15, L1 sequence.
-const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1"];
-// NOT wired in yet: SIBULAN1, SIBULAN2. Blocked on missing stop data --
-// see AUDIT-YOGYAKARTA.md before adding them here.
+const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SIBULAN1", "SIBULAN2"];
 window.ROUTE_META = ROUTE_META;
 window.ROUTE_IDS = ROUTE_IDS;
 
@@ -1792,6 +1806,28 @@ function routeFileFor(id) {
   return `${id}.json`;
 }
 
+// Routes marked "weekday-only" in ROUTE_META (SIBULAN1/SIBULAN2) render
+// dimmed by default on non-operating days -- not hidden, just visually
+// deprioritized, distinct from the heavier grey/0.05 treatment used for
+// interactive de-selection below. This only affects the BASELINE state:
+// any interactive highlight (hover, click, route detail) still fully
+// overrides it, since that grey/0.05 treatment is strictly more dimmed
+// than this and only ever applies to routes not in the highlighted set.
+function isRouteActiveToday(id) {
+  const schedule = ROUTE_META[id] && ROUTE_META[id].schedule;
+  if (!schedule || schedule.type !== "weekday-only") return true;
+  const day = new Date().getDay(); // 0 = Sunday, 6 = Saturday
+  return day >= 1 && day <= 5;
+}
+
+const INACTIVE_TODAY_IDS = ROUTE_IDS.filter(id => !isRouteActiveToday(id));
+const BASELINE_ROUTE_COLOR = INACTIVE_TODAY_IDS.length
+  ? ["case", ["in", ["get", "id"], ["literal", INACTIVE_TODAY_IDS]], "#b5b3ad", ["get", "color"]]
+  : ["get", "color"];
+const BASELINE_ROUTE_OPACITY = INACTIVE_TODAY_IDS.length
+  ? ["case", ["in", ["get", "id"], ["literal", INACTIVE_TODAY_IDS]], 0.35, 0.9]
+  : 0.9;
+
 async function loadRoutes() {
   const results = await Promise.allSettled(
     ROUTE_IDS.map(id =>
@@ -1992,9 +2028,9 @@ map.on("load", async () => {
     type: "line",
     source: "route",
     paint: {
-      "line-color": ["get", "color"],
+      "line-color": BASELINE_ROUTE_COLOR,
       "line-width": 4,
-      "line-opacity": 0.9,
+      "line-opacity": BASELINE_ROUTE_OPACITY,
       // Without this, MapLibre's default ~300ms paint-property transition
       // means every setPaintProperty below doesn't apply instantly -- it
       // fades from whatever was on screen a moment ago. showPopup resets
@@ -2750,8 +2786,8 @@ function setRouteArrows(routeIdOrIds) {
 function setRouteDimming(highlightRouteId) {
   if (!highlightRouteId) {
     setRouteArrows(null);
-    map.setPaintProperty("route-line", "line-color", ["get", "color"]);
-    map.setPaintProperty("route-line", "line-opacity", 0.9);
+    map.setPaintProperty("route-line", "line-color", BASELINE_ROUTE_COLOR);
+    map.setPaintProperty("route-line", "line-opacity", BASELINE_ROUTE_OPACITY);
     return;
   }
   map.setPaintProperty("route-line", "line-color", "#b5b3ad");
@@ -2767,8 +2803,8 @@ function setRouteDimming(highlightRouteId) {
 function setRouteOverview(routeIds) {
   setRouteArrows(routeIds);
   if (!routeIds || !routeIds.length) {
-    map.setPaintProperty("route-line", "line-color", ["get", "color"]);
-    map.setPaintProperty("route-line", "line-opacity", 0.9);
+    map.setPaintProperty("route-line", "line-color", BASELINE_ROUTE_COLOR);
+    map.setPaintProperty("route-line", "line-opacity", BASELINE_ROUTE_OPACITY);
     return;
   }
   const isHighlighted = ["in", ["get", "id"], ["literal", routeIds]];

@@ -304,6 +304,10 @@
         "destinations": [
           "KKP Yogyakarta"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": true
       }
     ]
   },
@@ -456,6 +460,10 @@
         "destinations": [
           "Maguwo Sambilegi"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -598,6 +606,10 @@
           "UII (Barat Jalan)",
           "UII (Timur Jalan)"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -657,6 +669,10 @@
         "destinations": [
           "Indomaret Pokoh Sambiroto - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -670,6 +686,10 @@
         "destinations": [
           "UNRIYO - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -992,6 +1012,10 @@
         "destinations": [
           "SMKN 1 Depok - Jl. Raya Tajem - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1005,6 +1029,10 @@
         "destinations": [
           "Selokan Mataram Maguwo"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1144,6 +1172,10 @@
         "destinations": [
           "RS Panti Nugroho"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1164,6 +1196,10 @@
         "destinations": [
           "Raminten - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1976,6 +2012,10 @@
         "destinations": [
           "Kantor Kal. Wedomartani - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1989,6 +2029,10 @@
         "destinations": [
           "Budi Mulia Dua - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2226,6 +2270,10 @@
         "destinations": [
           "RS Kemasan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2239,6 +2287,10 @@
         "destinations": [
           "Simpang Kabunan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2505,6 +2557,10 @@
         "destinations": [
           "SDN Selomulyo - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2518,6 +2574,10 @@
         "destinations": [
           "Lap. Klidon - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2531,6 +2591,10 @@
         "destinations": [
           "Simpang Babadan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2544,6 +2608,10 @@
         "destinations": [
           "Indomaret Pokoh Sambiroto - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -2986,6 +3054,10 @@
         "destinations": [
           "Disnakertrans - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3287,6 +3359,10 @@
         "destinations": [
           "MAN 2 Sleman - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3300,6 +3376,10 @@
         "destinations": [
           "SDN 1 Depok - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3365,6 +3445,10 @@
         "destinations": [
           "Kantor Kal. Sukoharjo - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3378,6 +3462,10 @@
         "destinations": [
           "SPBU Mindi - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3571,6 +3659,10 @@
         "destinations": [
           "Bandara Adisujtipto"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3897,6 +3989,10 @@
         "destinations": [
           "UNRIYO - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -3910,6 +4006,10 @@
         "destinations": [
           "KUA Depok - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -4917,6 +5017,10 @@
         "destinations": [
           "Puskesmas Ngemplak - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -4930,6 +5034,10 @@
         "destinations": [
           "Simpang Kenti - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -5890,6 +5998,10 @@
         "destinations": [
           "Tugu Batas Desa Yapah - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -5903,6 +6015,10 @@
         "destinations": [
           "Pasar Jangkang - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -5923,6 +6039,10 @@
         "destinations": [
           "Dusun Kledokan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -5943,6 +6063,10 @@
         "destinations": [
           "Simpang Degolan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6082,6 +6206,10 @@
         "destinations": [
           "Simpang Kenti - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6095,6 +6223,10 @@
         "destinations": [
           "Jl. Raya Kabunan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6115,6 +6247,10 @@
         "destinations": [
           "Terminal Pakem"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6223,6 +6359,10 @@
         "destinations": [
           "Simpang Besi Jakal - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6236,6 +6376,10 @@
         "destinations": [
           "SDN Selomulyo - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6469,6 +6613,10 @@
         "destinations": [
           "KUA Depok - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6482,6 +6630,10 @@
         "destinations": [
           "SMKN 1 Depok - Jl. Raya Tajem - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6528,6 +6680,10 @@
         "destinations": [
           "SMPN 4 Pakem"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6541,6 +6697,10 @@
         "destinations": [
           "RSU Gramedika - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6554,6 +6714,10 @@
         "destinations": [
           "Kantor Kal. Sukoharjo - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6567,6 +6731,10 @@
         "destinations": [
           "Binamarga"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6654,6 +6822,10 @@
         "destinations": [
           "Simpang Selomartani - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6667,6 +6839,10 @@
         "destinations": [
           "Kantor Kal. Wedomartani - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6713,6 +6889,10 @@
         "destinations": [
           "YAKKUM - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6733,6 +6913,10 @@
         "destinations": [
           "RSU Gramedika - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6753,6 +6937,10 @@
         "destinations": [
           "Raminten - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6773,6 +6961,10 @@
         "destinations": [
           "Boulevard UII"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6864,6 +7056,10 @@
         "destinations": [
           "Jl. Raya Kabunan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6877,6 +7073,10 @@
         "destinations": [
           "Simpang Selomartani - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6916,6 +7116,10 @@
         "destinations": [
           "Pasar Jangkang - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6929,6 +7133,10 @@
         "destinations": [
           "RS Kemasan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6942,6 +7150,10 @@
         "destinations": [
           "SPBU Mindi - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -6955,6 +7167,10 @@
         "destinations": [
           "SMAN 2 Ngaglik - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7046,6 +7262,10 @@
         "destinations": [
           "Simpang Kabunan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7059,6 +7279,10 @@
         "destinations": [
           "Simpang Babadan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7217,6 +7441,10 @@
         "destinations": [
           "Simpang Losari - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7230,6 +7458,10 @@
         "destinations": [
           "Timur Jembatan Yapah - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7329,6 +7561,10 @@
         "destinations": [
           "SDN 1 Depok -  A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7342,6 +7578,10 @@
         "destinations": [
           "Disnakertrans - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7703,6 +7943,10 @@
         "destinations": [
           "Dusun Kledokan - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7862,6 +8106,10 @@
         "destinations": [
           "Lap. Klidon - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -7875,6 +8123,10 @@
         "destinations": [
           "Simpang Losari - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -8735,6 +8987,10 @@
         "destinations": [
           "SDN Percobaan 3 Pakem"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -8812,6 +9068,10 @@
         "destinations": [
           "SMAN 2 Ngaglik - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -8825,6 +9085,10 @@
         "destinations": [
           "Tugu Batas Desa Yapah - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -8950,6 +9214,10 @@
         "destinations": [
           "Timur Jembatan Yapah - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -8963,6 +9231,10 @@
         "destinations": [
           "Puskesmas Ngemplak - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9097,6 +9369,10 @@
         "destinations": [
           "Simpang Degolan - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9117,6 +9393,10 @@
         "destinations": [
           "YAKKUM - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9254,6 +9534,10 @@
         "destinations": [
           "Budi Mulia Dua - A"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9267,6 +9551,10 @@
         "destinations": [
           "MAN 2 Sleman - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9573,6 +9861,10 @@
         "destinations": [
           "Boulevard UII"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
       }
     ]
   },
@@ -9593,6 +9885,30 @@
         "destinations": [
           "Simpang Besi Jakal - B"
         ]
+      },
+      {
+        "route": "SIBULAN2",
+        "is_departure_hub": false
+      }
+    ]
+  },
+  {
+    "point": "110.29092284076587 -7.7658685082583485",
+    "stop_name": "Pasar Godean",
+    "services": [
+      {
+        "route": "SIBULAN1",
+        "is_departure_hub": true
+      }
+    ]
+  },
+  {
+    "point": "110.35237416519529 -7.7185219124573425",
+    "stop_name": "Kantor Dishub Sleman",
+    "services": [
+      {
+        "route": "SIBULAN1",
+        "is_departure_hub": true
       }
     ]
   }
