@@ -1057,38 +1057,38 @@ function buildStopsGeoJSON() {
 const ROUTE_META = {
   "1A":  { title: "Prambanan - Malioboro", color: "#E73D4A", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "1B":  { title: "Adisutjipto - Ngabean", color: "#F7A2A5", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "2A":  { title: "Terminal Condongcatur - XT Square", color: "#1a94da", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "2B":  { title: "Condong Catur - Ngabean", color: "#9CCEEF", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "3A":  { title: "Terminal Giwangan - Condongcatur", color: "#e46c00", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "3B":  { title: "Giwangan - Condong Catur", color: "#FFAE64", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "4A":  { title: "Giwangan - UGM", color: "#63A90A", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "2A":  { title: "Condongcatur - XT Square", color: "#1a94da", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "2B":  { title: "Condongcatur - XT Square", color: "#9CCEEF", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "3A":  { title: "Giwangan - Condongcatur", color: "#e46c00", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "3B":  { title: "Giwangan - Condongcatur", color: "#FFAE64", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "4A":  { title: "Giwangan - Condongcatur", color: "#63A90A", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "4B":  { title: "Giwangan - Condongcatur", color: "#BDD8A5", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "5A":  { title: "Jombor - Janti", color: "#733B9C", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "5B":  { title: "Terminal Jombor - Bandara Adisutjipto", color: "#17A398", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
+  "5B":  { title: "Jombor - Adisutjipto", color: "#17A398", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
   "6":   { title: "Gamping - Malioboro", color: "#5A413A", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "8":   { title: "Jombor - Ngabean", color: "#005CA5", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "9":   { title: "Giwangan - Jombor", color: "#42B6B5", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "10":  { title: "Gamping - Stadion Kridosono", color: "#F7C331", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "10":  { title: "Gamping - Kusumanegara", color: "#F7C331", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "11":  { title: "Giwangan - Cik Di Tiro", color: "#c1d01b", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "12":  { title: "Condongcatur - Pakem", color: "#A54E01", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
   "13":  { title: "Stadion TGP - Malioboro", color: "#D63384", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color; see AUDIT note on the title
-  "14":  { title: "Bandara Adisutjipto - Terminal Pakem", color: "#467800", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
-  "15":  { title: "Terminal Palbapang - Malioboro", color: "#6F42C1", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
-  "L1":  { title: "Terminal Jombor - Malioboro", color: "#495057", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
+  "14":  { title: "Adisutjipto - Pakem", color: "#467800", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } },
+  "15":  { title: "Palbapang - Malioboro", color: "#6F42C1", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
+  "L1":  { title: "Jombor - Malioboro", color: "#495057", agency: "Trans Jogja", schedule: { type: "daily", hours: ["05:30-20:30"] } }, // PROVISIONAL color
 
   // Bus Sekolah Sleman (SiBulan). Weekday-only -- unlike FD3 in the old
   // Surabaya build, these don't swap to a different geometry file when
   // inactive; the SAME shape stays loaded every day, just dimmed on
   // non-operating days (weekends). See isRouteActiveToday()/the dimming
   // hook below routeFileFor().
-  "SIBULAN1": {
+  "SiBulan 1": {
     title: "Pasar Godean - Kantor Dishub Sleman",
     color: "#FFB703",
     agency: "SiBulan",
     schedule: { type: "weekday-only", hours: ["06:00-07:00", "14:00-15:00"] } // tentative -- operating windows, not a real timetable
   },
-  "SIBULAN2": {
-    title: "Bandara Adisutjipto - Terminal Pakem (rute Bus Sekolah, sama halte dgn 14)",
+  "SiBulan 2": {
+    title: "Adisutjipto - Pakem",
     color: "#FB8500",
     agency: "SiBulan",
     schedule: { type: "weekday-only", hours: ["06:00-15:30"] } // fixed -- see per-stop `departures` in routes/SIBULAN2.json for the real timetable
@@ -1100,7 +1100,7 @@ const ROUTE_META = {
 // "L1", regardless of how the object literal was written. That reordering
 // is exactly what made the rail show 6, 8, 9, 10...15, 1A, 1B, 2A... instead
 // of the intended 1A, 1B, 2A, ... 15, L1 sequence.
-const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SIBULAN1", "SIBULAN2"];
+const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SiBulan 1", "SiBulan 2"];
 window.ROUTE_META = ROUTE_META;
 window.ROUTE_IDS = ROUTE_IDS;
 
