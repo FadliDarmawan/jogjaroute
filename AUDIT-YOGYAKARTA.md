@@ -64,7 +64,33 @@ Sudah dikasih data terminus dari kamu, jadi ini sekarang WIRED IN:
   kesentuh. Ini nyentuh 3 titik: paint awal layer `route-line`, sama reset
   branch di `setRouteDimming()` dan `setRouteOverview()`.
 
-## 🚫 Masih BLOKIR
+## ✅ UPDATE — timetable & jam operasional sekarang tampil di UI
+
+Sebelumnya datanya ada tapi gak ada satupun tempat yang nampilin. Sekarang:
+
+- **Panel detail rute** (`#route-detail-title`) nampilin `schedule.hours`
+  dari `ROUTE_META` di bawah judul rute — otomatis kepake buat rute
+  manapun yang punya field ini (nanti kalau Trans Jogja diisi 05:30-20:30,
+  ini juga langsung kepake, gak perlu kerjaan tambahan).
+- **Popup halte** nampilin timetable asli (`departures`) buat 2 stop yang
+  punya field itu (Bandara Adisujtipto & Terminal Pakem, keduanya SIBULAN2).
+  Halte lain yang gak punya `departures` ya popup-nya biasa aja.
+
+### 🐛 Bug yang ketemu & dibenerin di sesi ini (bukan dari kamu — dariku)
+Pas nelusurin kode buat nempelin timetable, ketemu `showPopup()` masih
+manggil `isFd3ActiveWeekend()` — fungsi yang **udah aku hapus sendiri**
+minggu lalu pas beresin logic FD3. Ini bakal bikin **setiap klik halte
+error (ReferenceError), popup gak pernah muncul**. `node --check` yang aku
+andalkan waktu itu cuma ngecek sintaks, bukan referensi runtime, jadi lolos
+diam-diam. Sudah dibenerin + di-sweep ulang total, gak ada sisa panggilan
+ke fungsi FD3 yang udah dihapus. **Pelajaran buat aku sendiri**: abis
+hapus fungsi, harus grep nama fungsinya di seluruh file, bukan cuma
+percaya syntax checker.
+
+### Data yang belum ada tempat tampilnya (belum diminta, jadi belum dibikin)
+- `schedule.hours` SIBULAN1 (jendela tentatif) dan Trans Jogja belum keisi
+  beneran — placeholder kosong sampai kamu kasih jam Trans Jogja yang
+  dijanjikan kemarin.
 
 ### `ROUTE_DIRECTIONS` — SAMA SEKALI BELUM DIISI buat Yogyakarta
 Ini yang paling penting kamu tau. Tabel ini nge-drive tombol "tujuan" tiap
@@ -96,6 +122,30 @@ arah/tujuan yang belum punya data.
 **Yang aku butuh dari kamu** (per rute, atau minimal buat yang paling sering
 dipakai dulu): apakah dia loop atau end-to-end, dan kalau end-to-end, nama
 persis stop titik pulang (wayback) sesuai ejaan di `routes/<id>.json`.
+
+## ✅ UPDATE — 4 request terbaru
+
+1. **Jam operasional Trans Jogja** — `schedule.hours: ["05:30-20:30"]`
+   ditambahin ke 20 rute (bukan 19 — sempat salah hitung di laporan
+   sebelumnya, ternyata Trans Jogja-nya 20 rute, SiBulan 2, total 22).
+   Otomatis muncul di panel detail rute (fitur yang udah dibangun sesi
+   sebelumnya).
+2. **Zoom map** — masih `center: [112.7521, -7.2575]` (Surabaya) sejak awal
+   fork, kelewat waktu ganti data. Dibenerin ke `[110.390, -7.786]`, dihitung
+   dari bounding box asli semua stop di `stops.json` (bukan tebak-tebakan),
+   zoom 10.3.
+3. **Warna judul "Yogyakarta"** — diganti `#F2B705` (kuning keemasan),
+   bukan kuning murni `#FFFF00` — kuning murni nyaris gak kebaca di
+   background terang sheet-nya. Ganti manual di CSS `#mobile-sheet-title`
+   kalau maunya beda.
+4. **Filter operator (SiBulan / Trans Jogja / ...)** — dibangun generik:
+   chip filter di-derive dari field `agency` di `ROUTE_META`, bukan
+   hardcode daftar operator. Nambah KSPN atau Trans Gadjah Mada nanti
+   cukup kasih `agency: "KSPN"` dst di entri rutenya masing-masing — chip
+   baru otomatis muncul, gak perlu ubah kode filter. Muncul di rail
+   desktop (cuma pas expanded — versi collapsed kesempitan buat teks) dan
+   di mobile sheet (state "full"). Sengaja gak bisa di-filter sampai nol
+   operator (minimal 1 tetap aktif) biar gak keliatan "rusak".
 
 ## Yang sudah aku rapikan sekalian
 - Semua logic FD3 (weekday/weekend file-swap, `FD3_WEEKEND_ONLY_STOPS`,
