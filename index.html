@@ -1305,7 +1305,7 @@ mobileRouteList.addEventListener("mouseleave", () => {
 function measureSheetHeights() {
   const fullH = mobileSheet.getBoundingClientRect().height;
   const hiddenH = sheetHandle.getBoundingClientRect().height + sheetHeader.getBoundingClientRect().height;
-  const peekH = hiddenH + sheetSearchSlot.getBoundingClientRect().height + sheetToggle.getBoundingClientRect().height;
+  const peekH = hiddenH + sheetSearchSlot.getBoundingClientRect().height + sheetToggle.getBoundingClientRect().height + mobileRouteFilter.getBoundingClientRect().height;
   return { fullH, peekH, hiddenH };
 }
 

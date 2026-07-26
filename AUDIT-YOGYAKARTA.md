@@ -123,7 +123,24 @@ arah/tujuan yang belum punya data.
 dipakai dulu): apakah dia loop atau end-to-end, dan kalau end-to-end, nama
 persis stop titik pulang (wayback) sesuai ejaan di `routes/<id>.json`.
 
-## ✅ UPDATE — 4 request terbaru
+## 🐛 UPDATE — bug "route list ilang" di HP, dibenerin
+
+Bukan route list-nya yang kehapus — perhitungan tinggi bottom sheet-nya
+jadi salah. Kronologinya: pas nambahin filter chip kemarin, aku kasih
+`display:none`-sampai-"full" buat chip-nya **cuma di CSS mode desktop
+sidebar** (`@media (min-width: 701px)`). Di mode HP (bottom sheet asli),
+chip-nya gak pernah disembunyiin — dan mode HP itu sengaja gak pernah pakai
+`display:none` sama sekali buat sembunyi/tampil (cuma geser pakai
+`transform`, biar gak ada reflow), jadi and `measureSheetHeights()`
+ngitung tinggi "peek" cuma dari 4 elemen tetap (handle+header+search+toggle)
+— gak tau ada chip baru yang nempatin ruang di antara toggle sama list.
+Akibatnya batas geser "peek" salah hitung, tombol "Open route list" ke-geser
+keluar jendela yang kelihatan, chip-nya nongkrong di batas yang salah itu.
+
+**Fix**: tinggal masukin tinggi elemen filter ke rumus `peekH` di
+`measureSheetHeights()`. Satu baris, gak nyentuh CSS lagi.
+
+
 
 1. **Jam operasional Trans Jogja** — `schedule.hours: ["05:30-20:30"]`
    ditambahin ke 20 rute (bukan 19 — sempat salah hitung di laporan
