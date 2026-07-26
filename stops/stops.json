@@ -260,7 +260,7 @@
   },
   {
     "point": "110.43571 -7.78450",
-    "stop_name": "Bandara Adisujtipto",
+    "stop_name": "Bandara Adisutjipto",
     "services": [
       {
         "route": "1A",
@@ -1273,11 +1273,8 @@
     "stop_name": "Eks Menara Kopi - A",
     "services": [
       {
-        "route": "6",
-        "is_departure_hub": false,
-        "destinations": [
-          "Kridosono"
-        ]
+        "route": "1A",
+        "is_departure_hub": false
       },
       {
         "route": "8",
@@ -1299,6 +1296,13 @@
     "point": "110.37004 -7.78939",
     "stop_name": "Eks Menara Kopi - B",
     "services": [
+      {
+        "route": "1A",
+        "is_departure_hub": false,
+        "destinations": [
+          "Malioboro 1"
+        ]
+      },
       {
         "route": "3A",
         "is_departure_hub": false,
@@ -5043,7 +5047,7 @@
   },
   {
     "point": "110.46899 -7.76991",
-    "stop_name": "Pasar Kalasan -  B",
+    "stop_name": "Pasar Kalasan - B",
     "services": [
       {
         "route": "1A",
