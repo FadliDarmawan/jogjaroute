@@ -1467,7 +1467,9 @@ applySheetState("peek", false);
 // AUDIT-YOGYAKARTA.md for what's needed before this can be filled in
 // safely, and DISPLAY_NAMES above for a couple of spellings already
 // confirmed against real route-shape data (1B's "Adisujtipto" typo).
-const ROUTE_DIRECTIONS = {};
+const ROUTE_DIRECTIONS = {
+  "1A": { start: "Terminal Prambanan", wayback: "Malioboro 3", end: "Terminal Prambanan" },
+};
 
 const ROUTE_WAYPOINTS = Object.fromEntries(
   Object.entries(ROUTE_DIRECTIONS).map(([routeId, dirs]) => [
