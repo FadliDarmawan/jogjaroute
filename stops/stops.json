@@ -3534,7 +3534,7 @@
         "route": "1B",
         "is_departure_hub": false,
         "destinations": [
-          "SDN Gedong Tengen"
+          "SDN Gedongtengen"
         ]
       }
     ]
@@ -6643,7 +6643,7 @@
   },
   {
     "point": "110.35693 -7.79265",
-    "stop_name": "SDN Gedong Tengen",
+    "stop_name": "SDN Gedongtengen",
     "services": [
       {
         "route": "1B",
