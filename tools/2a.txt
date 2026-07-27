@@ -1,7 +1,7 @@
 Terminal Condongcatur
 Manggung
 Monjali - B
-Jombor
+Terminal Jombor
 Monjali - A
 PDAM Monjali - A
 SPBU Monjali - A
@@ -23,7 +23,7 @@ Purawisata - A
 SDN Kintelan 1
 Pujokusuman
 STIE Kerjasama
-RSI Hidayatullah
+RS Hidayatullah
 Gambiran - A
 Perintis Kemerdekaan - A
 Diklat PU
@@ -32,7 +32,7 @@ Kehutanan - A
 Pilar
 Banguntapan - A
 Gembira Loka - B
-Kusumanegara - B
+SGM Kusumanegara - B
 Makam Gajah - B
 KPPN
 Among Rogo - A

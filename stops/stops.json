@@ -1289,6 +1289,10 @@
         "destinations": [
           "Kridosono"
         ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false
       }
     ]
   },
@@ -1323,6 +1327,10 @@
         "destinations": [
           "Malioboro 1"
         ]
+      },
+      {
+        "route": "2A",
+        "is_departure_hub": false
       }
     ]
   },

@@ -1493,6 +1493,7 @@ applySheetState("peek", false);
 const ROUTE_DIRECTIONS = {
   "1A": { start: "Terminal Prambanan", wayback: "Malioboro 3", end: "Terminal Prambanan" },
   "1B": { start: "Bandara Adisutjipto", wayback: "Ngabean", end: "Bandara Adisutjipto" },
+  "2A": { start: "Terminal Condongcatur", wayback: "RS Hidayatullah", end: "Terminal Condongcatur" },
 };
 
 const ROUTE_WAYPOINTS = Object.fromEntries(
@@ -4595,7 +4596,7 @@ function addPlanMarker(coord, html) {
 
 // GANTI dengan URL bot kamu setelah deploy ke Railway, contoh:
 // "https://sibulan-tracker-bot-production.up.railway.app/api/locations"
-const BUS_API_URL = "https://sibulan-tracker-bot-production.up.railway.app/api/locations";
+const BUS_API_URL = "";
 const BUS_POLL_INTERVAL_MS = 5000;
 // Kalau sebuah bus belum kirim update lebih dari ini, marker-nya dibikin
 // pudar (is-stale) supaya kelihatan datanya lagi nggak fresh, bukan
