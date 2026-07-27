@@ -440,6 +440,29 @@
   body.zoomed-out .plan-marker-dot { display: block; }
   body.zoomed-out .plan-marker-compact { display: flex; }
 
+  /* ---- Live bus markers (SiBulan 2 - dua armada di rute yang sama,
+     posisinya di-poll dari bot Baileys terpisah, lihat pollBusLocations
+     di bawah). Posisi marker di-update via setLngLat, elemen DOM-nya
+     tidak pernah dibuat ulang -- supaya gerakannya smooth, bukan kedip. ---- */
+  .bus-marker {
+    position: relative;
+    text-align: center;
+    transition: transform 0.4s ease;
+  }
+  .bus-marker-pin {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+    line-height: 1;
+  }
+  .bus-marker-label {
+    font-size: 10px; font-weight: 800; color: #fff;
+    background: var(--bus-color, #888);
+    padding: 1px 7px; border-radius: 999px;
+    white-space: nowrap; margin-top: 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+  .bus-marker.is-stale { opacity: 0.4; }
+
   /* Floating "-> destination" pills dropped at the origin stop and each
      final-destination endpoint (see addDestLabel) -- used by both "Show
      final destination" and the single-route destination pick. Same
@@ -4560,6 +4583,79 @@ function addPlanMarker(coord, html) {
     .addTo(map);
   planMarkers.push(marker);
 }
+
+// ---------------------------------------------------------------------------
+// Live bus markers -- SiBulan 2 (Adisutjipto - Pakem), 2 armada fisik di
+// rute yang sama. Posisi didapat dari bot Baileys terpisah (lihat
+// sibulan-tracker-bot repo) yang expose GET /api/locations sebagai
+// { bus1: {lat,lng,updatedAt,...}, bus2: {...} }. Kita poll endpoint itu
+// tiap beberapa detik dan geser marker yang sudah ada -- TIDAK membuat
+// ulang elemen DOM tiap tick, biar gerakannya mulus.
+// ---------------------------------------------------------------------------
+
+// GANTI dengan URL bot kamu setelah deploy ke Railway, contoh:
+// "https://sibulan-tracker-bot-production.up.railway.app/api/locations"
+const BUS_API_URL = "https://sibulan-tracker-bot-production.up.railway.app/api/locations";
+const BUS_POLL_INTERVAL_MS = 5000;
+// Kalau sebuah bus belum kirim update lebih dari ini, marker-nya dibikin
+// pudar (is-stale) supaya kelihatan datanya lagi nggak fresh, bukan
+// dihilangkan (driver mungkin cuma masuk terowongan/sinyal jelek sebentar).
+const BUS_STALE_AFTER_MS = 2 * 60 * 1000;
+
+const BUS_INSTANCES = {
+  bus1: { label: "Bus 1", color: "#FFB703" },
+  bus2: { label: "Bus 2", color: "#FB8500" },
+};
+
+let busMarkers = {}; // { bus1: maplibregl.Marker, bus2: maplibregl.Marker }
+
+function busMarkerHtml(busId) {
+  const { label, color } = BUS_INSTANCES[busId];
+  return `
+    <div class="bus-marker" style="--bus-color:${color}">
+      <div class="bus-marker-pin">🚌</div>
+      <div class="bus-marker-label">${label}</div>
+    </div>
+  `;
+}
+
+function ensureBusMarker(busId, coord) {
+  if (busMarkers[busId]) {
+    busMarkers[busId].setLngLat(coord);
+    return busMarkers[busId];
+  }
+  const wrap = document.createElement("div");
+  wrap.innerHTML = busMarkerHtml(busId).trim();
+  const marker = new maplibregl.Marker({ element: wrap.firstElementChild, anchor: "center" })
+    .setLngLat(coord)
+    .addTo(map);
+  busMarkers[busId] = marker;
+  return marker;
+}
+
+async function pollBusLocations() {
+  try {
+    const res = await fetch(BUS_API_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    for (const busId of Object.keys(BUS_INSTANCES)) {
+      const loc = data[busId];
+      if (!loc) continue; // belum pernah kirim lokasi sama sekali
+
+      const marker = ensureBusMarker(busId, [loc.lng, loc.lat]);
+      const isStale = Date.now() - loc.updatedAt > BUS_STALE_AFTER_MS;
+      marker.getElement().classList.toggle("is-stale", isStale);
+    }
+  } catch (err) {
+    // Sengaja cuma di-log, bukan ditampilkan ke user -- kegagalan poll
+    // sesekali (misal bot lagi redeploy) nggak perlu mengganggu peta.
+    console.error("Gagal memuat lokasi bus:", err);
+  }
+}
+
+pollBusLocations();
+setInterval(pollBusLocations, BUS_POLL_INTERVAL_MS);
 
 // Wraps a marker's full-detail card together with a small always-available
 // "compact pin" version. Both are rendered every time; CSS (driven by the
