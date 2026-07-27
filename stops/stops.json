@@ -9923,5 +9923,117 @@
         "is_departure_hub": true
       }
     ]
+  },
+  {
+    "point": "110.37709943859444 -7.769819381313072",
+    "stop_name": "GSP",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": true,
+        "destinations": [
+          "Perpustakaan"
+        ]
+      },
+      {
+        "route": "Transgama 2",
+        "is_departure_hub": true
+      },
+      {
+        "route": "Transgama 3",
+        "is_departure_hub": true
+      }
+    ]
+  },
+  {
+    "point": "110.3788912416258 -7.769128884068226",
+    "stop_name": "Perpustakaan",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Kehutanan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38081690203354 -7.767781359020788",
+    "stop_name": "Fakultas Kehutanan",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Pertanian"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38108396642154 -7.769394396739589",
+    "stop_name": "Fakultas Pertanian",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Peternakan"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38518616400812 -7.768056250997644",
+    "stop_name": "Fakultas Peternakan",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Wisdom Park"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38154916401304 -7.770537504197557",
+    "stop_name": "Wisdom Park",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Ilmu Budaya"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37937347824692 -7.771400768464823",
+    "stop_name": "Fakultas Ilmu Budaya",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "University Club"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37773424193267 -7.772203985492218",
+    "stop_name": "University Club",
+    "services": [
+      {
+        "route": "Transgama1",
+        "is_departure_hub": false,
+        "destinations": [
+          "GSP"
+        ]
+      }
+    ]
   }
 ]
