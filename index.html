@@ -205,6 +205,25 @@
     color: #1c1c1a; margin-bottom: 9px; line-height: 1.2;
   }
 
+  /* Separate pill for a stop's "-A"/"-B" pole orientation (e.g. "Barat
+     Jalan") -- see STOP_ORIENTATION/stopTitleHtml() in the script below.
+     Deliberately its own visual element (pill, distinct color) rather
+     than parenthesized text glued onto the name, so it reads as an
+     attribute of the stop, not part of its name. */
+  .stop-orientation-badge {
+    display: inline-flex; align-items: center; vertical-align: middle;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.01em;
+    color: #2350b8; background: rgba(58,102,207,0.13);
+    border-radius: 999px; padding: 2px 9px; margin-left: 7px;
+    white-space: nowrap;
+  }
+  /* Smaller variant for tighter rows (route detail list, search results)
+     where the full-size pill would crowd the badges next to it. */
+  .route-detail-name .stop-orientation-badge,
+  .result-item .stop-orientation-badge {
+    font-size: 10px; padding: 1.5px 7px; margin-left: 5px;
+  }
+
   .popup-routes {
     display: flex; flex-direction: column; gap: 7px;
   }
@@ -1052,7 +1071,7 @@ function buildStopsGeoJSON() {
         // MapLibre style expressions can't call an arbitrary JS function
         // like displayName() -- the stops-label symbol layer's text-field
         // just reads this property straight off the feature.
-        label: displayName(s.name),
+        label: getStopDisplay(s.name).base, // symbol-layer canvas text -- no HTML, so base name only, no badge (see stopTitleHtml)
         routes: s.routes,
         services: JSON.stringify(s.services),
         // No route in this fork uses the "inactive on some days" stop
@@ -1565,13 +1584,375 @@ const DISPLAY_NAMES = {
   "Stadion TGP": "Godean",
   "Terminal Palbapang": "Palbapang",
   "Terminal Pakem": "Pakem",
-  "SGM Kusumanegara - B": "Kusumanegara",
   "Janti Utara": "Janti",
   "Ngabean": "Ngabean",
 };
 
 function displayName(name) {
   return DISPLAY_NAMES[name] || name;
+}
+
+// Maps a stop's OWN internal "-A"/"-B" style name (the two-pole pattern
+// used all over this network, e.g. "KUA Depok - A" / "KUA Depok - B") to
+// { base, orientation } -- a clean shared name plus which side of the
+// road that particular pole sits on. Generated from a bearing-based
+// suggestion between each pair's two coordinates, then reviewed/confirmed
+// by hand (see stop-orientation-review.xlsx) -- 77 of the 157 pairs sit
+// under 20m apart, too close for the raw bearing to be trusted on its
+// own, so this is confirmed data, not a live computation. Two stops
+// (SDN 1 Depok - B, TVRI - A) have a suffix but no surviving partner in
+// stops.json, so their orientation is null -- base name only, no badge.
+// Deliberately keyed by the exact original name, same as DISPLAY_NAMES,
+// and deliberately NOT a rename of stop_name in stops.json/routes/*.json:
+// that name is the correlation key every lookup in this file joins
+// against, so two poles sharing an identical name would make every one
+// of those lookups ambiguous. See getStopDisplay()/stopTitleHtml() below
+// for how this actually reaches the screen.
+const STOP_ORIENTATION = {
+  "AM Sangaji - A": { base: "AM Sangaji", orientation: "Selatan Jalan" },
+  "AM Sangaji - B": { base: "AM Sangaji", orientation: "Utara Jalan" },
+  "APMD - A": { base: "APMD", orientation: "Selatan Jalan" },
+  "APMD - B": { base: "APMD", orientation: "Utara Jalan" },
+  "Ambarukmo - A": { base: "Ambarukmo", orientation: "Timur Jalan" },
+  "Ambarukmo - B": { base: "Ambarukmo", orientation: "Barat Jalan" },
+  "Among Rogo - A": { base: "Among Rogo", orientation: "Selatan Jalan" },
+  "Among Rogo - B": { base: "Among Rogo", orientation: "Utara Jalan" },
+  "BKD - A": { base: "BKD", orientation: "Barat Jalan" },
+  "BKD - B": { base: "BKD", orientation: "Timur Jalan" },
+  "Babarsari - A": { base: "Babarsari", orientation: "Barat Jalan" },
+  "Babarsari - B": { base: "Babarsari", orientation: "Timur Jalan" },
+  "Banguntapan - A": { base: "Banguntapan", orientation: "Utara Jalan" },
+  "Banguntapan - B": { base: "Banguntapan", orientation: "Selatan Jalan" },
+  "Batas Kota Jl. Monjali - A": { base: "Batas Kota Jl. Monjali", orientation: "Selatan Jalan" },
+  "Batas Kota Jl. Monjali - B": { base: "Batas Kota Jl. Monjali", orientation: "Utara Jalan" },
+  "Bayeman - A": { base: "Bayeman", orientation: "Barat Jalan" },
+  "Bayeman - B": { base: "Bayeman", orientation: "Timur Jalan" },
+  "Budi Mulia Dua - A": { base: "Budi Mulia Dua", orientation: "Selatan Jalan" },
+  "Budi Mulia Dua - B": { base: "Budi Mulia Dua", orientation: "Utara Jalan" },
+  "Demak Ijo - A": { base: "Demak Ijo", orientation: "Utara Jalan" },
+  "Demak Ijo - B": { base: "Demak Ijo", orientation: "Selatan Jalan" },
+  "Dishub DIY - A": { base: "Dishub DIY", orientation: "Selatan Jalan" },
+  "Dishub DIY - B": { base: "Dishub DIY", orientation: "Utara Jalan" },
+  "Disnakertrans - A": { base: "Disnakertrans", orientation: "Utara Jalan" },
+  "Disnakertrans - B": { base: "Disnakertrans", orientation: "Selatan Jalan" },
+  "Dongkelan - A": { base: "Dongkelan", orientation: "Utara Jalan" },
+  "Dongkelan - B": { base: "Dongkelan", orientation: "Selatan Jalan" },
+  "Druwo - A": { base: "Druwo", orientation: "Utara Jalan" },
+  "Druwo - B": { base: "Druwo", orientation: "Selatan Jalan" },
+  "Dukuh - A": { base: "Dukuh", orientation: "Utara Jalan" },
+  "Dukuh - B": { base: "Dukuh", orientation: "Selatan Jalan" },
+  "Dusun Kledokan - A": { base: "Dusun Kledokan", orientation: "Selatan Jalan" },
+  "Dusun Kledokan - B": { base: "Dusun Kledokan", orientation: "Utara Jalan" },
+  "Edotel Kalasan - A": { base: "Edotel Kalasan", orientation: "Utara Jalan" },
+  "Edotel Kalasan - B": { base: "Edotel Kalasan", orientation: "Selatan Jalan" },
+  "Eks Menara Kopi - A": { base: "Eks Menara Kopi", orientation: "Selatan Jalan" },
+  "Eks Menara Kopi - B": { base: "Eks Menara Kopi", orientation: "Utara Jalan" },
+  "FKG UGM - A": { base: "FKG UGM", orientation: "Timur Jalan" },
+  "FKG UGM - B": { base: "FKG UGM", orientation: "Barat Jalan" },
+  "Fisipol UGM - A": { base: "Fisipol UGM", orientation: "Timur Jalan" },
+  "Fisipol UGM - B": { base: "Fisipol UGM", orientation: "Barat Jalan" },
+  "Gambiran - A": { base: "Gambiran", orientation: "Selatan Jalan" },
+  "Gambiran - B": { base: "Gambiran", orientation: "Utara Jalan" },
+  "Gardu PLN - A": { base: "Gardu PLN", orientation: "Utara Jalan" },
+  "Gardu PLN - B": { base: "Gardu PLN", orientation: "Selatan Jalan" },
+  "Gembira Loka - A": { base: "Gembira Loka", orientation: "Barat Jalan" },
+  "Gembira Loka - B": { base: "Gembira Loka", orientation: "Timur Jalan" },
+  "Gereja Pugeran - A": { base: "Gereja Pugeran", orientation: "Utara Jalan" },
+  "Gereja Pugeran - B": { base: "Gereja Pugeran", orientation: "Selatan Jalan" },
+  "Gudang SGM - A": { base: "Gudang SGM", orientation: "Selatan Jalan" },
+  "Gudang SGM - B": { base: "Gudang SGM", orientation: "Utara Jalan" },
+  "Hayam Wuruk - A": { base: "Hayam Wuruk", orientation: "Utara Jalan" },
+  "Hayam Wuruk - B": { base: "Hayam Wuruk", orientation: "Selatan Jalan" },
+  "Hokben Jakal - A": { base: "Hokben Jakal", orientation: "Utara Jalan" },
+  "Hokben Jakal - B": { base: "Hokben Jakal", orientation: "Selatan Jalan" },
+  "Hotel Utara - A": { base: "Hotel Utara", orientation: "Barat Jalan" },
+  "Hotel Utara - B": { base: "Hotel Utara", orientation: "Timur Jalan" },
+  "Indomaret Klajuran - A": { base: "Indomaret Klajuran", orientation: "Selatan Jalan" },
+  "Indomaret Klajuran - B": { base: "Indomaret Klajuran", orientation: "Utara Jalan" },
+  "Indomaret Pokoh Sambiroto - A": { base: "Indomaret Pokoh Sambiroto", orientation: "Selatan Jalan" },
+  "Indomaret Pokoh Sambiroto - B": { base: "Indomaret Pokoh Sambiroto", orientation: "Utara Jalan" },
+  "Instiper - A": { base: "Instiper", orientation: "Utara Jalan" },
+  "Instiper - B": { base: "Instiper", orientation: "Selatan Jalan" },
+  "Jend. Sudirman - A": { base: "Jend. Sudirman", orientation: "Barat Jalan" },
+  "Jend. Sudirman - B": { base: "Jend. Sudirman", orientation: "Timur Jalan" },
+  "Jl. Raya Kabunan - A": { base: "Jl. Raya Kabunan", orientation: "Selatan Jalan" },
+  "Jl. Raya Kabunan - B": { base: "Jl. Raya Kabunan", orientation: "Utara Jalan" },
+  "Jogja City Mall - A": { base: "Jogja City Mall", orientation: "Utara Jalan" },
+  "Jogja City Mall - B": { base: "Jogja City Mall", orientation: "Selatan Jalan" },
+  "Jogokariyan - A": { base: "Jogokariyan", orientation: "Utara Jalan" },
+  "Jogokariyan - B": { base: "Jogokariyan", orientation: "Selatan Jalan" },
+  "KHA Dahlan - A": { base: "KHA Dahlan", orientation: "Timur Jalan" },
+  "KHA Dahlan - B": { base: "KHA Dahlan", orientation: "Barat Jalan" },
+  "KR - A": { base: "KR", orientation: "Barat Jalan" },
+  "KR - B": { base: "KR", orientation: "Timur Jalan" },
+  "KUA Depok - A": { base: "KUA Depok", orientation: "Utara Jalan" },
+  "KUA Depok - B": { base: "KUA Depok", orientation: "Selatan Jalan" },
+  "Kantor Kal. Pendowoharjo - A": { base: "Kantor Kal. Pendowoharjo", orientation: "Selatan Jalan" },
+  "Kantor Kal. Pendowoharjo - B": { base: "Kantor Kal. Pendowoharjo", orientation: "Utara Jalan" },
+  "Kantor Kal. Sidoarum - A": { base: "Kantor Kal. Sidoarum", orientation: "Barat Jalan" },
+  "Kantor Kal. Sidoarum - B": { base: "Kantor Kal. Sidoarum", orientation: "Timur Jalan" },
+  "Kantor Kal. Sukoharjo - A": { base: "Kantor Kal. Sukoharjo", orientation: "Timur Jalan" },
+  "Kantor Kal. Sukoharjo - B": { base: "Kantor Kal. Sukoharjo", orientation: "Barat Jalan" },
+  "Kantor Kal. Wedomartani - A": { base: "Kantor Kal. Wedomartani", orientation: "Utara Jalan" },
+  "Kantor Kal. Wedomartani - B": { base: "Kantor Kal. Wedomartani", orientation: "Selatan Jalan" },
+  "Kantor Kap. Godean - A": { base: "Kantor Kap. Godean", orientation: "Barat Jalan" },
+  "Kantor Kap. Godean - B": { base: "Kantor Kap. Godean", orientation: "Timur Jalan" },
+  "Kantor Kesbangpol - A": { base: "Kantor Kesbangpol", orientation: "Selatan Jalan" },
+  "Kantor Kesbangpol - B": { base: "Kantor Kesbangpol", orientation: "Utara Jalan" },
+  "Kantor Pos Demak Ijo - A": { base: "Kantor Pos Demak Ijo", orientation: "Selatan Jalan" },
+  "Kantor Pos Demak Ijo - B": { base: "Kantor Pos Demak Ijo", orientation: "Utara Jalan" },
+  "Karangjati - A": { base: "Karangjati", orientation: "Selatan Jalan" },
+  "Karangjati - B": { base: "Karangjati", orientation: "Utara Jalan" },
+  "Karangwaru - A": { base: "Karangwaru", orientation: "Utara Jalan" },
+  "Karangwaru - B": { base: "Karangwaru", orientation: "Selatan Jalan" },
+  "Kehutanan - A": { base: "Kehutanan", orientation: "Utara Jalan" },
+  "Kehutanan - B": { base: "Kehutanan", orientation: "Selatan Jalan" },
+  "Koramil Godean - A": { base: "Koramil Godean", orientation: "Selatan Jalan" },
+  "Koramil Godean - B": { base: "Koramil Godean", orientation: "Utara Jalan" },
+  "Lap. Karang - A": { base: "Lap. Karang", orientation: "Timur Jalan" },
+  "Lap. Karang - B": { base: "Lap. Karang", orientation: "Barat Jalan" },
+  "Lap. Kasihan - A": { base: "Lap. Kasihan", orientation: "Selatan Jalan" },
+  "Lap. Kasihan - B": { base: "Lap. Kasihan", orientation: "Utara Jalan" },
+  "Lap. Klidon - A": { base: "Lap. Klidon", orientation: "Barat Jalan" },
+  "Lap. Klidon - B": { base: "Lap. Klidon", orientation: "Timur Jalan" },
+  "Lapas Wirogunan - A": { base: "Lapas Wirogunan", orientation: "Selatan Jalan" },
+  "Lapas Wirogunan - B": { base: "Lapas Wirogunan", orientation: "Utara Jalan" },
+  "Lowanu - A": { base: "Lowanu", orientation: "Utara Jalan" },
+  "Lowanu - B": { base: "Lowanu", orientation: "Selatan Jalan" },
+  "MAN 2 Sleman - A": { base: "MAN 2 Sleman", orientation: "Timur Jalan" },
+  "MAN 2 Sleman - B": { base: "MAN 2 Sleman", orientation: "Barat Jalan" },
+  "Madukismo - A": { base: "Madukismo", orientation: "Utara Jalan" },
+  "Madukismo - B": { base: "Madukismo", orientation: "Selatan Jalan" },
+  "Makam Gajah - A": { base: "Makam Gajah", orientation: "Barat Jalan" },
+  "Makam Gajah - B": { base: "Makam Gajah", orientation: "Timur Jalan" },
+  "Mandala Krida - A": { base: "Mandala Krida", orientation: "Timur Jalan" },
+  "Mandala Krida - B": { base: "Mandala Krida", orientation: "Barat Jalan" },
+  "Metro Nogotirto - A": { base: "Metro Nogotirto", orientation: "Selatan Jalan" },
+  "Metro Nogotirto - B": { base: "Metro Nogotirto", orientation: "Utara Jalan" },
+  "Mirota Godean - A": { base: "Mirota Godean", orientation: "Timur Jalan" },
+  "Mirota Godean - B": { base: "Mirota Godean", orientation: "Barat Jalan" },
+  "Monjali - A": { base: "Monjali", orientation: "Timur Jalan" },
+  "Monjali - B": { base: "Monjali", orientation: "Barat Jalan" },
+  "Mualimin - A": { base: "Mualimin", orientation: "Timur Jalan" },
+  "Mualimin - B": { base: "Mualimin", orientation: "Barat Jalan" },
+  "Neutron Godean - A": { base: "Neutron Godean", orientation: "Timur Jalan" },
+  "Neutron Godean - B": { base: "Neutron Godean", orientation: "Barat Jalan" },
+  "PDAM Monjali - A": { base: "PDAM Monjali", orientation: "Utara Jalan" },
+  "PDAM Monjali - B": { base: "PDAM Monjali", orientation: "Selatan Jalan" },
+  "Pakuwon Mall - A": { base: "Pakuwon Mall", orientation: "Barat Jalan" },
+  "Pakuwon Mall - B": { base: "Pakuwon Mall", orientation: "Timur Jalan" },
+  "Pasar Bantul - A": { base: "Pasar Bantul", orientation: "Timur Jalan" },
+  "Pasar Bantul - B": { base: "Pasar Bantul", orientation: "Barat Jalan" },
+  "Pasar Belut Godean - A": { base: "Pasar Belut Godean", orientation: "Barat Jalan" },
+  "Pasar Belut Godean - B": { base: "Pasar Belut Godean", orientation: "Timur Jalan" },
+  "Pasar Gamping - A": { base: "Pasar Gamping", orientation: "Barat Jalan" },
+  "Pasar Gamping - B": { base: "Pasar Gamping", orientation: "Timur Jalan" },
+  "Pasar Giwangan - A": { base: "Pasar Giwangan", orientation: "Selatan Jalan" },
+  "Pasar Giwangan - B": { base: "Pasar Giwangan", orientation: "Utara Jalan" },
+  "Pasar Induk Godean - A": { base: "Pasar Induk Godean", orientation: "Barat Jalan" },
+  "Pasar Induk Godean - B": { base: "Pasar Induk Godean", orientation: "Timur Jalan" },
+  "Pasar Jangkang - A": { base: "Pasar Jangkang", orientation: "Timur Jalan" },
+  "Pasar Jangkang - B": { base: "Pasar Jangkang", orientation: "Barat Jalan" },
+  "Pasar Kalasan - A": { base: "Pasar Kalasan", orientation: "Barat Jalan" },
+  "Pasar Kalasan - B": { base: "Pasar Kalasan", orientation: "Timur Jalan" },
+  "Pasar Kolombo - A": { base: "Pasar Kolombo", orientation: "Utara Jalan" },
+  "Pasar Kolombo - B": { base: "Pasar Kolombo", orientation: "Selatan Jalan" },
+  "Pasar Legi - A": { base: "Pasar Legi", orientation: "Selatan Jalan" },
+  "Pasar Legi - B": { base: "Pasar Legi", orientation: "Utara Jalan" },
+  "Pasar Niten - A": { base: "Pasar Niten", orientation: "Utara Jalan" },
+  "Pasar Niten - B": { base: "Pasar Niten", orientation: "Selatan Jalan" },
+  "Pasar Pingit - A": { base: "Pasar Pingit", orientation: "Timur Jalan" },
+  "Pasar Pingit - B": { base: "Pasar Pingit", orientation: "Barat Jalan" },
+  "Pasar Serangan - A": { base: "Pasar Serangan", orientation: "Barat Jalan" },
+  "Pasar Serangan - B": { base: "Pasar Serangan", orientation: "Timur Jalan" },
+  "Pasar Telo - A": { base: "Pasar Telo", orientation: "Selatan Jalan" },
+  "Pasar Telo - B": { base: "Pasar Telo", orientation: "Utara Jalan" },
+  "Pasar Tlogorejo - A": { base: "Pasar Tlogorejo", orientation: "Barat Jalan" },
+  "Pasar Tlogorejo - B": { base: "Pasar Tlogorejo", orientation: "Timur Jalan" },
+  "Pasty - A": { base: "Pasty", orientation: "Selatan Jalan" },
+  "Pasty - B": { base: "Pasty", orientation: "Utara Jalan" },
+  "Pelem Gurih - A": { base: "Pelem Gurih", orientation: "Timur Jalan" },
+  "Pelem Gurih - B": { base: "Pelem Gurih", orientation: "Barat Jalan" },
+  "Perintis Kemerdekaan - A": { base: "Perintis Kemerdekaan", orientation: "Barat Jalan" },
+  "Perintis Kemerdekaan - B": { base: "Perintis Kemerdekaan", orientation: "Timur Jalan" },
+  "Plengkung Gading - A": { base: "Plengkung Gading", orientation: "Timur Jalan" },
+  "Plengkung Gading - B": { base: "Plengkung Gading", orientation: "Barat Jalan" },
+  "Polsek Depok Timur - A": { base: "Polsek Depok Timur", orientation: "Barat Jalan" },
+  "Polsek Depok Timur - B": { base: "Polsek Depok Timur", orientation: "Timur Jalan" },
+  "Polsek Godean - A": { base: "Polsek Godean", orientation: "Barat Jalan" },
+  "Polsek Godean - B": { base: "Polsek Godean", orientation: "Timur Jalan" },
+  "Prayan - A": { base: "Prayan", orientation: "Selatan Jalan" },
+  "Prayan - B": { base: "Prayan", orientation: "Utara Jalan" },
+  "Purawisata - A": { base: "Purawisata", orientation: "Utara Jalan" },
+  "Purawisata - B": { base: "Purawisata", orientation: "Selatan Jalan" },
+  "Puskesmas Ngaglik - A": { base: "Puskesmas Ngaglik", orientation: "Selatan Jalan" },
+  "Puskesmas Ngaglik - B": { base: "Puskesmas Ngaglik", orientation: "Utara Jalan" },
+  "Puskesmas Ngemplak - A": { base: "Puskesmas Ngemplak", orientation: "Barat Jalan" },
+  "Puskesmas Ngemplak - B": { base: "Puskesmas Ngemplak", orientation: "Timur Jalan" },
+  "RS Bhayangkara - A": { base: "RS Bhayangkara", orientation: "Utara Jalan" },
+  "RS Bhayangkara - B": { base: "RS Bhayangkara", orientation: "Selatan Jalan" },
+  "RS Kemasan - A": { base: "RS Kemasan", orientation: "Selatan Jalan" },
+  "RS Kemasan - B": { base: "RS Kemasan", orientation: "Utara Jalan" },
+  "RS Sardjito - A": { base: "RS Sardjito", orientation: "Barat Jalan" },
+  "RS Sardjito - B": { base: "RS Sardjito", orientation: "Timur Jalan" },
+  "RSU Gramedika - A": { base: "RSU Gramedika", orientation: "Utara Jalan" },
+  "RSU Gramedika - B": { base: "RSU Gramedika", orientation: "Selatan Jalan" },
+  "Raminten - A": { base: "Raminten", orientation: "Selatan Jalan" },
+  "Raminten - B": { base: "Raminten", orientation: "Utara Jalan" },
+  "Ruba Graha - A": { base: "Ruba Graha", orientation: "Timur Jalan" },
+  "Ruba Graha - B": { base: "Ruba Graha", orientation: "Barat Jalan" },
+  "SD Unggulan Aisyiyah - A": { base: "SD Unggulan Aisyiyah", orientation: "Selatan Jalan" },
+  "SD Unggulan Aisyiyah - B": { base: "SD Unggulan Aisyiyah", orientation: "Utara Jalan" },
+  "SDN 1 Demak Ijo - A": { base: "SDN 1 Demak Ijo", orientation: "Selatan Jalan" },
+  "SDN 1 Demak Ijo - B": { base: "SDN 1 Demak Ijo", orientation: "Utara Jalan" },
+  "SDN 1 Depok - B": { base: "SDN 1 Depok", orientation: null },
+  "SDN Selomulyo - A": { base: "SDN Selomulyo", orientation: "Barat Jalan" },
+  "SDN Selomulyo - B": { base: "SDN Selomulyo", orientation: "Timur Jalan" },
+  "SGM Kusumanegara - A": { base: "Kusumanegara", orientation: "Timur Jalan" },
+  "SGM Kusumanegara - B": { base: "Kusumanegara", orientation: "Barat Jalan" },
+  "SMAN 1 - A": { base: "SMAN 1", orientation: "Utara Jalan" },
+  "SMAN 1 - B": { base: "SMAN 1", orientation: "Selatan Jalan" },
+  "SMAN 1 Bantul - A": { base: "SMAN 1 Bantul", orientation: "Selatan Jalan" },
+  "SMAN 1 Bantul - B": { base: "SMAN 1 Bantul", orientation: "Utara Jalan" },
+  "SMAN 1 Kasihan - A": { base: "SMAN 1 Kasihan", orientation: "Utara Jalan" },
+  "SMAN 1 Kasihan - B": { base: "SMAN 1 Kasihan", orientation: "Selatan Jalan" },
+  "SMAN 2 Ngaglik - A": { base: "SMAN 2 Ngaglik", orientation: "Utara Jalan" },
+  "SMAN 2 Ngaglik - B": { base: "SMAN 2 Ngaglik", orientation: "Selatan Jalan" },
+  "SMK Seni - A": { base: "SMK Seni", orientation: "Selatan Jalan" },
+  "SMK Seni - B": { base: "SMK Seni", orientation: "Utara Jalan" },
+  "SMKN 1 Depok - Jl. Raya Tajem - A": { base: "SMKN 1 Depok - Jl. Raya Tajem", orientation: "Timur Jalan" },
+  "SMKN 1 Depok - Jl. Raya Tajem - B": { base: "SMKN 1 Depok - Jl. Raya Tajem", orientation: "Barat Jalan" },
+  "SMKN 5 - A": { base: "SMKN 5", orientation: "Barat Jalan" },
+  "SMKN 5 - B": { base: "SMKN 5", orientation: "Timur Jalan" },
+  "SMP Kanisius Gayam - A": { base: "SMP Kanisius Gayam", orientation: "Utara Jalan" },
+  "SMP Kanisius Gayam - B": { base: "SMP Kanisius Gayam", orientation: "Selatan Jalan" },
+  "SMPN 1 - A": { base: "SMPN 1", orientation: "Selatan Jalan" },
+  "SMPN 1 - B": { base: "SMPN 1", orientation: "Utara Jalan" },
+  "SMPN 2 Bantul - A": { base: "SMPN 2 Bantul", orientation: "Selatan Jalan" },
+  "SMPN 2 Bantul - B": { base: "SMPN 2 Bantul", orientation: "Utara Jalan" },
+  "SMPN 2 Ngaglik - A": { base: "SMPN 2 Ngaglik", orientation: "Selatan Jalan" },
+  "SMPN 2 Ngaglik - B": { base: "SMPN 2 Ngaglik", orientation: "Utara Jalan" },
+  "SMPN 9 - A": { base: "SMPN 9", orientation: "Selatan Jalan" },
+  "SMPN 9 - B": { base: "SMPN 9", orientation: "Utara Jalan" },
+  "SPBU Concat - A": { base: "SPBU Concat", orientation: "Utara Jalan" },
+  "SPBU Concat - B": { base: "SPBU Concat", orientation: "Selatan Jalan" },
+  "SPBU Kaliurang - A": { base: "SPBU Kaliurang", orientation: "Selatan Jalan" },
+  "SPBU Kaliurang - B": { base: "SPBU Kaliurang", orientation: "Utara Jalan" },
+  "SPBU Mindi - A": { base: "SPBU Mindi", orientation: "Timur Jalan" },
+  "SPBU Mindi - B": { base: "SPBU Mindi", orientation: "Barat Jalan" },
+  "SPBU Monjali - A": { base: "SPBU Monjali", orientation: "Barat Jalan" },
+  "SPBU Monjali - B": { base: "SPBU Monjali", orientation: "Timur Jalan" },
+  "STIE YKPN - A": { base: "STIE YKPN", orientation: "Selatan Jalan" },
+  "STIE YKPN - B": { base: "STIE YKPN", orientation: "Utara Jalan" },
+  "Simpang Babadan - A": { base: "Simpang Babadan", orientation: "Selatan Jalan" },
+  "Simpang Babadan - B": { base: "Simpang Babadan", orientation: "Utara Jalan" },
+  "Simpang Bantulan - A": { base: "Simpang Bantulan", orientation: "Barat Jalan" },
+  "Simpang Bantulan - B": { base: "Simpang Bantulan", orientation: "Timur Jalan" },
+  "Simpang Besi Jakal - A": { base: "Simpang Besi Jakal", orientation: "Timur Jalan" },
+  "Simpang Besi Jakal - B": { base: "Simpang Besi Jakal", orientation: "Barat Jalan" },
+  "Simpang Degolan - A": { base: "Simpang Degolan", orientation: "Timur Jalan" },
+  "Simpang Degolan - B": { base: "Simpang Degolan", orientation: "Barat Jalan" },
+  "Simpang Diklat DIY - A": { base: "Simpang Diklat DIY", orientation: "Barat Jalan" },
+  "Simpang Diklat DIY - B": { base: "Simpang Diklat DIY", orientation: "Timur Jalan" },
+  "Simpang Gesikan - A": { base: "Simpang Gesikan", orientation: "Timur Jalan" },
+  "Simpang Gesikan - B": { base: "Simpang Gesikan", orientation: "Barat Jalan" },
+  "Simpang Gose - A": { base: "Simpang Gose", orientation: "Selatan Jalan" },
+  "Simpang Gose - B": { base: "Simpang Gose", orientation: "Utara Jalan" },
+  "Simpang Kabunan - A": { base: "Simpang Kabunan", orientation: "Selatan Jalan" },
+  "Simpang Kabunan - B": { base: "Simpang Kabunan", orientation: "Utara Jalan" },
+  "Simpang Kasongan - A": { base: "Simpang Kasongan", orientation: "Selatan Jalan" },
+  "Simpang Kasongan - B": { base: "Simpang Kasongan", orientation: "Utara Jalan" },
+  "Simpang Kenti - A": { base: "Simpang Kenti", orientation: "Timur Jalan" },
+  "Simpang Kenti - B": { base: "Simpang Kenti", orientation: "Barat Jalan" },
+  "Simpang Losari - A": { base: "Simpang Losari", orientation: "Timur Jalan" },
+  "Simpang Losari - B": { base: "Simpang Losari", orientation: "Barat Jalan" },
+  "Simpang Mandungan (Iwak Kalen) - A": { base: "Simpang Mandungan (Iwak Kalen)", orientation: "Selatan Jalan" },
+  "Simpang Mandungan (Iwak Kalen) - B": { base: "Simpang Mandungan (Iwak Kalen)", orientation: "Utara Jalan" },
+  "Simpang Munggur - A": { base: "Simpang Munggur", orientation: "Barat Jalan" },
+  "Simpang Munggur - B": { base: "Simpang Munggur", orientation: "Timur Jalan" },
+  "Simpang Palem Raya - A": { base: "Simpang Palem Raya", orientation: "Utara Jalan" },
+  "Simpang Palem Raya - B": { base: "Simpang Palem Raya", orientation: "Selatan Jalan" },
+  "Simpang Selomartani - A": { base: "Simpang Selomartani", orientation: "Barat Jalan" },
+  "Simpang Selomartani - B": { base: "Simpang Selomartani", orientation: "Timur Jalan" },
+  "Superindo Jakal - A": { base: "Superindo Jakal", orientation: "Selatan Jalan" },
+  "Superindo Jakal - B": { base: "Superindo Jakal", orientation: "Utara Jalan" },
+  "Suryodiningratan - A": { base: "Suryodiningratan", orientation: "Selatan Jalan" },
+  "Suryodiningratan - B": { base: "Suryodiningratan", orientation: "Utara Jalan" },
+  "TNI AL - A": { base: "TNI AL", orientation: "Timur Jalan" },
+  "TNI AL - B": { base: "TNI AL", orientation: "Barat Jalan" },
+  "TVRI - A": { base: "TVRI", orientation: null },
+  "Taman Makam Pahlawan - A": { base: "Taman Makam Pahlawan", orientation: "Barat Jalan" },
+  "Taman Makam Pahlawan - B": { base: "Taman Makam Pahlawan", orientation: "Timur Jalan" },
+  "Tamantirto - A": { base: "Tamantirto", orientation: "Selatan Jalan" },
+  "Tamantirto - B": { base: "Tamantirto", orientation: "Utara Jalan" },
+  "Tarumartani - A": { base: "Tarumartani", orientation: "Selatan Jalan" },
+  "Tarumartani - B": { base: "Tarumartani", orientation: "Utara Jalan" },
+  "Tegal Gendu - A": { base: "Tegal Gendu", orientation: "Barat Jalan" },
+  "Tegal Gendu - B": { base: "Tegal Gendu", orientation: "Timur Jalan" },
+  "Tegal Turi - A": { base: "Tegal Turi", orientation: "Barat Jalan" },
+  "Tegal Turi - B": { base: "Tegal Turi", orientation: "Timur Jalan" },
+  "Teknik UGM - A": { base: "Teknik UGM", orientation: "Utara Jalan" },
+  "Teknik UGM - B": { base: "Teknik UGM", orientation: "Selatan Jalan" },
+  "Timoho - A": { base: "Timoho", orientation: "Selatan Jalan" },
+  "Timoho - B": { base: "Timoho", orientation: "Utara Jalan" },
+  "Timur Jembatan Yapah - A": { base: "Timur Jembatan Yapah", orientation: "Timur Jalan" },
+  "Timur Jembatan Yapah - B": { base: "Timur Jembatan Yapah", orientation: "Barat Jalan" },
+  "Toko Saerah - A": { base: "Toko Saerah", orientation: "Selatan Jalan" },
+  "Toko Saerah - B": { base: "Toko Saerah", orientation: "Utara Jalan" },
+  "Tugu Batas Desa Yapah - A": { base: "Tugu Batas Desa Yapah", orientation: "Utara Jalan" },
+  "Tugu Batas Desa Yapah - B": { base: "Tugu Batas Desa Yapah", orientation: "Selatan Jalan" },
+  "UAD Ring Road Selatan - A": { base: "UAD Ring Road Selatan", orientation: "Timur Jalan" },
+  "UAD Ring Road Selatan - B": { base: "UAD Ring Road Selatan", orientation: "Barat Jalan" },
+  "UIN Sunan Kalijaga - A": { base: "UIN Sunan Kalijaga", orientation: "Utara Jalan" },
+  "UIN Sunan Kalijaga - B": { base: "UIN Sunan Kalijaga", orientation: "Selatan Jalan" },
+  "UMY - A": { base: "UMY", orientation: "Selatan Jalan" },
+  "UMY - B": { base: "UMY", orientation: "Utara Jalan" },
+  "UNRIYO - A": { base: "UNRIYO", orientation: "Timur Jalan" },
+  "UNRIYO - B": { base: "UNRIYO", orientation: "Barat Jalan" },
+  "UTY Glagahsari - A": { base: "UTY Glagahsari", orientation: "Selatan Jalan" },
+  "UTY Glagahsari - B": { base: "UTY Glagahsari", orientation: "Utara Jalan" },
+  "UTY Ring Road Utara - A": { base: "UTY Ring Road Utara", orientation: "Utara Jalan" },
+  "UTY Ring Road Utara - B": { base: "UTY Ring Road Utara", orientation: "Selatan Jalan" },
+  "Universitas BSI - A": { base: "Universitas BSI", orientation: "Selatan Jalan" },
+  "Universitas BSI - B": { base: "Universitas BSI", orientation: "Utara Jalan" },
+  "Wedangan Kampoeng - A": { base: "Wedangan Kampoeng", orientation: "Selatan Jalan" },
+  "Wedangan Kampoeng - B": { base: "Wedangan Kampoeng", orientation: "Utara Jalan" },
+  "Westlake - A": { base: "Westlake", orientation: "Selatan Jalan" },
+  "Westlake - B": { base: "Westlake", orientation: "Utara Jalan" },
+  "Widya Wiwaha - A": { base: "Widya Wiwaha", orientation: "Utara Jalan" },
+  "Widya Wiwaha - B": { base: "Widya Wiwaha", orientation: "Selatan Jalan" },
+  "Wojo (Randubelang) - A": { base: "Wojo (Randubelang)", orientation: "Utara Jalan" },
+  "Wojo (Randubelang) - B": { base: "Wojo (Randubelang)", orientation: "Selatan Jalan" },
+  "YAKKUM - A": { base: "YAKKUM", orientation: "Utara Jalan" },
+  "YAKKUM - B": { base: "YAKKUM", orientation: "Selatan Jalan" },
+};
+
+// { base, orientation } for any stop name -- orientation is null for
+// stops with no "-A"/"-B" pole pair (STOP_ORIENTATION has nothing for
+// them) or no confirmed direction (the two orphaned-suffix stops above).
+function getStopDisplay(name) {
+  const o = STOP_ORIENTATION[name];
+  if (o) return { base: displayName(o.base), orientation: o.orientation || null };
+  return { base: displayName(name), orientation: null };
+}
+
+// Renders a stop's name as its base text plus a small separate pill for
+// the "Barat Jalan"/"Timur Jalan"-style orientation (when it has one) --
+// an actual UI element, not text appended to the name. Used only where a
+// stop is the PRIMARY thing on screen (popup title, stop info panel,
+// route detail rows, search results, hover tooltip, trip-planner marker
+// titles) since that's where knowing "which pole" genuinely matters.
+// NOT used for destination labels/buttons/tabs (those call
+// getStopDisplay(...).base directly for the same suffix-stripping, just
+// without the badge -- a "-> destination" pill with a second pill glued
+// onto it reads as clutter) or the on-map symbol-layer text (MapLibre
+// renders that as plain canvas glyphs -- no HTML, so no badge is
+// possible there regardless).
+function stopTitleHtml(name) {
+  const { base, orientation } = getStopDisplay(name);
+  return orientation
+    ? `${base}<span class="stop-orientation-badge">${orientation}</span>`
+    : base;
 }
 
 // Shared by getRouteLegBounds and getJunctionSegments: resolves a route's
@@ -2533,7 +2914,7 @@ map.on("load", async () => {
   map.on("mousemove", "stops-circle", (e) => {
     const f = e.features[0];
     if (!f || window.pickMode) return; // don't clutter the map while picking a planner stop
-    stopHoverPopup.setLngLat(f.geometry.coordinates).setHTML(displayName(f.properties.name)).addTo(map);
+    stopHoverPopup.setLngLat(f.geometry.coordinates).setHTML(stopTitleHtml(f.properties.name)).addTo(map);
   });
 
   map.on("click", "stops-circle", (e) => {
@@ -3315,7 +3696,7 @@ function addStopLabelMarker(stopEntry) {
   const wrap = document.createElement("div");
   wrap.innerHTML = `
     <div class="stop-label-marker">
-      <span class="stop-label-marker-text">${displayName(stopEntry.name)}</span>
+      <span class="stop-label-marker-text">${getStopDisplay(stopEntry.name).base}</span>
     </div>
   `.trim();
   const textEl = wrap.querySelector(".stop-label-marker-text");
@@ -3490,9 +3871,9 @@ window.showFinalDestinationsForStop = function (stopName) {
   // just the route(s) that actually lead there -- matches the reference
   // layout's floating "FD4 Kota Lama" / "FD7 Pasar Turi" callouts.
   clearDestLabels();
-  addDestLabel([stopEntry.lon, stopEntry.lat], routeIds, displayName(stopName));
+  addDestLabel([stopEntry.lon, stopEntry.lat], routeIds, getStopDisplay(stopName).base);
   destPoints.forEach(({ coord, routeIds: destRouteIds }, destName) => {
-    addDestLabel(coord, [...destRouteIds], displayName(destName));
+    addDestLabel(coord, [...destRouteIds], getStopDisplay(destName).base);
   });
 
   const allCoords = activeSegments.flatMap(s => s.coords);
@@ -3548,11 +3929,11 @@ window.openStopInfoPanel = function (stopName) {
       if (!dests.length) {
         return [`<div class="stop-info-row">${badge}<span class="stop-info-dest"></span></div>`];
       }
-      return dests.map(d => `<div class="stop-info-row">${badge}<span class="stop-info-dest">${displayName(d.name)}</span></div>`);
+      return dests.map(d => `<div class="stop-info-row">${badge}<span class="stop-info-dest">${getStopDisplay(d.name).base}</span></div>`);
     }).join("");
 
   stopInfoEyebrow.textContent = "Rambu";
-  stopInfoTitle.textContent = displayName(stopName);
+  stopInfoTitle.innerHTML = stopTitleHtml(stopName);
   stopInfoList.innerHTML = rows;
   stopInfoDestBtn.dataset.stop = stopName;
   // Always reopen in its default "show final destination" mode, even if
@@ -3750,7 +4131,7 @@ window.highlightRouteToHubLoop = function (routeId, fromStopName) {
   clearDestLabels();
   const cfg = ROUTE_HUB_LOOPS[routeId];
   if (activeSeg.length && cfg && cfg.label) {
-    addDestLabel(activeSeg[activeSeg.length - 1], [routeId], displayName(cfg.label));
+    addDestLabel(activeSeg[activeSeg.length - 1], [routeId], getStopDisplay(cfg.label).base);
     quickDestinationPickActive = true;
   }
 
@@ -3858,8 +4239,8 @@ function renderRouteDetailTabs(id) {
   routeDetailTabs.style.display = "flex";
   const tabs = [
     { key: "all", label: "Full route" },
-    { key: "up", label: `→ ${displayName(dirs.wayback)}` },
-    { key: "down", label: `→ ${displayName(dirs.start)}` }
+    { key: "up", label: `→ ${getStopDisplay(dirs.wayback).base}` },
+    { key: "down", label: `→ ${getStopDisplay(dirs.start).base}` }
   ];
   routeDetailTabs.innerHTML = tabs.map(t =>
     `<button data-leg="${t.key}" class="${t.key === routeDetailLeg ? "active" : ""}" title="${t.label}">${t.label}</button>`
@@ -3905,7 +4286,7 @@ function renderRouteDetailList(id) {
       .filter(Boolean).join(" ");
     return `<button class="${rowClass}" data-name="${s.name}" data-vertex="${s.vertex}">
       <span class="route-detail-index">${i + 1}</span>
-      <span class="route-detail-name">${displayName(s.name)}</span>
+      <span class="route-detail-name">${stopTitleHtml(s.name)}</span>
       ${hub}
       ${badges ? `<span class="route-detail-badges">${badges}</span>` : ""}
     </button>`;
@@ -4346,7 +4727,7 @@ function showPopup(coords, name, services) {
         const destPart = getStopDestinations(sv, name).map(d =>
           d.isHubLoop
             ? `<button class="dest-btn" onclick="highlightRouteToHubLoop('${jsStr(sv.route)}','${jsStr(name)}')">&rarr; ${d.name}</button>`
-            : `<button class="dest-btn" onclick="openRouteDetailFromStop('${jsStr(sv.route)}','${jsStr(name)}','${jsStr(d.name)}')">&rarr; ${displayName(d.name)}</button>`
+            : `<button class="dest-btn" onclick="openRouteDetailFromStop('${jsStr(sv.route)}','${jsStr(name)}','${jsStr(d.name)}')">&rarr; ${getStopDisplay(d.name).base}</button>`
         ).join("");
         // Skip the colored route-badge pill for the route whose detail
         // panel is already open -- the sidebar's rail badge + breadcrumb
@@ -4372,7 +4753,7 @@ function showPopup(coords, name, services) {
     .setHTML(`
       <div class="glass-tag">
         <div class="tag-eyebrow">Rambu</div>
-        <div class="popup-title">${displayName(name)}</div>
+        <div class="popup-title">${stopTitleHtml(name)}</div>
         ${scheduleNote}
         ${timetableNote}
         <div class="popup-routes">${badges}</div>
@@ -4419,7 +4800,7 @@ searchBox.addEventListener("input", () => {
   }).join("");
   const stopHtml = stopMatches.map(m =>
     `<div class="result-item" data-idx="${m.item.idx}">
-      ${displayName(m.item.name)}<small>${m.item.routes.length ? "Jalur " + m.item.routes.join(", ") : "No routes listed"}</small>
+      ${stopTitleHtml(m.item.name)}<small>${m.item.routes.length ? "Jalur " + m.item.routes.join(", ") : "No routes listed"}</small>
     </div>`
   ).join("");
 
@@ -4788,9 +5169,9 @@ function renderPlanMarkers(legs) {
   const first = legs[0];
   addPlanMarker(first.coords[0], planMarkerHtml(
     "#1e8f4e",
-    `<div class="plan-marker-title">${displayName(first.from)}</div>
+    `<div class="plan-marker-title">${stopTitleHtml(first.from)}</div>
      <div class="plan-marker-eyebrow board">Board</div>
-     <div class="plan-marker-line">${routeBadgeHtml(first.routeId)} towards ${displayName(first.to)}</div>`,
+     <div class="plan-marker-line">${routeBadgeHtml(first.routeId)} towards ${getStopDisplay(first.to).base}</div>`,
     routeBadgeHtml(first.routeId)
   ));
 
@@ -4798,9 +5179,9 @@ function renderPlanMarkers(legs) {
     const leg = legs[i], nextLeg = legs[i + 1];
     addPlanMarker(leg.coords[leg.coords.length - 1], planMarkerHtml(
       "#b5860b",
-      `<div class="plan-marker-title">${displayName(leg.to)}</div>
+      `<div class="plan-marker-title">${stopTitleHtml(leg.to)}</div>
        <div class="plan-marker-eyebrow transfer">Transfer</div>
-       <div class="plan-marker-line">${routeBadgeHtml(leg.routeId)}<span class="plan-marker-arrow">&rarr;</span>${routeBadgeHtml(nextLeg.routeId)} towards ${displayName(nextLeg.to)}</div>`,
+       <div class="plan-marker-line">${routeBadgeHtml(leg.routeId)}<span class="plan-marker-arrow">&rarr;</span>${routeBadgeHtml(nextLeg.routeId)} towards ${getStopDisplay(nextLeg.to).base}</div>`,
       `${routeBadgeHtml(leg.routeId)}<span class="plan-marker-arrow">&rarr;</span>${routeBadgeHtml(nextLeg.routeId)}`
     ));
   }
@@ -4808,7 +5189,7 @@ function renderPlanMarkers(legs) {
   const last = legs[legs.length - 1];
   addPlanMarker(last.coords[last.coords.length - 1], planMarkerHtml(
     "#b5342c",
-    `<div class="plan-marker-title">${displayName(last.to)}</div>
+    `<div class="plan-marker-title">${stopTitleHtml(last.to)}</div>
      <div class="plan-marker-eyebrow alight">Alighting from</div>
      <div class="plan-marker-line">${routeBadgeHtml(last.routeId)}</div>`,
     routeBadgeHtml(last.routeId)
@@ -4834,7 +5215,7 @@ function renderItinerary(legs, totalDistance) {
     const meta = ROUTE_META[leg.routeId] || {};
     return `<div class="planner-step">
       <span class="route-badge" style="color:${meta.color || "#888"};background:${meta.color || "#888"}22;border-color:${meta.color || "#888"}55;">${leg.routeId}</span>
-      <span>${displayName(leg.from)} &rarr; ${displayName(leg.to)}</span>
+      <span>${getStopDisplay(leg.from).base} &rarr; ${getStopDisplay(leg.to).base}</span>
     </div>`;
   }).join(`<div class="planner-transfer">transfer</div>`);
   const busWord = legs.length === 1 ? "bus" : "buses";
@@ -4846,8 +5227,8 @@ let planFrom = null, planTo = null;
 window.pickMode = null;
 
 function setPlanStop(target, name) {
-  if (target === "from") { planFrom = name; document.getElementById("plan-from").value = displayName(name); }
-  else { planTo = name; document.getElementById("plan-to").value = displayName(name); }
+  if (target === "from") { planFrom = name; document.getElementById("plan-from").value = getStopDisplay(name).base; }
+  else { planTo = name; document.getElementById("plan-to").value = getStopDisplay(name).base; }
 }
 
 const plannerToggle = document.getElementById("planner-toggle");
@@ -4887,7 +5268,7 @@ function wirePlannerField(inputId, resultsId, target) {
     if (!matches.length) { results.style.display = "none"; return; }
     results.innerHTML = matches.map(m =>
       `<div class="result-item" data-idx="${m.item.idx}">
-        ${displayName(m.item.name)}<small>${m.item.routes.length ? "Jalur " + m.item.routes.join(", ") : "No routes listed"}</small>
+        ${stopTitleHtml(m.item.name)}<small>${m.item.routes.length ? "Jalur " + m.item.routes.join(", ") : "No routes listed"}</small>
       </div>`
     ).join("");
     results.style.display = "block";
