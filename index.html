@@ -2525,6 +2525,27 @@ map.on("load", async () => {
     showPopup(f.geometry.coordinates, f.properties.name, services);
   });
 
+  // Clears a "-> destination" quick-pick highlight (see
+  // highlightRouteToDestination / highlightRouteToHubLoop and
+  // quickDestinationPickActive above) when the user clicks anywhere else
+  // on the map that isn't a stop marker -- previously the only way to
+  // dismiss that badge was closing the stop popup, but those two now
+  // close the popup themselves as soon as they run, so nothing was left
+  // to clear it and it just sat there covering the map. Skipped when a
+  // stop marker was actually clicked since the "click","stops-circle"
+  // handler above already does its own full reset via showPopup.
+  map.on("click", (e) => {
+    if (!quickDestinationPickActive) return;
+    const hitStop = map.queryRenderedFeatures(e.point, { layers: ["stops-circle"] }).length > 0;
+    if (hitStop) return;
+    clearDestLabels();
+    setActiveSegment(null);
+    setBeforeSegment(null);
+    setRouteDimming(null);
+    setStopsFilter(null);
+    setSelectedStop(null);
+  });
+
   buildStopGraph();
   applyHash();
 
@@ -3149,9 +3170,20 @@ function getForwardSegmentToDestination(routeId, fromStopName, dest) {
 // each should tear down cleanly on its own.
 let destLabelMarkers = [];
 window.getDestLabelMarkers = () => destLabelMarkers; // exposed for cartography.html's label list/reset
+// True only while a "-> destination" pick from a stop popup
+// (highlightRouteToDestination / highlightRouteToHubLoop) is showing its
+// highlighted segment + endpoint badge. Those two now close the floating
+// stop popup as soon as they run (see their own comments) so it doesn't
+// cover the line -- but that means the popup's "close" handler, which
+// used to be the only thing tearing this state back down, no longer has
+// anything to close. The blank-map click handler below uses this flag to
+// know there's something of ITS OWN to clear, without also stomping on
+// unrelated persistent state like the open route-detail view.
+let quickDestinationPickActive = false;
 function clearDestLabels() {
   destLabelMarkers.forEach(m => m.remove());
   destLabelMarkers = [];
+  quickDestinationPickActive = false;
 }
 
 // ---- Cartography editor hooks ------------------------------------------
@@ -3647,6 +3679,17 @@ stopInfoDestBtn.addEventListener("click", () => {
 // a bare direct segment with no "before" leg only if the destination
 // isn't a recognized boundary of the stop's own leg.
 window.highlightRouteToDestination = function (routeId, fromStopName, toStopName) {
+  // Close the floating stop popup first, same as openStopInfoPanel does
+  // for "Stop information" -- otherwise it sits on top of the map and
+  // blocks the very line/badge this is about to draw. Popup.remove()
+  // fires its own "close" handler (resets active/before segment, dimming,
+  // stops filter, selected stop) BEFORE any of the code below runs, so
+  // this ordering is safe -- everything gets set to its real value right
+  // after, same pattern openStopInfoPanel already uses.
+  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+  const fromEntry = STOPS.find(s => s.name === fromStopName);
+  if (fromEntry) setSelectedStop([fromEntry.lon, fromEntry.lat], fromStopName);
+
   const meta = ROUTE_META[routeId];
   const color = meta ? meta.color : null;
 
@@ -3692,6 +3735,7 @@ window.highlightRouteToDestination = function (routeId, fromStopName, toStopName
   clearDestLabels();
   if (activeSeg && activeSeg.length && destName) {
     addDestLabel(activeSeg[activeSeg.length - 1], [routeId], displayName(destName));
+    quickDestinationPickActive = true;
   }
 
   const allCoords = [...(beforeSeg || []), ...(activeSeg || [])];
@@ -3727,7 +3771,17 @@ function getHubLoopVertices(routeId) {
 // back toward the terminal), then the hub's own out-and-back loop — hub ->
 // its own wayback -> the route's real end — solid, since that's the actual
 // destination leg being highlighted.
-window.highlightRouteToHubLoop = function (routeId) {
+window.highlightRouteToHubLoop = function (routeId, fromStopName) {
+  // Same popup-closing fix as highlightRouteToDestination above -- this
+  // is reached from the same kind of popup "-> destination" button (the
+  // hub-loop variant), so it had the exact same "popup stays open and
+  // blocks the line" bug.
+  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+  if (fromStopName) {
+    const fromEntry = STOPS.find(s => s.name === fromStopName);
+    if (fromEntry) setSelectedStop([fromEntry.lon, fromEntry.lat], fromStopName);
+  }
+
   const hv = getHubLoopVertices(routeId);
   if (!hv) return;
   const meta = ROUTE_META[routeId];
@@ -3751,6 +3805,7 @@ window.highlightRouteToHubLoop = function (routeId) {
   const cfg = ROUTE_HUB_LOOPS[routeId];
   if (activeSeg.length && cfg && cfg.label) {
     addDestLabel(activeSeg[activeSeg.length - 1], [routeId], displayName(cfg.label));
+    quickDestinationPickActive = true;
   }
 
   const allCoords = [...beforeSeg, ...activeSeg];
@@ -3795,17 +3850,24 @@ const routeDetailTabs = document.getElementById("route-detail-tabs");
 let routeDetailLeg = "all";
 let routeDetailCurrentVertex = null;
 
-// Parses "#/routes/FD8" -> "FD8". Uppercased so links typed/pasted in
-// lowercase (or old ?route= links, which route.html already uppercases
-// before building the hash) still resolve — ROUTE_META's keys are always
-// uppercase. Returns null for anything that isn't a recognized route,
-// so a stale or mistyped id falls back to closing the detail view instead
-// of rendering a blank panel.
+// Parses "#/routes/FD8" -> "FD8". Matched case-insensitively so links
+// typed/pasted in lowercase (or old ?route= links, which route.html
+// uppercases before building the hash) still resolve — but the ORIGINAL
+// casing from ROUTE_META's own keys is what gets returned, not the
+// uppercased input. This matters because ROUTE_META's keys aren't all
+// uppercase: "1A"/"L1"/etc. are, but "SiBulan 1", "SiBulan 2",
+// "Transgama 1", "Transgama 2", "Transgama 3" are mixed-case with a
+// space, and routeFileFor(id) uses this id verbatim to build the
+// routes/<id>.json filename — matching against the wrong case would
+// fail to fetch the file. Returns null for anything that isn't a
+// recognized route, so a stale or mistyped id falls back to closing the
+// detail view instead of rendering a blank panel.
+const ROUTE_ID_BY_UPPER = Object.fromEntries(ROUTE_IDS.map(id => [id.toUpperCase(), id]));
 function routeIdFromHash() {
   const m = /^#\/routes\/(.+)$/.exec(location.hash);
   if (!m) return null;
-  const id = decodeURIComponent(m[1]).toUpperCase();
-  return ROUTE_META[id] ? id : null;
+  const upper = decodeURIComponent(m[1]).toUpperCase();
+  return ROUTE_ID_BY_UPPER[upper] || null;
 }
 
 function renderRouteSwitcher(activeId) {
@@ -4264,7 +4326,7 @@ function showPopup(coords, name, services) {
         // or Terminal Benowo) — one button per destination it finds.
         const destPart = getStopDestinations(sv, name).map(d =>
           d.isHubLoop
-            ? `<button class="dest-btn" onclick="highlightRouteToHubLoop('${jsStr(sv.route)}')">&rarr; ${d.name}</button>`
+            ? `<button class="dest-btn" onclick="highlightRouteToHubLoop('${jsStr(sv.route)}','${jsStr(name)}')">&rarr; ${d.name}</button>`
             : `<button class="dest-btn" onclick="highlightRouteToDestination('${jsStr(sv.route)}','${jsStr(name)}','${jsStr(d.name)}')">&rarr; ${displayName(d.name)}</button>`
         ).join("");
         // Skip the colored route-badge pill for the route whose detail

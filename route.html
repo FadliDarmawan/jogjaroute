@@ -13,8 +13,12 @@
   // in place, the same way busrouter.sg's #/ vs #/routes/<id> works.
   // This file is kept only so old ?route=1A links (from before that
   // change) keep working.
+  // Not uppercased here anymore -- ROUTE_META's keys aren't all-uppercase
+  // (e.g. "SiBulan 1", "Transgama 2"), and index.html's routeIdFromHash()
+  // already does its own case-insensitive lookup against ROUTE_META, so
+  // this just needs to pass the id through untouched.
   const id = new URLSearchParams(location.search).get("route");
-  const hash = id ? `#/routes/${encodeURIComponent(id.toUpperCase())}` : "#/";
+  const hash = id ? `#/routes/${encodeURIComponent(id)}` : "#/";
   location.replace(`index.html${hash}`);
 </script>
 <noscript>
