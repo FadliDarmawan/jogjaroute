@@ -1685,9 +1685,31 @@ function getRouteLegBounds(routeId, fromStopName) {
     : { legStartName: lv.wayback, legEndName: lv.end, direction: "down" };
 }
 
-// Resolves a "→ destination" click at a JUNCTION stop (one that sits on
-// more than one leg of a route — see ROUTE_DIRECTIONS, e.g. Janti Selatan
-// on 1A) into a precise { activeSeg, beforeSeg } pair.
+// Resolves which leg ("up"/"down") and vertex a "-> toStopName" pick from
+// fromStopName lands on, mirroring the exact same occurrence-picking
+// priority getJunctionSegments/getRouteLegBounds already use for the
+// segment-highlight math -- so opening the full route detail panel from a
+// stop popup (see openRouteDetailFromStop) lands on the same leg + row
+// selectRouteDetailStop would pick if the rider had opened the route from
+// the route list and clicked that same stop by hand.
+function resolveStopLegVertex(routeId, fromStopName, toStopName) {
+  const lv = getRouteLegVertices(routeId);
+  if (!lv) return null;
+  const { shape, wayback, end, startVertex, waybackVertex, endVertex } = lv;
+
+  if (toStopName === wayback) {
+    const v = stopVertexOnLeg(shape, fromStopName, startVertex, waybackVertex);
+    if (v != null) return { vertex: v, leg: "up" };
+  } else if (toStopName === end) {
+    const v = stopVertexOnLeg(shape, fromStopName, waybackVertex, endVertex);
+    if (v != null) return { vertex: v, leg: "down" };
+  }
+  const vertex = fromStopName === lv.start ? startVertex : lastStopVertex(shape, fromStopName);
+  if (vertex == null) return null;
+  return { vertex, leg: vertex < waybackVertex ? "up" : "down" };
+}
+
+
 //
 // Why this exists: a plain stopIndex.get(toStopName) lookup only ever
 // returns ONE vertex per name. For the route's shared start/end stop (e.g.
@@ -2350,7 +2372,8 @@ map.on("load", async () => {
 
   map.addSource("stops", { type: "geojson", data: buildStopsGeoJSON() });
 
-  // Empty at first; populated on demand by highlightRouteToDestination()
+  // Empty at first; populated on demand by selectRouteDetailStop() /
+  // applyRouteDetailLeg() (route detail panel) and highlightRouteToHubLoop()
   // when someone taps a "→ destination" line in a stop's popup. Sits
   // BELOW active-segment so the highlighted leg draws on top of it where
   // they meet.
@@ -2377,7 +2400,8 @@ map.on("load", async () => {
     paint: { ...ARROW_PAINT, "icon-opacity": 0.6 }
   });
 
-  // Empty at first; populated on demand by highlightRouteToDestination()
+  // Empty at first; populated on demand by selectRouteDetailStop() /
+  // applyRouteDetailLeg() (route detail panel) and highlightRouteToHubLoop()
   // when someone taps a "→ destination" line in a stop's popup.
   map.addSource("active-segment", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
   map.addLayer({
@@ -3669,84 +3693,6 @@ stopInfoDestBtn.addEventListener("click", () => {
   }
 });
 
-// Called from the "→ destination" buttons inside a stop's popup. Works
-// out which leg of the route the clicked stop is on (see
-// getRouteLegBounds) and draws that leg's start-to-stop portion dimmed,
-// stop-to-end portion at full opacity. If toStopName is passed explicitly
-// (junction stops with more than one onward direction — see showPopup),
-// getJunctionSegments resolves that specific direction's active + before
-// legs instead (still dimmed/full-opacity respectively), falling back to
-// a bare direct segment with no "before" leg only if the destination
-// isn't a recognized boundary of the stop's own leg.
-window.highlightRouteToDestination = function (routeId, fromStopName, toStopName) {
-  // Close the floating stop popup first, same as openStopInfoPanel does
-  // for "Stop information" -- otherwise it sits on top of the map and
-  // blocks the very line/badge this is about to draw. Popup.remove()
-  // fires its own "close" handler (resets active/before segment, dimming,
-  // stops filter, selected stop) BEFORE any of the code below runs, so
-  // this ordering is safe -- everything gets set to its real value right
-  // after, same pattern openStopInfoPanel already uses.
-  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
-  const fromEntry = STOPS.find(s => s.name === fromStopName);
-  if (fromEntry) setSelectedStop([fromEntry.lon, fromEntry.lat], fromStopName);
-
-  const meta = ROUTE_META[routeId];
-  const color = meta ? meta.color : null;
-
-  let activeSeg, beforeSeg, destName;
-  if (toStopName) {
-    const junction = getJunctionSegments(routeId, fromStopName, toStopName);
-    if (junction) {
-      activeSeg = junction.activeSeg;
-      beforeSeg = junction.beforeSeg;
-    } else {
-      activeSeg = getDirectRouteSegment(routeId, fromStopName, toStopName);
-      beforeSeg = null;
-    }
-    destName = toStopName;
-  } else {
-    const leg = getRouteLegBounds(routeId, fromStopName);
-    if (!leg) return;
-    activeSeg = getRouteSegment(routeId, fromStopName, leg.legEndName);
-    beforeSeg = (leg.legStartName !== fromStopName)
-      ? getRouteSegment(routeId, leg.legStartName, fromStopName)
-      : null;
-    destName = leg.legEndName;
-  }
-
-  setActiveSegment(activeSeg, color);
-  setBeforeSegment(beforeSeg, color);
-  setRouteDimming(routeId);
-  // Stops still ahead on activeSeg show at full color; stops already
-  // behind on beforeSeg (the dimmed leg) stay visible too, just
-  // grey/low-opacity, so it's clear the route serves them even though
-  // this particular rider has already gone past them -- rather than
-  // making them vanish outright, which used to read as "this route
-  // doesn't stop there." See setStopsFilterByNamesWithPassed.
-  const forwardNames = [fromStopName, ...getForwardStopNames(routeId, activeSeg)];
-  const passedNames = (beforeSeg && beforeSeg.length) ? getForwardStopNames(routeId, beforeSeg) : [];
-  setStopsFilterByNamesWithPassed(forwardNames, passedNames);
-
-  // Small "[route] destination" tag pinned at the actual endpoint of this
-  // leg, same floating-pill treatment as showFinalDestinationsForStop's
-  // callouts -- gives this single-route drill-down the same "where does
-  // this actually end up" answer without having to trace the line all
-  // the way to the edge of the map.
-  clearDestLabels();
-  if (activeSeg && activeSeg.length && destName) {
-    addDestLabel(activeSeg[activeSeg.length - 1], [routeId], displayName(destName));
-    quickDestinationPickActive = true;
-  }
-
-  const allCoords = [...(beforeSeg || []), ...(activeSeg || [])];
-  if (allCoords.length) {
-    const lons = allCoords.map(c => c[0]), lats = allCoords.map(c => c[1]);
-    map.fitBounds(
-      [[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]],
-      { padding: 70, maxZoom: 15, duration: 500 }
-    );
-  }
-};
 
 // Resolves a ROUTE_HUB_LOOPS entry into real vertex numbers, working
 // directly off lastStopVertex rather than the leg-boundary machinery above
@@ -3772,10 +3718,10 @@ function getHubLoopVertices(routeId) {
 // its own wayback -> the route's real end — solid, since that's the actual
 // destination leg being highlighted.
 window.highlightRouteToHubLoop = function (routeId, fromStopName) {
-  // Same popup-closing fix as highlightRouteToDestination above -- this
-  // is reached from the same kind of popup "-> destination" button (the
-  // hub-loop variant), so it had the exact same "popup stays open and
-  // blocks the line" bug.
+  // Closes the popup first, same reasoning openRouteDetailFromStop has
+  // for the plain (non-hub-loop) destination pick -- this is reached from
+  // the same kind of popup "-> destination" button, so it had the exact
+  // same "popup stays open and blocks the line" bug.
   if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
   if (fromStopName) {
     const fromEntry = STOPS.find(s => s.name === fromStopName);
@@ -3793,14 +3739,14 @@ window.highlightRouteToHubLoop = function (routeId, fromStopName) {
   setActiveSegment(activeSeg, color);
   setBeforeSegment(beforeSeg, color);
   setRouteDimming(routeId);
-  // Same forward-visible-but-greyed-behind treatment as
-  // highlightRouteToDestination -- see setStopsFilterByNamesWithPassed.
+  // Same forward-visible-but-greyed-behind treatment used elsewhere -- see
+  // setStopsFilterByNamesWithPassed.
   const passedNames = (beforeSeg && beforeSeg.length) ? getForwardStopNames(routeId, beforeSeg) : [];
   setStopsFilterByNamesWithPassed(getForwardStopNames(routeId, activeSeg), passedNames);
 
-  // Same "[route] destination" tag as highlightRouteToDestination, using
-  // ROUTE_HUB_LOOPS' own label for this loop's actual endpoint rather
-  // than trying to reverse-lookup a stop name from endVertex.
+  // Small "[route] destination" tag at this loop's actual endpoint, using
+  // ROUTE_HUB_LOOPS' own label rather than trying to reverse-lookup a stop
+  // name from endVertex.
   clearDestLabels();
   const cfg = ROUTE_HUB_LOOPS[routeId];
   if (activeSeg.length && cfg && cfg.label) {
@@ -3849,6 +3795,16 @@ const routeDetailTabs = document.getElementById("route-detail-tabs");
 // switched.
 let routeDetailLeg = "all";
 let routeDetailCurrentVertex = null;
+// Set only when the route detail panel was opened from a stop popup's
+// "-> destination" button (see openRouteDetailFromStop below) -- holds
+// enough to reopen that exact popup (coords/name/services) when the
+// panel's own back button is pressed, instead of collapsing all the way
+// back to a blank map. openRouteDetail() clears this at the top of every
+// normal entry (route switcher, search, rail badge, pasted link) since
+// those never have a popup to go back to; openRouteDetailFromStop sets
+// it again right after calling openRouteDetail(), so it survives that
+// reset for its own flow specifically.
+let routeDetailReturnStop = null;
 
 // Parses "#/routes/FD8" -> "FD8". Matched case-insensitively so links
 // typed/pasted in lowercase (or old ?route= links, which route.html
@@ -4064,6 +4020,13 @@ function openRouteDetail(id) {
   const meta = ROUTE_META[id];
   if (!meta || !ROUTE_SHAPES[id]) return false;
 
+  // Any entry into route detail through the normal hash-routed path
+  // (route switcher, search result, rail badge, pasted/refreshed link)
+  // starts with a clean slate -- there's no popup to go back to. Only
+  // openRouteDetailFromStop re-sets this, and only AFTER this call
+  // returns, so its context survives.
+  routeDetailReturnStop = null;
+
   setRailExpanded(false);
   // Route content now lives INSIDE #mobile-sheet rather than floating
   // over it, so opening a route needs the sheet expanded (not hidden) --
@@ -4101,6 +4064,45 @@ function closeRouteDetail() {
   setSelectedStop(null);
 }
 
+// Called from a stop popup's "-> destination" button (see showPopup) in
+// place of the old highlightRouteToDestination quick-highlight: instead
+// of just drawing a highlighted segment + floating endpoint badge (which
+// needed the popup to close to avoid covering the line, and then had no
+// good way back to "the stop popup I started from"), this opens the SAME
+// full route detail panel a rider gets from the route list/search --
+// already switched to the right "-> destination" leg tab and scrolled/
+// highlighted to this exact stop, matching what manually opening the
+// route and clicking that row would produce. routeBack's own click
+// handler (below) is what makes the panel's "<- All routes" button
+// return to this popup instead of collapsing everything.
+window.openRouteDetailFromStop = function (routeId, fromStopName, toStopName) {
+  const stopEntry = STOPS.find(s => s.name === fromStopName);
+  if (!stopEntry) return;
+  const resolved = toStopName ? resolveStopLegVertex(routeId, fromStopName, toStopName) : null;
+
+  // Captured now, before the popup closes, since STOPS is the only place
+  // holding this stop's coords + full services list (the popup itself
+  // doesn't stash them anywhere retrievable).
+  const returnStop = { coords: [stopEntry.lon, stopEntry.lat], name: fromStopName, services: stopEntry.services };
+  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+
+  // Changes the URL without going through the normal hashchange ->
+  // applyHash() path -- that path is asynchronous (the hashchange event
+  // fires on a later tick), so calling openRouteDetail() ourselves right
+  // below stays perfectly in sync with the rest of this function instead
+  // of racing a second, delayed openRouteDetail() call triggered by the
+  // hash assignment.
+  history.replaceState(null, "", location.pathname + location.search + `#/routes/${encodeURIComponent(routeId)}`);
+  if (!openRouteDetail(routeId)) return;
+  if (resolved) {
+    applyRouteDetailLeg(routeId, resolved.leg);
+    selectRouteDetailStop(routeId, resolved.vertex);
+  }
+  // Set AFTER openRouteDetail(), which clears this at its own top for
+  // every OTHER entry point -- this is the one flow meant to keep it.
+  routeDetailReturnStop = returnStop;
+};
+
 // The single entry point for reacting to the current hash — called once
 // after routes finish loading (map "load" handler below) and again on
 // every hashchange (back/forward, the switcher, a pasted link).
@@ -4110,7 +4112,24 @@ function applyHash() {
 }
 window.addEventListener("hashchange", applyHash);
 
-routeBack.addEventListener("click", () => { location.hash = "#/"; });
+routeBack.addEventListener("click", () => {
+  // Opened from a stop popup's "-> destination" button -- go back to
+  // that exact popup instead of collapsing all the way to a blank map.
+  // closeRouteDetail() is called directly (not via location.hash, which
+  // would fire the async hashchange -> applyHash() path and risk it
+  // running AFTER showPopup below, wiping out the very popup/selection
+  // state showPopup just set).
+  if (routeDetailReturnStop) {
+    const { coords, name, services } = routeDetailReturnStop;
+    routeDetailReturnStop = null;
+    closeRouteDetail();
+    history.replaceState(null, "", location.pathname + location.search + "#/");
+    showPopup(coords, name, services);
+    return;
+  }
+  location.hash = "#/";
+});
+
 
 routeSwitcher.addEventListener("click", (e) => {
   const btn = e.target.closest(".switcher-badge");
@@ -4174,7 +4193,7 @@ function setSelectedStop(coords, name) {
 //     on its own.
 // Returns a de-duplicated list of { name, isHubLoop } — isHubLoop marks
 // entries that need highlightRouteToHubLoop rather than
-// highlightRouteToDestination when made clickable. Shared by showPopup
+// openRouteDetailFromStop when made clickable. Shared by showPopup
 // (renders each as a "-> destination" button) and openStopInfoPanel
 // (renders each as its own route/destination row).
 function getStopDestinations(sv, name) {
@@ -4327,7 +4346,7 @@ function showPopup(coords, name, services) {
         const destPart = getStopDestinations(sv, name).map(d =>
           d.isHubLoop
             ? `<button class="dest-btn" onclick="highlightRouteToHubLoop('${jsStr(sv.route)}','${jsStr(name)}')">&rarr; ${d.name}</button>`
-            : `<button class="dest-btn" onclick="highlightRouteToDestination('${jsStr(sv.route)}','${jsStr(name)}','${jsStr(d.name)}')">&rarr; ${displayName(d.name)}</button>`
+            : `<button class="dest-btn" onclick="openRouteDetailFromStop('${jsStr(sv.route)}','${jsStr(name)}','${jsStr(d.name)}')">&rarr; ${displayName(d.name)}</button>`
         ).join("");
         // Skip the colored route-badge pill for the route whose detail
         // panel is already open -- the sidebar's rail badge + breadcrumb
