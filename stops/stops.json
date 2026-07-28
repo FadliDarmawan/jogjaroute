@@ -53,7 +53,7 @@
         "route": "2B",
         "is_departure_hub": false,
         "destinations": [
-          "Batas Kota Jll. Monjali - B"
+          "Batas Kota Jl. Monjali - B"
         ]
       }
     ]
@@ -379,7 +379,7 @@
   },
   {
     "point": "110.36849 -7.77065",
-    "stop_name": "Batas Kota Jll. Monjali - B",
+    "stop_name": "Batas Kota Jl. Monjali - B",
     "services": [
       {
         "route": "2B",
@@ -2787,7 +2787,7 @@
         "route": "2A",
         "is_departure_hub": false,
         "destinations": [
-          "Batas Kota Jll. Monjali - A"
+          "Batas Kota Jl. Monjali - A"
         ]
       }
     ]
@@ -3108,7 +3108,7 @@
   },
   {
     "point": "110.37512 -7.77433",
-    "stop_name": "Kopma UGM",
+    "stop_name": "GIK UGM",
     "services": [
       {
         "route": "3A",
@@ -3403,7 +3403,7 @@
         "route": "3A",
         "is_departure_hub": false,
         "destinations": [
-          "SMA N 5"
+          "SMAN 5"
         ]
       }
     ]
@@ -3733,7 +3733,7 @@
   },
   {
     "point": "110.39069 -7.76962",
-    "stop_name": "Makam Santrean",
+    "stop_name": "Makam Santren",
     "services": [
       {
         "route": "2B",
@@ -7326,7 +7326,7 @@
   },
   {
     "point": "110.39916 -7.82256",
-    "stop_name": "SMA N 5",
+    "stop_name": "SMAN 5",
     "services": [
       {
         "route": "3A",
