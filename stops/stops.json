@@ -9937,11 +9937,17 @@
       },
       {
         "route": "Transgama 2",
-        "is_departure_hub": true
+        "is_departure_hub": true,
+        "destinations": [
+          "Jalan Medika"
+        ]
       },
       {
         "route": "Transgama 3",
-        "is_departure_hub": true
+        "is_departure_hub": true,
+        "destinations": [
+          "Jalan Medika"
+        ]
       }
     ]
   },
@@ -10029,6 +10035,104 @@
     "services": [
       {
         "route": "Transgama 1",
+        "is_departure_hub": false,
+        "destinations": [
+          "GSP"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37556176728927 -7.77025060580241",
+    "stop_name": "Jalan Medika",
+    "services": [
+      {
+        "route": "Transgama 2",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Teknik"
+        ]
+      },
+      {
+        "route": "Transgama 3",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fasilitas Kerohanian"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37402482214328 -7.766204777634261",
+    "stop_name": "Fakultas Teknik",
+    "services": [
+      {
+        "route": "Transgama 2",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Biologi"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37601502052502 -7.765327503134358",
+    "stop_name": "Fakultas Biologi",
+    "services": [
+      {
+        "route": "Transgama 2",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas MIPA"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37609337794257 -7.767704443938571",
+    "stop_name": "Fakultas MIPA",
+    "services": [
+      {
+        "route": "Transgama 2",
+        "is_departure_hub": false,
+        "destinations": [
+          "GSP"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37291160293341 -7.772083477850051",
+    "stop_name": "Fasilitas Kerohanian",
+    "services": [
+      {
+        "route": "Transgama 3",
+        "is_departure_hub": false,
+        "destinations": [
+          "TILC"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37267125477761 -7.773873034508023",
+    "stop_name": "TILC",
+    "services": [
+      {
+        "route": "Transgama 3",
+        "is_departure_hub": false,
+        "destinations": [
+          "Jalan Kemuning"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.37413853607364 -7.772168512140609",
+    "stop_name": "Jalan Kemuning",
+    "services": [
+      {
+        "route": "Transgama 3",
         "is_departure_hub": false,
         "destinations": [
           "GSP"

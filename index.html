@@ -1116,10 +1116,21 @@ const ROUTE_META = {
     agency: "SiBulan",
     schedule: { type: "weekday-only", hours: ["06:00-15:30"] } // fixed -- see per-stop `departures` in routes/SIBULAN2.json for the real timetable
   },
-
   "Transgama 1": {
-    title: "Trans Gadjah Mada Rute 1",
-    color: "#E73D4A",
+    title: "GSP - Fakultas Peternakan",
+    color: "#2e71a3",
+    agency: "Transgama",
+    schedule: { type: "weekday-only", hours: ["06:00 - 16:00"]}
+  },
+  "Transgama 2": {
+    title: "GSP - Fakultas Teknik",
+    color: "#9b1b30",
+    agency: "Transgama",
+    schedule: { type: "weekday-only", hours: ["06:00 - 16:00"]}
+  },
+  "Transgama 3": {
+    title: "GSP - TILC",
+    color: "#1b5e20",
     agency: "Transgama",
     schedule: { type: "weekday-only", hours: ["06:00 - 16:00"]}
   }
@@ -1130,7 +1141,7 @@ const ROUTE_META = {
 // "L1", regardless of how the object literal was written. That reordering
 // is exactly what made the rail show 6, 8, 9, 10...15, 1A, 1B, 2A... instead
 // of the intended 1A, 1B, 2A, ... 15, L1 sequence.
-const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SiBulan 1", "SiBulan 2", "Transgama 1"];
+const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SiBulan 1", "SiBulan 2", "Transgama 1", "Transgama 2", "Transgama 3"];
 window.ROUTE_META = ROUTE_META;
 window.ROUTE_IDS = ROUTE_IDS;
 
@@ -1502,6 +1513,8 @@ const ROUTE_DIRECTIONS = {
   "1B": { start: "Bandara Adisutjipto", wayback: "Ngabean", end: "Bandara Adisutjipto" },
   "2A": { start: "Terminal Condongcatur", wayback: "RS Hidayatullah", end: "Terminal Condongcatur" },
   "Transgama 1": { start: "GSP", wayback: "Fakultas Peternakan", end: "GSP" },
+  "Transgama 2": { start: "GSP", wayback: "Fakultas Teknik", end: "GSP" },
+  "Transgama 3": { start: "GSP", wayback: "TILC", end: "GSP" },
 };
 
 const ROUTE_WAYPOINTS = Object.fromEntries(
