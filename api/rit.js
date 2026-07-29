@@ -6,6 +6,8 @@ const { sql } = require("./_db");
 //   -> { rit: {...} }
 // POST /api/rit  { action: "end", busId }
 //   -> { ok: true }
+// POST /api/rit  { action: "set_direction", busId, direction }
+//   -> { rit: {...} }
 module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
@@ -23,11 +25,11 @@ module.exports = async function handler(req, res) {
       if (rit) {
         const rows = await sql`
           SELECT
-            COALESCE(SUM(CASE WHEN action = 'naik' THEN 1 ELSE -1 END), 0) AS count
+            COALESCE(SUM(CASE WHEN action = 'naik' THEN count ELSE -count END), 0) AS total
           FROM passenger_events
           WHERE rit_id = ${rit.id} AND deleted_at IS NULL
         `;
-        passengerCount = Number(rows[0].count);
+        passengerCount = Number(rows[0].total);
       }
 
       return res.status(200).json({ rit, passengerCount });
@@ -66,7 +68,21 @@ module.exports = async function handler(req, res) {
         return res.status(200).json({ ok: true });
       }
 
-      return res.status(400).json({ error: "action harus 'start' atau 'end'" });
+      if (action === "set_direction") {
+        const { direction } = req.body;
+        if (!["to_pakem", "to_adisutjipto"].includes(direction)) {
+          return res.status(400).json({ error: "direction harus 'to_pakem' atau 'to_adisutjipto'" });
+        }
+        const rows = await sql`
+          UPDATE bus_rits SET direction = ${direction}
+          WHERE bus_id = ${busId} AND ended_at IS NULL
+          RETURNING *
+        `;
+        if (!rows[0]) return res.status(400).json({ error: "Tidak ada rit aktif untuk bus ini" });
+        return res.status(200).json({ rit: rows[0] });
+      }
+
+      return res.status(400).json({ error: "action harus 'start', 'end', atau 'set_direction'" });
     }
 
     res.setHeader("Allow", "GET, POST");

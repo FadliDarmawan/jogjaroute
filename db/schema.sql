@@ -26,7 +26,10 @@ CREATE TABLE IF NOT EXISTS passenger_events (
   id SERIAL PRIMARY KEY,
   rit_id INT NOT NULL REFERENCES bus_rits(id) ON DELETE CASCADE,
   action TEXT NOT NULL CHECK (action IN ('naik', 'turun')),
+  count INT NOT NULL DEFAULT 1 CHECK (count > 0),  -- berapa orang sekaligus (dipilih di driver.html sebelum "Konfirmasi")
   stop_name TEXT,                    -- halte terdekat saat kejadian dicatat
+  lat DOUBLE PRECISION,              -- posisi bus saat kejadian dicatat -- dipakai peta visualisasi admin
+  lng DOUBLE PRECISION,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   deleted_at TIMESTAMPTZ              -- diisi kalau kru koreksi/hapus dari histori
 );

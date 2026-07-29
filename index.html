@@ -966,6 +966,12 @@
 <body>
 
 <div id="map"></div>
+<button id="locateBusBtn" onclick="locateBuses()" title="Cari bus" style="
+  position: absolute; bottom: 24px; right: 12px; z-index: 5;
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  font-size: 20px; display: none; cursor: pointer;
+">🚌</button>
 
 <div id="route-rail">
   <button id="route-rail-toggle" type="button" title="Show all routes">
@@ -5225,11 +5231,37 @@ async function pollBusLocations() {
         marker.setRotation(loc.heading);
       }
     }
+
+    // Tombol "cari bus" cuma ada gunanya kalau minimal 1 bus punya posisi.
+    // Marker bus SENDIRI selalu ada & live di peta apapun rute yang lagi
+    // difilter/ditampilkan -- yang berubah cuma framing kamera peta (mis.
+    // milih rute lain memicu map.fitBounds ke rute itu, jadi posisi bus
+    // yang di luar area itu keluar dari layar). Tombol ini nge-fix itu
+    // dengan geser kamera ke posisi bus, terlepas dari filter yang aktif.
+    if (Object.keys(busMarkers).length > 0) {
+      document.getElementById("locateBusBtn").style.display = "flex";
+    }
   } catch (err) {
     // Sengaja cuma di-log, bukan ditampilkan ke user -- kegagalan poll
     // sesekali (misal bot lagi redeploy) nggak perlu mengganggu peta.
     console.error("Gagal memuat lokasi bus:", err);
   }
+}
+
+function locateBuses() {
+  const coords = Object.values(busMarkers).map((m) => m.getLngLat());
+  if (coords.length === 0) return;
+
+  if (coords.length === 1) {
+    map.flyTo({ center: coords[0], zoom: Math.max(map.getZoom(), 15) });
+    return;
+  }
+  const lons = coords.map((c) => c.lng);
+  const lats = coords.map((c) => c.lat);
+  map.fitBounds(
+    [[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]],
+    { padding: 80, maxZoom: 16 }
+  );
 }
 
 pollBusLocations();

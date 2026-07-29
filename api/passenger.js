@@ -1,8 +1,8 @@
 const { sql } = require("./_db");
 
 // GET   /api/passenger?busId=bus1
-//   -> { events: [...terbaru dulu], passengerCount: number }
-// POST  /api/passenger  { busId, action: "naik"|"turun", stopName }
+//   -> { events: [...terbaru dulu, masing2 punya count/lat/lng], passengerCount: number }
+// POST  /api/passenger  { busId, action: "naik"|"turun", count, stopName, lat, lng }
 //   -> { event: {...}, passengerCount: number }
 // PATCH /api/passenger  { eventId, action: "delete" }
 //   -> { ok: true, passengerCount: number }
@@ -27,7 +27,7 @@ module.exports = async function handler(req, res) {
         LIMIT 50
       `;
       const passengerCount = events.reduce(
-        (sum, e) => sum + (e.action === "naik" ? 1 : -1),
+        (sum, e) => sum + (e.action === "naik" ? e.count : -e.count),
         0
       );
 
@@ -35,10 +35,11 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === "POST") {
-      const { busId, action, stopName } = req.body;
+      const { busId, action, count, stopName, lat, lng } = req.body;
       if (!busId || !["naik", "turun"].includes(action)) {
         return res.status(400).json({ error: "busId dan action ('naik'/'turun') wajib diisi" });
       }
+      const qty = Number.isInteger(count) && count > 0 ? count : 1;
 
       const rits = await sql`
         SELECT id FROM bus_rits
@@ -51,21 +52,21 @@ module.exports = async function handler(req, res) {
       const ritId = rits[0].id;
 
       const rows = await sql`
-        INSERT INTO passenger_events (rit_id, action, stop_name)
-        VALUES (${ritId}, ${action}, ${stopName || null})
+        INSERT INTO passenger_events (rit_id, action, count, stop_name, lat, lng)
+        VALUES (${ritId}, ${action}, ${qty}, ${stopName || null}, ${lat ?? null}, ${lng ?? null})
         RETURNING *
       `;
 
       const countRows = await sql`
         SELECT
-          COALESCE(SUM(CASE WHEN action = 'naik' THEN 1 ELSE -1 END), 0) AS count
+          COALESCE(SUM(CASE WHEN action = 'naik' THEN count ELSE -count END), 0) AS total
         FROM passenger_events
         WHERE rit_id = ${ritId} AND deleted_at IS NULL
       `;
 
       return res.status(200).json({
         event: rows[0],
-        passengerCount: Number(countRows[0].count),
+        passengerCount: Number(countRows[0].total),
       });
     }
 
@@ -85,12 +86,12 @@ module.exports = async function handler(req, res) {
 
       const countRows = await sql`
         SELECT
-          COALESCE(SUM(CASE WHEN action = 'naik' THEN 1 ELSE -1 END), 0) AS count
+          COALESCE(SUM(CASE WHEN action = 'naik' THEN count ELSE -count END), 0) AS total
         FROM passenger_events
         WHERE rit_id = ${ritId} AND deleted_at IS NULL
       `;
 
-      return res.status(200).json({ ok: true, passengerCount: Number(countRows[0].count) });
+      return res.status(200).json({ ok: true, passengerCount: Number(countRows[0].total) });
     }
 
     res.setHeader("Allow", "GET, POST, PATCH");

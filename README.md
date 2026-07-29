@@ -35,6 +35,29 @@ setelah ini jalan.
 - **`driver.html`** -- halaman yang dibuka kru di HP, akses lewat
   `driver.html?bus=bus1` atau `driver.html?bus=bus2`.
 
+## Update terbaru -- baca ini kalau database sudah pernah dipasang sebelumnya
+
+1. **Jalankan `db/migration_002_count_and_location.sql`** di Neon (aman
+   dijalankan berkali-kali). Ini nambah kolom `count`, `lat`, `lng` ke
+   `passenger_events` -- dibutuhkan fitur "pilih jumlah dulu baru Konfirmasi"
+   di `driver.html` dan peta visualisasi di `admin.html`. Instalasi baru
+   (belum pernah jalanin schema.sql sama sekali) cukup jalanin `schema.sql`
+   seperti biasa, kolom ini udah termasuk di situ, migration terpisah tidak
+   perlu dijalankan.
+2. **`admin.html`** (baru) -- dashboard buat lihat riwayat rit + peta titik
+   naik/turun (hijau=naik, merah=turun, ukuran titik ngikutin jumlah
+   penumpang di kejadian itu). Akses lewat `admin.html`. **Belum ada
+   autentikasi**, sama seperti `driver.html` -- oke buat testing, perlu
+   ditambah proteksi sebelum dipakai beneran.
+3. **`driver.html`** -- 2 perubahan:
+   - Arah sekarang dropdown yang bisa diganti kapan saja (sebelumnya teks
+     tetap dari saran otomatis rit ganjil/genap). Perubahan tersimpan ke
+     server (`POST /api/rit` action `set_direction`).
+   - Naik/turun sekarang 2 langkah: atur jumlah dulu pakai stepper +/-,
+     baru tekan "Konfirmasi" buat kirim ke server. Sebelumnya tiap tap
+     langsung tercatat 1 baris riwayat -- sekarang 1 baris riwayat bisa
+     mewakili beberapa orang sekaligus (field `count`).
+
 ## Yang BELUM ada -- penting sebelum dipakai beneran di lapangan
 
 - **Tidak ada autentikasi.** Siapa saja yang tahu URL `driver.html?bus=bus1`

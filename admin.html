@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin - SiBulan Tracker</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js" crossorigin="anonymous"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f4f4f2;
+    color: #1a1a1a;
+  }
+  .topbar {
+    padding: 1rem 1.5rem; background: #fff; border-bottom: 1px solid #e2e2e2;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .topbar h1 { font-size: 18px; margin: 0; }
+  .range-select { font-size: 13px; padding: 6px 10px; border-radius: 8px; border: 1px solid #e2e2e2; background: #fafafa; }
+
+  .layout { display: grid; grid-template-columns: 380px 1fr; gap: 0; height: calc(100vh - 57px); }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; height: auto; } }
+
+  .sidebar { overflow-y: auto; padding: 1rem 1.25rem; border-right: 1px solid #e2e2e2; background: #fff; }
+  .summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+  .summary-card { background: #fafafa; border-radius: 10px; padding: 12px; }
+  .summary-label { font-size: 12px; color: #777; margin: 0 0 4px; }
+  .summary-value { font-size: 22px; font-weight: 700; margin: 0; }
+
+  .rit-list-title { font-size: 13px; color: #777; margin: 0 0 8px; }
+  .rit-card {
+    border: 1px solid #e2e2e2; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .rit-card:hover { border-color: #bbb; }
+  .rit-card.active { border-color: #1a1a1a; background: #fafafa; }
+  .rit-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .rit-bus { font-size: 13px; font-weight: 600; }
+  .rit-status { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #eef3ff; color: #1a56db; }
+  .rit-status.ended { background: #f0f0ee; color: #777; }
+  .rit-meta { font-size: 12px; color: #777; }
+  .rit-counts { display: flex; gap: 12px; margin-top: 6px; font-size: 12px; }
+  .rit-counts .naik { color: #1D9E75; }
+  .rit-counts .turun { color: #E24B4A; }
+
+  .map-wrap { position: relative; }
+  #map { width: 100%; height: 100%; }
+  .legend {
+    position: absolute; bottom: 16px; left: 16px; background: #fff; border-radius: 10px;
+    padding: 10px 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); font-size: 12px;
+  }
+  .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .legend-row:last-child { margin-bottom: 0; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  .empty-msg { font-size: 13px; color: #999; padding: 12px 0; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>SiBulan Tracker - Admin</h1>
+  <select class="range-select" id="rangeSelect" onchange="loadData()">
+    <option value="1">Hari ini</option>
+    <option value="7" selected>7 hari terakhir</option>
+    <option value="30">30 hari terakhir</option>
+  </select>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="summary-row">
+      <div class="summary-card">
+        <p class="summary-label">Total naik</p>
+        <p class="summary-value" id="totalNaik" style="color:#1D9E75;">0</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-label">Total turun</p>
+        <p class="summary-value" id="totalTurun" style="color:#E24B4A;">0</p>
+      </div>
+    </div>
+
+    <p class="rit-list-title">Riwayat rit</p>
+    <div id="ritList"><p class="empty-msg">Memuat...</p></div>
+  </div>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+    <div class="legend">
+      <div class="legend-row"><div class="legend-dot" style="background:#1D9E75;"></div>Naik (makin besar = makin banyak)</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#E24B4A;"></div>Turun (makin besar = makin banyak)</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Belum ada autentikasi di halaman ini -- sama seperti driver.html, ini
+// oke untuk testing internal tapi perlu ditambah proteksi (login/token)
+// sebelum dipakai beneran, karena data penumpang bisa diakses siapa saja
+// yang tahu URL-nya.
+
+const PROTOMAPS_API_KEY = "ed3acf093a24c3f4";
+const BUS_LABELS = { bus1: "SiBulan 2 - Bus 01", bus2: "SiBulan 2 - Bus 02" };
+const DIRECTION_LABELS = { to_pakem: "Ke Pakem", to_adisutjipto: "Ke Adisutjipto" };
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: `https://api.protomaps.com/styles/v5/light/en.json?key=${PROTOMAPS_API_KEY}`,
+  center: [110.4357, -7.75], // sekitar rute SiBulan 2
+  zoom: 12,
+});
+map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+let eventMarkers = [];
+let selectedRitId = null; // null = tampilkan semua rit
+
+function clearEventMarkers() {
+  eventMarkers.forEach((m) => m.remove());
+  eventMarkers = [];
+}
+
+// Radius dot dari jumlah orang di kejadian itu -- di-clamp biar dot besar
+// (misal 1 rombongan 20 orang) tidak menutupi seluruh peta.
+function radiusForCount(count) {
+  return Math.min(28, 8 + count * 3);
+}
+
+function renderEventMarkers(events) {
+  clearEventMarkers();
+  const filtered = selectedRitId
+    ? events.filter((e) => e.rit_id === selectedRitId)
+    : events;
+
+  for (const e of filtered) {
+    const r = radiusForCount(e.count);
+    const color = e.action === "naik" ? "#1D9E75" : "#E24B4A";
+    const el = document.createElement("div");
+    el.style.width = `${r}px`;
+    el.style.height = `${r}px`;
+    el.style.borderRadius = "50%";
+    el.style.background = color;
+    el.style.opacity = "0.75";
+    el.style.border = "1.5px solid #fff";
+    el.title = `${e.action === "naik" ? "+" : "-"}${e.count} ${e.action} - ${e.stop_name || "?"}`;
+
+    const marker = new maplibregl.Marker({ element: el, anchor: "center" })
+      .setLngLat([e.lng, e.lat])
+      .addTo(map);
+    eventMarkers.push(marker);
+  }
+}
+
+function renderRitList(rits) {
+  const list = document.getElementById("ritList");
+  if (rits.length === 0) {
+    list.innerHTML = '<p class="empty-msg">Belum ada rit di rentang waktu ini</p>';
+    return;
+  }
+  list.innerHTML = rits
+    .map((r) => {
+      const started = new Date(r.started_at).toLocaleString("id-ID", {
+        day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit",
+      });
+      const statusLabel = r.ended_at ? "Selesai" : "Aktif";
+      const statusClass = r.ended_at ? "ended" : "";
+      const activeClass = selectedRitId === r.id ? "active" : "";
+      return `
+        <div class="rit-card ${activeClass}" onclick="selectRit(${r.id})">
+          <div class="rit-card-top">
+            <span class="rit-bus">${BUS_LABELS[r.bus_id] || r.bus_id} - Rit ${r.rit_number}</span>
+            <span class="rit-status ${statusClass}">${statusLabel}</span>
+          </div>
+          <div class="rit-meta">${DIRECTION_LABELS[r.direction] || r.direction} - ${started}</div>
+          <div class="rit-counts">
+            <span class="naik">+${r.total_naik} naik</span>
+            <span class="turun">-${r.total_turun} turun</span>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function selectRit(ritId) {
+  selectedRitId = selectedRitId === ritId ? null : ritId; // tap lagi buat deselect (tampilkan semua)
+  renderRitList(window.lastRits || []);
+  renderEventMarkers(window.lastEvents || []);
+}
+
+async function loadData() {
+  const days = document.getElementById("rangeSelect").value;
+  const res = await fetch(`/api/admin-data?days=${days}`);
+  if (!res.ok) {
+    document.getElementById("ritList").innerHTML = '<p class="empty-msg">Gagal memuat data</p>';
+    return;
+  }
+  const data = await res.json();
+  window.lastRits = data.rits;
+  window.lastEvents = data.events;
+
+  const totalNaik = data.rits.reduce((sum, r) => sum + Number(r.total_naik), 0);
+  const totalTurun = data.rits.reduce((sum, r) => sum + Number(r.total_turun), 0);
+  document.getElementById("totalNaik").textContent = totalNaik;
+  document.getElementById("totalTurun").textContent = totalTurun;
+
+  renderRitList(data.rits);
+  renderEventMarkers(data.events);
+}
+
+map.on("load", loadData);
+</script>
+
+</body>
+</html>

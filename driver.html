@@ -40,9 +40,38 @@
     font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
     background: #eef3ff; color: #1a56db;
   }
-  .direction-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .direction-text { font-size: 16px; font-weight: 600; }
+  .direction-select {
+    font-size: 16px; font-weight: 600; border: none; background: transparent;
+    color: #1a1a1a; padding: 0; -webkit-appearance: none; appearance: none;
+    width: 100%;
+  }
+  .direction-row { margin-bottom: 4px; }
   .position-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+  .passenger-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; text-align: center; }
+  .passenger-count { font-size: 48px; font-weight: 700; margin: 0 0 16px; text-align: center; }
+
+  .pending-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .pending-label { font-size: 15px; font-weight: 600; }
+  .naik-label { color: var(--green); }
+  .turun-label { color: var(--red); }
+  .stepper { display: flex; align-items: center; gap: 14px; }
+  .stepper-btn {
+    width: 44px; height: 44px; font-size: 22px; font-weight: 600; border-radius: 10px;
+    border: 1px solid var(--border); background: #fafafa;
+  }
+  .stepper-btn:active { transform: scale(0.95); }
+  .stepper-value { font-size: 20px; font-weight: 700; min-width: 24px; text-align: center; }
+
+  .confirm-btn {
+    width: 100%; height: 60px; font-size: 17px; font-weight: 700; border-radius: 10px;
+    border: none; background: #1a1a1a; color: #fff; margin-top: 14px;
+  }
+  .confirm-btn:disabled { background: #ccc; }
+  .confirm-btn:active:not(:disabled) { transform: scale(0.98); }
+
 
   /* ---- Rit picker (sebelum rit dimulai) ---- */
   .rit-picker-title { font-size: 14px; color: var(--text-secondary); margin: 0 0 10px; }
@@ -54,16 +83,6 @@
   .rit-btn:active { transform: scale(0.97); }
 
   /* ---- Passenger counter ---- */
-  .passenger-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; text-align: center; }
-  .passenger-count { font-size: 48px; font-weight: 700; margin: 0 0 16px; text-align: center; }
-  .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .counter-btn {
-    height: 68px; font-size: 22px; font-weight: 600; border-radius: 10px; border: none;
-  }
-  .counter-btn.turun { background: #fdeceb; color: var(--red); }
-  .counter-btn.naik { background: #e7f6f0; color: var(--green); }
-  .counter-btn:active { transform: scale(0.97); }
-  .counter-btn:disabled { opacity: 0.5; }
 
   /* ---- History ---- */
   .history-title { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; }
@@ -122,7 +141,10 @@
       <span class="rit-badge" id="ritBadge" style="display:none;"></span>
     </div>
     <div class="direction-row" id="directionRow" style="display:none;">
-      <span class="direction-text" id="directionText"></span>
+      <select class="direction-select" id="directionSelect" onchange="setDirection(this.value)">
+        <option value="to_pakem">Menuju Terminal Pakem</option>
+        <option value="to_adisutjipto">Menuju Bandara Adisutjipto</option>
+      </select>
     </div>
     <div class="position-row" id="positionRow" style="display:none;">
       <span id="positionText">Menunggu GPS...</span>
@@ -144,10 +166,25 @@
     <div class="card">
       <p class="passenger-label">Penumpang di dalam</p>
       <p class="passenger-count" id="passengerCount">0</p>
-      <div class="counter-grid">
-        <button class="counter-btn turun" id="turunBtn" onclick="logEvent('turun')">- Turun</button>
-        <button class="counter-btn naik" id="naikBtn" onclick="logEvent('naik')">+ Naik</button>
+
+      <div class="pending-row">
+        <span class="pending-label naik-label">Naik</span>
+        <div class="stepper">
+          <button class="stepper-btn" onclick="adjustPending('naik', -1)">-</button>
+          <span class="stepper-value" id="pendingNaikValue">0</span>
+          <button class="stepper-btn" onclick="adjustPending('naik', 1)">+</button>
+        </div>
       </div>
+      <div class="pending-row">
+        <span class="pending-label turun-label">Turun</span>
+        <div class="stepper">
+          <button class="stepper-btn" onclick="adjustPending('turun', -1)">-</button>
+          <span class="stepper-value" id="pendingTurunValue">0</span>
+          <button class="stepper-btn" onclick="adjustPending('turun', 1)">+</button>
+        </div>
+      </div>
+
+      <button class="confirm-btn" id="confirmBtn" onclick="confirmPending()" disabled>Konfirmasi</button>
     </div>
 
     <div class="card">
@@ -181,10 +218,6 @@ const BUS_ID = params.get("bus") || "bus1";
 const BUS_LABELS = {
   bus1: "SiBulan 2 - Bus 01",
   bus2: "SiBulan 2 - Bus 02",
-};
-const DIRECTION_LABELS = {
-  to_pakem: "Menuju Terminal Pakem",
-  to_adisutjipto: "Menuju Bandara Adisutjipto",
 };
 
 document.getElementById("busNameLabel").textContent = BUS_LABELS[BUS_ID] || BUS_ID;
@@ -224,9 +257,8 @@ function renderRitState() {
   if (currentRit) {
     ritBadge.style.display = "inline-block";
     ritBadge.textContent = `Rit ${currentRit.rit_number}`;
-    directionRow.style.display = "flex";
-    document.getElementById("directionText").textContent =
-      DIRECTION_LABELS[currentRit.direction] || currentRit.direction;
+    directionRow.style.display = "block";
+    document.getElementById("directionSelect").value = currentRit.direction;
     positionRow.style.display = "flex";
     ritPickerCard.style.display = "none";
     activeSection.style.display = "block";
@@ -239,10 +271,28 @@ function renderRitState() {
   }
 }
 
+// Dipanggil dari dropdown arah -- kru bisa override arah kapan saja
+// (misal ada rit tambahan di luar pola ganjil/genap biasa). Perubahan
+// disimpan ke server supaya konsisten dengan data yang admin.html baca,
+// dan langsung mempengaruhi pencarian halte terdekat berikutnya.
+async function setDirection(direction) {
+  const res = await fetch("/api/rit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "set_direction", busId: BUS_ID, direction }),
+  });
+  if (!res.ok) {
+    showStatus("Gagal ganti arah, coba lagi");
+    renderRitState(); // kembalikan dropdown ke nilai sebelumnya
+    return;
+  }
+  const data = await res.json();
+  currentRit = data.rit;
+}
+
 // Rit ganjil -> ke Pakem, rit genap -> balik ke Adisutjipto. Ini cuma
-// SARAN default berdasar pola bolak-balik biasa -- kalau nanti kebutuhan
-// beda (misal ada rit tambahan di luar pola), ganti baris ini atau tambah
-// tombol switch arah manual di UI.
+// SARAN default berdasar pola bolak-balik biasa -- kru bisa override lewat
+// dropdown arah kapan saja (lihat setDirection).
 function suggestedDirection(ritNumber) {
   return ritNumber % 2 === 1 ? "to_pakem" : "to_adisutjipto";
 }
@@ -261,7 +311,9 @@ async function startRit(ritNumber) {
   const data = await res.json();
   currentRit = data.rit;
   currentEvents = [];
+  pendingCounts = { naik: 0, turun: 0 };
   renderRitState();
+  renderPending();
   renderHistory();
 }
 
@@ -282,8 +334,24 @@ async function endRit() {
 }
 
 // ---------------------------------------------------------------------------
-// Passenger events
+// Passenger events -- kru pilih dulu jumlah naik/turun (stepper +/-), baru
+// dikirim ke server sekaligus lewat tombol "Konfirmasi". Ini menghindari
+// satu baris riwayat per tap (kalau 5 orang naik bareng, itu 1 kejadian
+// dengan count=5, bukan 5 baris terpisah).
 // ---------------------------------------------------------------------------
+let pendingCounts = { naik: 0, turun: 0 };
+
+function renderPending() {
+  document.getElementById("pendingNaikValue").textContent = pendingCounts.naik;
+  document.getElementById("pendingTurunValue").textContent = pendingCounts.turun;
+  document.getElementById("confirmBtn").disabled = pendingCounts.naik === 0 && pendingCounts.turun === 0;
+}
+
+function adjustPending(type, delta) {
+  pendingCounts[type] = Math.max(0, pendingCounts[type] + delta);
+  renderPending();
+}
+
 async function loadEvents() {
   const res = await fetch(`/api/passenger?busId=${BUS_ID}`);
   const data = await res.json();
@@ -292,26 +360,39 @@ async function loadEvents() {
   renderHistory();
 }
 
-async function logEvent(action) {
-  document.getElementById("naikBtn").disabled = true;
-  document.getElementById("turunBtn").disabled = true;
+async function confirmPending() {
+  const btn = document.getElementById("confirmBtn");
+  btn.disabled = true;
   try {
-    const res = await fetch("/api/passenger", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ busId: BUS_ID, action, stopName: lastKnownStopName() }),
-    });
-    if (!res.ok) {
-      showStatus("Gagal mencatat, coba lagi");
-      return;
+    for (const action of ["naik", "turun"]) {
+      const count = pendingCounts[action];
+      if (count === 0) continue;
+
+      const res = await fetch("/api/passenger", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          busId: BUS_ID,
+          action,
+          count,
+          stopName: lastKnownStopName(),
+          lat: lastPosition ? lastPosition.lat : null,
+          lng: lastPosition ? lastPosition.lng : null,
+        }),
+      });
+      if (!res.ok) {
+        showStatus(`Gagal mencatat ${action}, coba lagi`);
+        continue;
+      }
+      const data = await res.json();
+      currentEvents.unshift(data.event);
+      document.getElementById("passengerCount").textContent = data.passengerCount;
     }
-    const data = await res.json();
-    currentEvents.unshift(data.event);
-    document.getElementById("passengerCount").textContent = data.passengerCount;
+    pendingCounts = { naik: 0, turun: 0 };
+    renderPending();
     renderHistory();
   } finally {
-    document.getElementById("naikBtn").disabled = false;
-    document.getElementById("turunBtn").disabled = false;
+    renderPending(); // re-enable/disable sesuai state terbaru, bukan cuma "false"
   }
 }
 
@@ -324,7 +405,7 @@ function renderHistory() {
   list.innerHTML = currentEvents
     .map((e) => {
       const time = new Date(e.created_at).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
-      const label = e.action === "naik" ? "+1 naik" : "-1 turun";
+      const label = e.action === "naik" ? `+${e.count} naik` : `-${e.count} turun`;
       const stop = e.stop_name ? ` - ${e.stop_name}` : "";
       return `
         <div class="history-row">
@@ -356,16 +437,30 @@ function closeEditSheet() {
 // Koreksi diimplementasi sebagai hapus kejadian lama + catat kejadian baru
 // (bukan UPDATE field action di baris yang sama), supaya jejak asli tetap
 // ada di database untuk audit -- lihat komentar "append-only" di schema.sql.
+// Jumlah (count) dipertahankan dari kejadian asli, bukan direset ke 1.
 async function submitEditToggle() {
   if (!editingEventId) return;
+  const original = currentEvents.find((e) => e.id === editingEventId);
   const newAction = editingEventAction === "naik" ? "turun" : "naik";
+
   await fetch("/api/passenger", {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ eventId: editingEventId, action: "delete" }),
   });
+  await fetch("/api/passenger", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      busId: BUS_ID,
+      action: newAction,
+      count: original ? original.count : 1,
+      stopName: original ? original.stop_name : lastKnownStopName(),
+      lat: original ? original.lat : null,
+      lng: original ? original.lng : null,
+    }),
+  });
   closeEditSheet();
-  await logEvent(newAction);
   await loadEvents(); // sinkron ulang biar urutan riwayat pasti benar
 }
 
