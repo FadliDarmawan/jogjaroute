@@ -1,7 +1,9 @@
 const { sql } = require("./_db");
 
 // GET  /api/location
-//   -> { bus1: {lat,lng,heading,speed,updatedAt,isActive} | undefined, bus2: {...} }
+//   -> { bus1: {lat,lng,heading,speed,updatedAt,isActive,direction,ritNumber,passengerCount} | undefined, bus2: {...} }
+//   direction/ritNumber/passengerCount ikut null kalau bus itu lagi tidak
+//   ada rit aktif -- dipakai popup info bus di index.html.
 // POST /api/location  { busId, lat, lng, heading, speed }
 //   -> normal ping SAAT GPS aktif -- otomatis set isActive = true
 // POST /api/location  { busId, active: false }
@@ -11,7 +13,19 @@ const { sql } = require("./_db");
 module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
-      const rows = await sql`SELECT * FROM bus_locations`;
+      const rows = await sql`
+        SELECT
+          bl.*,
+          r.direction,
+          r.rit_number,
+          CASE WHEN r.id IS NULL THEN NULL ELSE COALESCE((
+            SELECT SUM(CASE WHEN e.action = 'naik' THEN e.count ELSE -e.count END)
+            FROM passenger_events e
+            WHERE e.rit_id = r.id AND e.deleted_at IS NULL
+          ), 0) END AS passenger_count
+        FROM bus_locations bl
+        LEFT JOIN bus_rits r ON r.bus_id = bl.bus_id AND r.ended_at IS NULL
+      `;
       const result = {};
       for (const row of rows) {
         result[row.bus_id] = {
@@ -21,6 +35,9 @@ module.exports = async function handler(req, res) {
           speed: row.speed,
           isActive: row.is_active,
           updatedAt: new Date(row.updated_at).getTime(),
+          direction: row.direction, // 'to_pakem' | 'to_adisutjipto' | null (belum ada rit aktif)
+          ritNumber: row.rit_number,
+          passengerCount: row.passenger_count == null ? null : Number(row.passenger_count),
         };
       }
       return res.status(200).json(result);

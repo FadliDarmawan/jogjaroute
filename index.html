@@ -505,6 +505,10 @@
     font-size: 12.5px; color: #4a4a48; padding: 3px 0;
   }
   .bus-info-row span:first-child { color: rgba(60,60,58,0.6); }
+  .popup-bus-direction {
+    font-size: 12.5px; color: rgba(60,60,58,0.75); margin: -4px 0 9px;
+  }
+  .popup-bus-direction strong { color: #1c1c1a; font-weight: 700; }
 
   /* Floating "-> destination" pills dropped at the origin stop and each
      final-destination endpoint (see addDestLabel) -- used by both "Show
@@ -5155,6 +5159,36 @@ const BUS_ICON_SVG = (color) => `
 
 let busMarkers = {}; // { bus1: maplibregl.Marker, bus2: maplibregl.Marker }
 let busLatestLoc = {}; // { bus1: {lat,lng,heading,speed,updatedAt}, bus2: {...} } -- dipakai isi popup info
+
+// Daftar halte terurut per arah (sama persis yang dipakai driver.html buat
+// "posisi sekarang") -- dipakai buat nunjukin "Posisi: <nama halte>" di
+// popup info bus, bukan cuma koordinat mentah.
+let busOrderedStops = null;
+fetch("/routes/SIBULAN2_stops_ordered.json")
+  .then((res) => (res.ok ? res.json() : null))
+  .then((data) => { busOrderedStops = data; })
+  .catch((err) => console.warn("Gagal memuat daftar halte terurut buat popup bus:", err));
+
+function haversineMetersForBus(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function nearestStopNameForBus(direction, lat, lng) {
+  if (!busOrderedStops || !direction) return null;
+  const list = busOrderedStops[direction];
+  if (!list || list.length === 0) return null;
+  let best = null;
+  for (const stop of list) {
+    const dist = haversineMetersForBus(lat, lng, stop.lat, stop.lng);
+    if (!best || dist < best.dist) best = { name: stop.name, dist };
+  }
+  return best;
+}
 let busPopup = null; // cuma 1 popup kebuka dalam satu waktu
 
 function busMarkerHtml(busId) {
@@ -5167,12 +5201,23 @@ function busMarkerHtml(busId) {
   `;
 }
 
+const DIRECTION_LABELS_MAP = {
+  to_pakem: "Terminal Pakem",
+  to_adisutjipto: "Bandara Adisutjipto",
+};
+
 function showBusInfoPopup(busId, coord) {
   const { label } = BUS_INSTANCES[busId];
   const loc = busLatestLoc[busId];
+
   const updatedText = loc ? `${Math.round((Date.now() - loc.updatedAt) / 1000)}s lalu` : "-";
-  const speedText = loc && loc.speed != null ? `${(loc.speed * 3.6).toFixed(0)} km/j` : "-";
-  const statusText = loc && loc.isActive ? "Aktif" : "Tidak aktif";
+  const hasActiveRit = loc && loc.direction != null;
+  const directionText = hasActiveRit
+    ? `Menuju <strong>${DIRECTION_LABELS_MAP[loc.direction] || loc.direction}</strong>`
+    : "Rit belum dimulai";
+  const passengerText = hasActiveRit && loc.passengerCount != null ? `${loc.passengerCount} orang` : "-";
+  const nearest = hasActiveRit ? nearestStopNameForBus(loc.direction, loc.lat, loc.lng) : null;
+  const positionText = nearest ? nearest.name : "-";
 
   if (busPopup) busPopup.remove();
   // className "glass-popup" + struktur .glass-tag/.tag-eyebrow/.popup-title
@@ -5185,11 +5230,12 @@ function showBusInfoPopup(busId, coord) {
     .setHTML(`
       <div class="glass-tag">
         <div class="tag-eyebrow">Bus</div>
-        <div class="popup-title">${label}</div>
+        <div class="popup-title">(SiBulan 2) - ${label}</div>
+        <div class="popup-bus-direction">${directionText}</div>
         <div class="popup-routes">
-          <div class="bus-info-row"><span>Status</span><span>${statusText}</span></div>
-          <div class="bus-info-row"><span>Update terakhir</span><span>${updatedText}</span></div>
-          <div class="bus-info-row"><span>Kecepatan</span><span>${speedText}</span></div>
+          <div class="bus-info-row"><span>Posisi</span><span>${positionText}</span></div>
+          <div class="bus-info-row"><span>Penumpang</span><span>${passengerText}</span></div>
+          <div class="bus-info-row"><span>Updated</span><span>${updatedText}</span></div>
         </div>
       </div>
     `)
