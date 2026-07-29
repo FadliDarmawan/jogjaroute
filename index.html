@@ -5223,6 +5223,17 @@ async function pollBusLocations() {
       const marker = ensureBusMarker(busId, [loc.lng, loc.lat]);
       const isStale = Date.now() - loc.updatedAt > BUS_STALE_AFTER_MS;
       marker.getElement().classList.toggle("is-stale", isStale);
+      // Abu-abu kalau kru belum/sudah tidak "Aktivasi GPS" (bus belum
+      // jalan / sudah selesai jalan) -- warna rute kalau lagi aktif.
+      // Warna diubah langsung di attribute fill SVG-nya, BUKAN bikin
+      // ulang elemen marker, supaya posisi marker yang sudah "pakem"
+      // tidak ikut ke-reset.
+      const el = marker.getElement();
+      const color = loc.isActive ? BUS_INSTANCES[busId].color : "#999999";
+      const farShape = el.querySelector(".bus-marker-icon-far polygon");
+      const nearShape = el.querySelector(".bus-marker-icon-near circle");
+      if (farShape) farShape.setAttribute("fill", color);
+      if (nearShape) nearShape.setAttribute("fill", color);
       // Putar ikon sesuai arah jalan bus, kalau datanya ada. Pakai
       // marker.setRotation() (API resmi MapLibre), BUKAN set style.transform
       // manual -- transform di elemen marker juga dipakai MapLibre buat

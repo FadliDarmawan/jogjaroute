@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>Driver - SiBulan Tracker</title>
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#FB8500" />
+<link rel="apple-touch-icon" href="/icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <style>
   :root {
     --bus1-color: #FFB703;
@@ -132,18 +137,72 @@
     background: #fff8e1; color: #8a6d00; margin-bottom: 10px; display: none;
   }
   .status-banner.show { display: block; }
+
+  /* ---- Login screen ---- */
+  .login-title { font-size: 16px; font-weight: 700; margin: 0 0 14px; }
+  .login-label { display: block; font-size: 12px; color: var(--text-secondary); margin: 0 0 4px; }
+  .login-select {
+    width: 100%; height: 48px; font-size: 15px; border-radius: 10px;
+    border: 1px solid var(--border); background: #fafafa; padding: 0 12px; margin-bottom: 14px;
+  }
+  .login-select:disabled { color: #aaa; }
+  .login-note { font-size: 12px; color: var(--text-muted); margin: -6px 0 14px; min-height: 16px; }
+
+  /* ---- GPS activate/deactivate ---- */
+  .gps-card { text-align: center; }
+  .gps-status-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+  .gps-dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; }
+  .gps-dot.on { background: var(--green); }
+  .gps-status-text { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+  .gps-btn {
+    width: 100%; height: 52px; font-size: 15px; font-weight: 700; border-radius: 10px; border: none;
+  }
+  .gps-btn.activate { background: var(--green); color: #fff; }
+  .gps-btn.deactivate { background: var(--red); color: #fff; }
+  .gps-hint { font-size: 12px; color: var(--text-muted); margin: 10px 0 0; }
+
+  .header-logout-btn {
+    font-size: 11px; color: var(--text-muted); background: none;
+    border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px;
+  }
 </style>
 </head>
 <body>
 
-<div class="max-w">
+<!-- ==== LOGIN: pilih rute + bus, sebelum bisa akses apapun ==== -->
+<div class="max-w" id="loginScreen">
+  <div class="card">
+    <p class="login-title">Login sebagai</p>
+
+    <label class="login-label">Rute</label>
+    <select class="login-select" id="loginRouteSelect" onchange="onLoginRouteChange(this.value)">
+      <option value="">Pilih rute...</option>
+      <option value="SiBulan 1">SiBulan 1</option>
+      <option value="SiBulan 2">SiBulan 2</option>
+    </select>
+
+    <label class="login-label">Bus</label>
+    <select class="login-select" id="loginBusSelect" onchange="onLoginBusChange(this.value)" disabled>
+      <option value="">Pilih rute dulu</option>
+    </select>
+
+    <p class="login-note" id="loginNote"></p>
+
+    <button class="confirm-btn" id="loginConfirmBtn" onclick="confirmLogin()" disabled>Masuk</button>
+  </div>
+</div>
+
+<div class="max-w" id="appContent" style="display:none;">
   <div id="statusBanner" class="status-banner"></div>
 
   <!-- ==== HEADER ==== -->
   <div class="card" id="headerCard">
     <div class="header-row">
       <span class="bus-name" id="busNameLabel">-</span>
-      <span class="rit-badge" id="ritBadge" style="display:none;"></span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="rit-badge" id="ritBadge" style="display:none;"></span>
+        <button class="header-logout-btn" onclick="logoutDriver()">Ganti akun</button>
+      </div>
     </div>
     <div class="direction-row" id="directionRow" style="display:none;">
       <select class="direction-select" id="directionSelect" onchange="setDirection(this.value)">
@@ -171,6 +230,18 @@
 
   <!-- ==== PASSENGER COUNTER + HISTORY (tampil setelah rit dimulai) ==== -->
   <div id="activeRitSection" style="display:none;">
+    <!-- ==== GPS toggle: tanda "bus mulai jalan". Naik/turun dikunci
+         sampai ini diaktifkan. ==== -->
+    <div class="card gps-card">
+      <div class="gps-status-row">
+        <span class="gps-dot" id="gpsDot"></span>
+        <span class="gps-status-text" id="gpsStatusText">GPS nonaktif</span>
+      </div>
+      <button class="gps-btn activate" id="gpsActivateBtn" onclick="activateGPS()">Aktivasi GPS</button>
+      <button class="gps-btn deactivate" id="gpsDeactivateBtn" onclick="deactivateGPS()" style="display:none;">Nonaktifkan GPS</button>
+      <p class="gps-hint">Aktifkan GPS dulu sebagai tanda bus mulai jalan, baru bisa catat naik/turun.</p>
+    </div>
+
     <div class="card">
       <p class="passenger-label">Penumpang di dalam</p>
       <p class="passenger-count" id="passengerCount">0</p>
@@ -178,17 +249,17 @@
       <div class="pending-row">
         <span class="pending-label naik-label">Naik</span>
         <div class="stepper">
-          <button class="stepper-btn" onclick="adjustPending('naik', -1)">-</button>
+          <button class="stepper-btn" id="naikMinusBtn" onclick="adjustPending('naik', -1)" disabled>-</button>
           <span class="stepper-value" id="pendingNaikValue">0</span>
-          <button class="stepper-btn" onclick="adjustPending('naik', 1)">+</button>
+          <button class="stepper-btn" id="naikPlusBtn" onclick="adjustPending('naik', 1)" disabled>+</button>
         </div>
       </div>
       <div class="pending-row">
         <span class="pending-label turun-label">Turun</span>
         <div class="stepper">
-          <button class="stepper-btn" onclick="adjustPending('turun', -1)">-</button>
+          <button class="stepper-btn" id="turunMinusBtn" onclick="adjustPending('turun', -1)" disabled>-</button>
           <span class="stepper-value" id="pendingTurunValue">0</span>
-          <button class="stepper-btn" onclick="adjustPending('turun', 1)">+</button>
+          <button class="stepper-btn" id="turunPlusBtn" onclick="adjustPending('turun', 1)" disabled>+</button>
         </div>
       </div>
 
@@ -216,19 +287,98 @@
 
 <script>
 // ---------------------------------------------------------------------------
-// Setup dasar: bus mana yang aktif ditentukan dari query string, misal
-// /driver.html?bus=bus1. Belum ada auth beneran (token/PIN) di versi ini --
-// itu ditambahkan belakangan, untuk sekarang siapa saja yang tau URL-nya
-// bisa buka sebagai bus itu. Cukup buat testing internal dulu.
+// Login: pilih rute + bus. Disimpan di localStorage supaya begitu di-buka
+// lagi (termasuk sebagai PWA yang di-install) langsung masuk tanpa perlu
+// pilih ulang tiap kali. Query string (?bus=bus1) tetap didukung sebagai
+// override manual (misal buat share link testing), dan otomatis skip
+// layar login kalau ada.
+//
+// Belum ada auth beneran (token/PIN) di versi ini -- siapa saja yang buka
+// halaman ini bisa login sebagai bus manapun. Itu ditambahkan belakangan;
+// untuk sekarang cukup buat testing internal / kru yang sudah dipercaya
+// megang link-nya.
 // ---------------------------------------------------------------------------
-const params = new URLSearchParams(location.search);
-const BUS_ID = params.get("bus") || "bus1";
-const BUS_LABELS = {
-  bus1: "SiBulan 2 - Bus 01",
-  bus2: "SiBulan 2 - Bus 02",
-};
+const STORAGE_KEY_BUS = "sibulan_driver_bus_id";
 
-document.getElementById("busNameLabel").textContent = BUS_LABELS[BUS_ID] || BUS_ID;
+// Bus yang tersedia per rute. SiBulan 1 belum ada data halte/rute
+// terurutnya (lihat percakapan sebelumnya soal SIBULAN2_stops_ordered.json)
+// jadi sengaja dikosongkan dulu -- rute-nya kelihatan di dropdown supaya
+// siap dipakai begitu datanya ada, tapi belum bisa dipilih businya.
+const ROUTE_BUS_CONFIG = {
+  "SiBulan 1": [],
+  "SiBulan 2": [
+    { id: "bus1", label: "SiBulan 2 - Bus 01" },
+    { id: "bus2", label: "SiBulan 2 - Bus 02" },
+  ],
+};
+const BUS_LABELS = Object.fromEntries(
+  Object.values(ROUTE_BUS_CONFIG).flat().map((b) => [b.id, b.label])
+);
+
+let BUS_ID = null;
+
+function onLoginRouteChange(routeId) {
+  const busSelect = document.getElementById("loginBusSelect");
+  const note = document.getElementById("loginNote");
+  const buses = ROUTE_BUS_CONFIG[routeId] || [];
+
+  if (!routeId) {
+    busSelect.innerHTML = '<option value="">Pilih rute dulu</option>';
+    busSelect.disabled = true;
+  } else if (buses.length === 0) {
+    busSelect.innerHTML = '<option value="">Belum tersedia</option>';
+    busSelect.disabled = true;
+    note.textContent = "Rute ini belum tersedia untuk tracking, coba pilih SiBulan 2.";
+  } else {
+    busSelect.innerHTML =
+      '<option value="">Pilih bus...</option>' +
+      buses.map((b) => `<option value="${b.id}">${b.label}</option>`).join("");
+    busSelect.disabled = false;
+    note.textContent = "";
+  }
+  document.getElementById("loginConfirmBtn").disabled = true;
+}
+
+function onLoginBusChange(busId) {
+  document.getElementById("loginConfirmBtn").disabled = !busId;
+}
+
+function confirmLogin() {
+  const busId = document.getElementById("loginBusSelect").value;
+  if (!busId) return;
+  localStorage.setItem(STORAGE_KEY_BUS, busId);
+  initApp(busId);
+}
+
+function logoutDriver() {
+  if (!confirm("Ganti akun? Kamu perlu login ulang.")) return;
+  if (gpsWatchId != null) deactivateGPS();
+  localStorage.removeItem(STORAGE_KEY_BUS);
+  location.reload();
+}
+
+function initApp(busId) {
+  BUS_ID = busId;
+  document.getElementById("busNameLabel").textContent = BUS_LABELS[BUS_ID] || BUS_ID;
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("appContent").style.display = "block";
+  loadOrderedStops();
+  loadRitState();
+}
+
+// Cek query string dulu (override eksplisit), baru localStorage (sesi
+// sebelumnya), baru tampilkan layar login kalau dua-duanya tidak ada.
+const params = new URLSearchParams(location.search);
+const busIdFromUrl = params.get("bus");
+const busIdFromStorage = localStorage.getItem(STORAGE_KEY_BUS);
+
+if (busIdFromUrl && BUS_LABELS[busIdFromUrl]) {
+  localStorage.setItem(STORAGE_KEY_BUS, busIdFromUrl);
+  initApp(busIdFromUrl);
+} else if (busIdFromStorage && BUS_LABELS[busIdFromStorage]) {
+  initApp(busIdFromStorage);
+}
+// else: biarkan #loginScreen yang default tampil (sudah display:block dari HTML)
 
 let currentRit = null; // { id, rit_number, direction, ... } | null
 let currentEvents = []; // riwayat kejadian rit aktif, terbaru duluan
@@ -360,7 +510,8 @@ let pendingCounts = { naik: 0, turun: 0 };
 function renderPending() {
   document.getElementById("pendingNaikValue").textContent = pendingCounts.naik;
   document.getElementById("pendingTurunValue").textContent = pendingCounts.turun;
-  document.getElementById("confirmBtn").disabled = pendingCounts.naik === 0 && pendingCounts.turun === 0;
+  const hasPending = pendingCounts.naik > 0 || pendingCounts.turun > 0;
+  document.getElementById("confirmBtn").disabled = !hasPending || gpsWatchId == null;
 }
 
 function adjustPending(type, delta) {
@@ -377,6 +528,10 @@ async function loadEvents() {
 }
 
 async function confirmPending() {
+  if (gpsWatchId == null) {
+    showStatus("Aktifkan GPS dulu sebelum mencatat penumpang");
+    return;
+  }
   const btn = document.getElementById("confirmBtn");
   btn.disabled = true;
   try {
@@ -630,12 +785,63 @@ function updateNearestStopDisplay() {
   }
 }
 
-function startGPS() {
+// ---------------------------------------------------------------------------
+// GPS Aktivasi/Nonaktifkan -- tanda eksplisit "bus mulai jalan". Sebelum
+// diaktifkan, GPS tidak dikirim sama sekali dan tombol +/- penumpang
+// dikunci. Wake Lock dipakai supaya layar HP tidak mati sendiri selagi
+// aktif -- kalau layar mati/app ke-background, browser (apalagi Safari di
+// iPhone) menghentikan update lokasi, jadi ini bagian PENTING biar
+// pelacakan beneran jalan terus, bukan cuma pemanis.
+// ---------------------------------------------------------------------------
+let gpsWatchId = null;
+let wakeLock = null;
+
+async function requestWakeLock() {
+  try {
+    if ("wakeLock" in navigator) {
+      wakeLock = await navigator.wakeLock.request("screen");
+      // Kalau tab sempat ke-background terus balik lagi (misal ganti app
+      // sebentar buat balas WA lalu balik), wake lock otomatis dilepas
+      // browser -- minta lagi begitu halaman keliatan lagi, SELAMA GPS
+      // masih dalam status aktif.
+      wakeLock.addEventListener("release", () => {
+        wakeLock = null;
+      });
+    }
+  } catch (err) {
+    console.warn("Wake lock gagal (tidak fatal, GPS tetap jalan selama layar nyala manual):", err);
+  }
+}
+
+document.addEventListener("visibilitychange", async () => {
+  if (document.visibilityState === "visible" && gpsWatchId != null && !wakeLock) {
+    await requestWakeLock();
+  }
+});
+
+function setGpsUI(active) {
+  document.getElementById("gpsDot").classList.toggle("on", active);
+  document.getElementById("gpsStatusText").textContent = active ? "GPS aktif" : "GPS nonaktif";
+  document.getElementById("gpsActivateBtn").style.display = active ? "none" : "block";
+  document.getElementById("gpsDeactivateBtn").style.display = active ? "block" : "none";
+
+  // Naik/turun cuma boleh dicatat selagi GPS aktif (bus beneran jalan).
+  ["naikMinusBtn", "naikPlusBtn", "turunMinusBtn", "turunPlusBtn"].forEach((id) => {
+    document.getElementById(id).disabled = !active;
+  });
+  if (!active) {
+    document.getElementById("confirmBtn").disabled = true;
+  } else {
+    renderPending(); // balikin state confirmBtn sesuai pendingCounts saat ini
+  }
+}
+
+async function activateGPS() {
   if (!("geolocation" in navigator)) {
     showStatus("Browser ini tidak mendukung GPS");
     return;
   }
-  navigator.geolocation.watchPosition(
+  gpsWatchId = navigator.geolocation.watchPosition(
     (pos) => {
       const { latitude, longitude, heading, speed } = pos.coords;
 
@@ -654,15 +860,46 @@ function startGPS() {
     },
     { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 }
   );
+  await requestWakeLock();
+  setGpsUI(true);
+}
+
+async function deactivateGPS() {
+  if (gpsWatchId != null) {
+    navigator.geolocation.clearWatch(gpsWatchId);
+    gpsWatchId = null;
+  }
+  if (wakeLock) {
+    try { await wakeLock.release(); } catch (err) { /* sudah dilepas browser, abaikan */ }
+    wakeLock = null;
+  }
+  // Kasih tau server posisi terakhir sekarang "tidak aktif" -- index.html
+  // pakai ini buat nge-abu-in ikon bus, tanpa menghapus posisi terakhirnya.
+  try {
+    await fetch("/api/location", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ busId: BUS_ID, active: false }),
+    });
+  } catch (err) {
+    console.error("Gagal update status nonaktif:", err);
+  }
+  setGpsUI(false);
 }
 
 // ---------------------------------------------------------------------------
-// Init
+// PWA: daftarin service worker (syarat biar bisa di-"Add to Home Screen").
+// Lihat catatan penting soal batasan background tracking di sw.js.
 // ---------------------------------------------------------------------------
-loadOrderedStops();
-loadRitState();
-startGPS();
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch((err) => {
+      console.warn("Gagal mendaftarkan service worker (tidak fatal):", err);
+    });
+  });
+}
 </script>
+
 
 </body>
 </html>

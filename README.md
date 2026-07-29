@@ -58,6 +58,40 @@ setelah ini jalan.
      langsung tercatat 1 baris riwayat -- sekarang 1 baris riwayat bisa
      mewakili beberapa orang sekaligus (field `count`).
 
+## Update terbaru (2) -- PWA, login rute/bus, dan GPS Aktivasi/Nonaktifkan
+
+1. **Jalankan `db/migration_003_bus_active_flag.sql`** di Neon (aman
+   dijalankan berkali-kali) -- nambah kolom `is_active` ke `bus_locations`.
+   Instalasi baru cukup `schema.sql` seperti biasa.
+2. **`driver.html` sekarang PWA** -- bisa "Add to Home Screen" dari browser
+   HP (Chrome: menu titik tiga > "Add to Home screen"; Safari iOS: tombol
+   share > "Add to Home Screen"). Butuh `manifest.json`, `sw.js`, dan folder
+   `icons/` (ikon masih placeholder generik, ganti kapan saja tanpa perlu
+   ubah kode).
+   **Batasan penting yang perlu dipahami**: service worker TIDAK bikin GPS
+   jalan terus kalau layar HP dikunci atau app di-background -- itu batasan
+   browser (khususnya Safari iOS), bukan sesuatu yang bisa di-workaround
+   dari web biasa. Yang benar-benar menjaga update tetap jalan adalah Wake
+   Lock API (`activateGPS()` di `driver.html`) yang menyalakan terus layar
+   HP selama GPS aktif -- jadi kru perlu tahu: HP harus tetap menyala &
+   halaman ini tetap di depan selama nge-drive, bukan disimpan di saku
+   dengan layar mati.
+3. **Layar login** (route + bus) muncul pertama kali buka `driver.html`.
+   Pilihan tersimpan di `localStorage`, jadi buka lagi nanti (termasuk dari
+   ikon PWA yang di-install) langsung masuk tanpa pilih ulang. `?bus=bus1`
+   di URL masih jalan sebagai override manual. SiBulan 1 muncul di
+   dropdown rute tapi belum ada bus-nya (data halte/rute terurut belum ada)
+   -- tinggal isi `ROUTE_BUS_CONFIG` di `driver.html` begitu datanya siap.
+4. **Tombol "Aktivasi GPS" / "Nonaktifkan GPS"** -- GPS TIDAK otomatis
+   nyala begitu buka halaman lagi (beda dari sebelumnya). Kru wajib tekan
+   "Aktivasi GPS" dulu sebagai tanda bus mulai jalan; sebelum itu, tombol
+   +/- penumpang terkunci. "Nonaktifkan GPS" menghentikan pengiriman posisi
+   dan menandai bus itu "tidak aktif" ke server (lat/lng terakhir
+   dipertahankan, tidak dihapus).
+5. **`index.html`** -- ikon bus sekarang **abu-abu** kalau bus itu lagi
+   "tidak aktif" (belum/sudah tidak GPS Aktif), dan berwarna sesuai warna
+   armada (kuning/oranye) kalau lagi aktif.
+
 ## Yang BELUM ada -- penting sebelum dipakai beneran di lapangan
 
 - **Tidak ada autentikasi.** Siapa saja yang tahu URL `driver.html?bus=bus1`
