@@ -47,5 +47,6 @@ CREATE TABLE IF NOT EXISTS bus_locations (
   lng DOUBLE PRECISION NOT NULL,
   heading DOUBLE PRECISION,
   speed DOUBLE PRECISION,
+  is_active BOOLEAN NOT NULL DEFAULT false, -- true = kru sudah tekan "Aktivasi GPS" (bus mulai jalan)
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );

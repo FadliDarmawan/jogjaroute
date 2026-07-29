@@ -1,11 +1,13 @@
 const { sql } = require("./_db");
 
 // GET  /api/location
-//   -> { bus1: {lat,lng,heading,speed,updatedAt} | undefined, bus2: {...} }
-//   Format ini sengaja dibuat SAMA seperti endpoint bot Baileys yang lama,
-//   supaya pollBusLocations() di index.html tidak perlu diubah sama sekali.
+//   -> { bus1: {lat,lng,heading,speed,updatedAt,isActive} | undefined, bus2: {...} }
 // POST /api/location  { busId, lat, lng, heading, speed }
-//   -> { ok: true }
+//   -> normal ping SAAT GPS aktif -- otomatis set isActive = true
+// POST /api/location  { busId, active: false }
+//   -> dipanggil saat kru tekan "Nonaktifkan GPS" -- HANYA ubah isActive,
+//      lat/lng/heading/speed terakhir dibiarkan apa adanya (posisi
+//      terakhir sebelum GPS dimatikan, bukan dihapus)
 module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
@@ -17,6 +19,7 @@ module.exports = async function handler(req, res) {
           lng: row.lng,
           heading: row.heading,
           speed: row.speed,
+          isActive: row.is_active,
           updatedAt: new Date(row.updated_at).getTime(),
         };
       }
@@ -24,19 +27,34 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === "POST") {
-      const { busId, lat, lng, heading, speed } = req.body;
-      if (!busId || typeof lat !== "number" || typeof lng !== "number") {
-        return res.status(400).json({ error: "busId, lat, lng wajib diisi (angka)" });
+      const { busId, lat, lng, heading, speed, active } = req.body;
+      if (!busId) return res.status(400).json({ error: "busId wajib diisi" });
+
+      // Kasus "Nonaktifkan GPS": cuma matiin flag, tidak menyentuh posisi.
+      if (active === false) {
+        await sql`
+          UPDATE bus_locations SET is_active = false, updated_at = now()
+          WHERE bus_id = ${busId}
+        `;
+        return res.status(200).json({ ok: true });
+      }
+
+      // Kasus normal: ping posisi selama GPS aktif -- selalu set isActive
+      // = true, karena baris ini cuma terkirim selagi watchPosition jalan
+      // (lihat driver.html, GPS cuma nyala setelah "Aktivasi GPS" ditekan).
+      if (typeof lat !== "number" || typeof lng !== "number") {
+        return res.status(400).json({ error: "lat, lng wajib diisi (angka)" });
       }
 
       await sql`
-        INSERT INTO bus_locations (bus_id, lat, lng, heading, speed, updated_at)
-        VALUES (${busId}, ${lat}, ${lng}, ${heading ?? null}, ${speed ?? null}, now())
+        INSERT INTO bus_locations (bus_id, lat, lng, heading, speed, is_active, updated_at)
+        VALUES (${busId}, ${lat}, ${lng}, ${heading ?? null}, ${speed ?? null}, true, now())
         ON CONFLICT (bus_id) DO UPDATE SET
           lat = EXCLUDED.lat,
           lng = EXCLUDED.lng,
           heading = EXCLUDED.heading,
           speed = EXCLUDED.speed,
+          is_active = true,
           updated_at = now()
       `;
       return res.status(200).json({ ok: true });
