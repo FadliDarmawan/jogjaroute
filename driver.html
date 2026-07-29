@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Driver - SiBulan Tracker</title>
+<style>
+  :root {
+    --bus1-color: #FFB703;
+    --bus2-color: #FB8500;
+    --green: #1D9E75;
+    --red: #E24B4A;
+    --border: #e2e2e2;
+    --text-secondary: #666;
+    --text-muted: #999;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f4f4f2;
+    color: #1a1a1a;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 1rem 1.1rem;
+    margin-bottom: 12px;
+  }
+  .max-w { max-width: 420px; margin: 0 auto; }
+
+  /* ---- Header: bus, rit, arah, posisi ---- */
+  .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .bus-name { font-size: 13px; color: var(--text-secondary); }
+  .rit-badge {
+    font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    background: #eef3ff; color: #1a56db;
+  }
+  .direction-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .direction-text { font-size: 16px; font-weight: 600; }
+  .position-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+
+  /* ---- Rit picker (sebelum rit dimulai) ---- */
+  .rit-picker-title { font-size: 14px; color: var(--text-secondary); margin: 0 0 10px; }
+  .rit-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .rit-btn {
+    height: 56px; font-size: 16px; font-weight: 600; border-radius: 10px;
+    border: 1px solid var(--border); background: #fafafa; color: #1a1a1a;
+  }
+  .rit-btn:active { transform: scale(0.97); }
+
+  /* ---- Passenger counter ---- */
+  .passenger-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; text-align: center; }
+  .passenger-count { font-size: 48px; font-weight: 700; margin: 0 0 16px; text-align: center; }
+  .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .counter-btn {
+    height: 68px; font-size: 22px; font-weight: 600; border-radius: 10px; border: none;
+  }
+  .counter-btn.turun { background: #fdeceb; color: var(--red); }
+  .counter-btn.naik { background: #e7f6f0; color: var(--green); }
+  .counter-btn:active { transform: scale(0.97); }
+  .counter-btn:disabled { opacity: 0.5; }
+
+  /* ---- History ---- */
+  .history-title { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; }
+  .history-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .history-row:last-child { border-bottom: none; }
+  .history-main { font-size: 14px; }
+  .history-time { font-size: 12px; color: var(--text-muted); }
+  .edit-btn {
+    width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+    background: #fafafa; font-size: 16px;
+  }
+  .empty-history { font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px 0; }
+
+  .end-rit-btn {
+    width: 100%; height: 52px; font-size: 15px; font-weight: 600; border-radius: 10px;
+    border: 1px solid var(--border); background: #fff;
+  }
+
+  /* ---- Bottom sheet edit ---- */
+  .sheet-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    display: none; align-items: flex-end; justify-content: center; z-index: 50;
+  }
+  .sheet-backdrop.open { display: flex; }
+  .sheet {
+    background: #fff; width: 100%; max-width: 420px; border-radius: 16px 16px 0 0;
+    padding: 1.25rem; padding-bottom: 2rem;
+  }
+  .sheet-title { font-size: 15px; color: var(--text-secondary); margin: 0 0 14px; }
+  .sheet-btn {
+    width: 100%; height: 52px; font-size: 15px; font-weight: 600; border-radius: 10px;
+    border: 1px solid var(--border); background: #fafafa; margin-bottom: 8px;
+  }
+  .sheet-btn.danger { color: var(--red); }
+  .sheet-btn.cancel { background: #fff; border: none; color: var(--text-secondary); margin-top: 4px; }
+
+  .status-banner {
+    font-size: 12px; text-align: center; padding: 6px; border-radius: 8px;
+    background: #fff8e1; color: #8a6d00; margin-bottom: 10px; display: none;
+  }
+  .status-banner.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="max-w">
+  <div id="statusBanner" class="status-banner"></div>
+
+  <!-- ==== HEADER ==== -->
+  <div class="card" id="headerCard">
+    <div class="header-row">
+      <span class="bus-name" id="busNameLabel">-</span>
+      <span class="rit-badge" id="ritBadge" style="display:none;"></span>
+    </div>
+    <div class="direction-row" id="directionRow" style="display:none;">
+      <span class="direction-text" id="directionText"></span>
+    </div>
+    <div class="position-row" id="positionRow" style="display:none;">
+      <span id="positionText">Menunggu GPS...</span>
+    </div>
+  </div>
+
+  <!-- ==== RIT PICKER (tampil sebelum rit dimulai) ==== -->
+  <div class="card" id="ritPickerCard">
+    <p class="rit-picker-title">Mulai rit</p>
+    <div class="rit-buttons">
+      <button class="rit-btn" data-rit="1" onclick="startRit(1)">Rit 1</button>
+      <button class="rit-btn" data-rit="2" onclick="startRit(2)">Rit 2</button>
+      <button class="rit-btn" data-rit="3" onclick="startRit(3)">Rit 3</button>
+    </div>
+  </div>
+
+  <!-- ==== PASSENGER COUNTER + HISTORY (tampil setelah rit dimulai) ==== -->
+  <div id="activeRitSection" style="display:none;">
+    <div class="card">
+      <p class="passenger-label">Penumpang di dalam</p>
+      <p class="passenger-count" id="passengerCount">0</p>
+      <div class="counter-grid">
+        <button class="counter-btn turun" id="turunBtn" onclick="logEvent('turun')">- Turun</button>
+        <button class="counter-btn naik" id="naikBtn" onclick="logEvent('naik')">+ Naik</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="history-title">Riwayat rit ini</p>
+      <div id="historyList"></div>
+    </div>
+
+    <button class="end-rit-btn" onclick="endRit()">Selesai rit</button>
+  </div>
+</div>
+
+<!-- ==== BOTTOM SHEET buat koreksi kejadian ==== -->
+<div class="sheet-backdrop" id="editSheet">
+  <div class="sheet">
+    <p class="sheet-title" id="editSheetTitle">Koreksi kejadian</p>
+    <button class="sheet-btn" id="toggleActionBtn" onclick="submitEditToggle()"></button>
+    <button class="sheet-btn danger" onclick="submitEditDelete()">Hapus kejadian ini</button>
+    <button class="sheet-btn cancel" onclick="closeEditSheet()">Batal</button>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Setup dasar: bus mana yang aktif ditentukan dari query string, misal
+// /driver.html?bus=bus1. Belum ada auth beneran (token/PIN) di versi ini --
+// itu ditambahkan belakangan, untuk sekarang siapa saja yang tau URL-nya
+// bisa buka sebagai bus itu. Cukup buat testing internal dulu.
+// ---------------------------------------------------------------------------
+const params = new URLSearchParams(location.search);
+const BUS_ID = params.get("bus") || "bus1";
+const BUS_LABELS = {
+  bus1: "SiBulan 2 - Bus 01",
+  bus2: "SiBulan 2 - Bus 02",
+};
+const DIRECTION_LABELS = {
+  to_pakem: "Menuju Terminal Pakem",
+  to_adisutjipto: "Menuju Bandara Adisutjipto",
+};
+
+document.getElementById("busNameLabel").textContent = BUS_LABELS[BUS_ID] || BUS_ID;
+
+let currentRit = null; // { id, rit_number, direction, ... } | null
+let currentEvents = []; // riwayat kejadian rit aktif, terbaru duluan
+let editingEventId = null;
+let editingEventAction = null;
+
+function showStatus(msg) {
+  const el = document.getElementById("statusBanner");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(showStatus._t);
+  showStatus._t = setTimeout(() => el.classList.remove("show"), 4000);
+}
+
+// ---------------------------------------------------------------------------
+// Rit: cek rit aktif saat halaman dibuka (misal driver refresh tengah rit),
+// lalu render UI sesuai statusnya.
+// ---------------------------------------------------------------------------
+async function loadRitState() {
+  const res = await fetch(`/api/rit?busId=${BUS_ID}`);
+  const data = await res.json();
+  currentRit = data.rit;
+  renderRitState();
+  if (currentRit) await loadEvents();
+}
+
+function renderRitState() {
+  const ritBadge = document.getElementById("ritBadge");
+  const directionRow = document.getElementById("directionRow");
+  const positionRow = document.getElementById("positionRow");
+  const ritPickerCard = document.getElementById("ritPickerCard");
+  const activeSection = document.getElementById("activeRitSection");
+
+  if (currentRit) {
+    ritBadge.style.display = "inline-block";
+    ritBadge.textContent = `Rit ${currentRit.rit_number}`;
+    directionRow.style.display = "flex";
+    document.getElementById("directionText").textContent =
+      DIRECTION_LABELS[currentRit.direction] || currentRit.direction;
+    positionRow.style.display = "flex";
+    ritPickerCard.style.display = "none";
+    activeSection.style.display = "block";
+  } else {
+    ritBadge.style.display = "none";
+    directionRow.style.display = "none";
+    positionRow.style.display = "none";
+    ritPickerCard.style.display = "block";
+    activeSection.style.display = "none";
+  }
+}
+
+// Rit ganjil -> ke Pakem, rit genap -> balik ke Adisutjipto. Ini cuma
+// SARAN default berdasar pola bolak-balik biasa -- kalau nanti kebutuhan
+// beda (misal ada rit tambahan di luar pola), ganti baris ini atau tambah
+// tombol switch arah manual di UI.
+function suggestedDirection(ritNumber) {
+  return ritNumber % 2 === 1 ? "to_pakem" : "to_adisutjipto";
+}
+
+async function startRit(ritNumber) {
+  const direction = suggestedDirection(ritNumber);
+  const res = await fetch("/api/rit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "start", busId: BUS_ID, ritNumber, direction }),
+  });
+  if (!res.ok) {
+    showStatus("Gagal mulai rit, coba lagi");
+    return;
+  }
+  const data = await res.json();
+  currentRit = data.rit;
+  currentEvents = [];
+  renderRitState();
+  renderHistory();
+}
+
+async function endRit() {
+  if (!confirm("Selesai rit ini? Penumpang akan direset untuk rit berikutnya.")) return;
+  const res = await fetch("/api/rit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "end", busId: BUS_ID }),
+  });
+  if (!res.ok) {
+    showStatus("Gagal menyelesaikan rit, coba lagi");
+    return;
+  }
+  currentRit = null;
+  currentEvents = [];
+  renderRitState();
+}
+
+// ---------------------------------------------------------------------------
+// Passenger events
+// ---------------------------------------------------------------------------
+async function loadEvents() {
+  const res = await fetch(`/api/passenger?busId=${BUS_ID}`);
+  const data = await res.json();
+  currentEvents = data.events;
+  document.getElementById("passengerCount").textContent = data.passengerCount;
+  renderHistory();
+}
+
+async function logEvent(action) {
+  document.getElementById("naikBtn").disabled = true;
+  document.getElementById("turunBtn").disabled = true;
+  try {
+    const res = await fetch("/api/passenger", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ busId: BUS_ID, action, stopName: lastKnownStopName() }),
+    });
+    if (!res.ok) {
+      showStatus("Gagal mencatat, coba lagi");
+      return;
+    }
+    const data = await res.json();
+    currentEvents.unshift(data.event);
+    document.getElementById("passengerCount").textContent = data.passengerCount;
+    renderHistory();
+  } finally {
+    document.getElementById("naikBtn").disabled = false;
+    document.getElementById("turunBtn").disabled = false;
+  }
+}
+
+function renderHistory() {
+  const list = document.getElementById("historyList");
+  if (currentEvents.length === 0) {
+    list.innerHTML = '<p class="empty-history">Belum ada kejadian di rit ini</p>';
+    return;
+  }
+  list.innerHTML = currentEvents
+    .map((e) => {
+      const time = new Date(e.created_at).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
+      const label = e.action === "naik" ? "+1 naik" : "-1 turun";
+      const stop = e.stop_name ? ` - ${e.stop_name}` : "";
+      return `
+        <div class="history-row">
+          <div>
+            <div class="history-main">${label}${stop}</div>
+            <div class="history-time">${time}</div>
+          </div>
+          <button class="edit-btn" aria-label="Edit kejadian ini" onclick="openEditSheet(${e.id}, '${e.action}')">✎</button>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function openEditSheet(eventId, action) {
+  editingEventId = eventId;
+  editingEventAction = action;
+  const oppositeLabel = action === "naik" ? "Ubah jadi Turun" : "Ubah jadi Naik";
+  document.getElementById("toggleActionBtn").textContent = oppositeLabel;
+  document.getElementById("editSheet").classList.add("open");
+}
+
+function closeEditSheet() {
+  document.getElementById("editSheet").classList.remove("open");
+  editingEventId = null;
+  editingEventAction = null;
+}
+
+// Koreksi diimplementasi sebagai hapus kejadian lama + catat kejadian baru
+// (bukan UPDATE field action di baris yang sama), supaya jejak asli tetap
+// ada di database untuk audit -- lihat komentar "append-only" di schema.sql.
+async function submitEditToggle() {
+  if (!editingEventId) return;
+  const newAction = editingEventAction === "naik" ? "turun" : "naik";
+  await fetch("/api/passenger", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ eventId: editingEventId, action: "delete" }),
+  });
+  closeEditSheet();
+  await logEvent(newAction);
+  await loadEvents(); // sinkron ulang biar urutan riwayat pasti benar
+}
+
+async function submitEditDelete() {
+  if (!editingEventId) return;
+  const res = await fetch("/api/passenger", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ eventId: editingEventId, action: "delete" }),
+  });
+  if (res.ok) {
+    const data = await res.json();
+    document.getElementById("passengerCount").textContent = data.passengerCount;
+  }
+  closeEditSheet();
+  await loadEvents();
+}
+
+// ---------------------------------------------------------------------------
+// GPS + heading. Dikirim ke /api/location tiap ada update posisi baru dari
+// browser (bukan di-poll interval tetap), supaya update selalu berdasar
+// data GPS terbaru, bukan data lama yang dikirim ulang.
+//
+// "Posisi sekarang" (nama halte terdekat SESUAI ARAH) BELUM diimplementasi
+// -- itu butuh daftar halte terurut per arah yang masih disiapkan terpisah
+// (lihat tools/build-sibulan2-directions.js dan diskusi terkait). Untuk
+// sekarang cuma nampilin koordinat mentah, supaya minimal ada indikator
+// bahwa GPS-nya jalan.
+// ---------------------------------------------------------------------------
+let lastPosition = null;
+let lastStopName = null; // TODO: isi dari daftar halte terurut begitu tersedia
+
+function lastKnownStopName() {
+  return lastStopName;
+}
+
+function calculateBearing(lat1, lon1, lat2, lon2) {
+  const toRad = (deg) => (deg * Math.PI) / 180;
+  const toDeg = (rad) => (rad * 180) / Math.PI;
+  const dLon = toRad(lon2 - lon1);
+  const y = Math.sin(dLon) * Math.cos(toRad(lat2));
+  const x =
+    Math.cos(toRad(lat1)) * Math.sin(toRad(lat2)) -
+    Math.sin(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.cos(dLon);
+  return (toDeg(Math.atan2(y, x)) + 360) % 360;
+}
+
+async function sendLocationToServer(loc) {
+  try {
+    await fetch("/api/location", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ busId: BUS_ID, ...loc }),
+    });
+  } catch (err) {
+    console.error("Gagal kirim lokasi:", err);
+  }
+}
+
+function startGPS() {
+  if (!("geolocation" in navigator)) {
+    showStatus("Browser ini tidak mendukung GPS");
+    return;
+  }
+  navigator.geolocation.watchPosition(
+    (pos) => {
+      const { latitude, longitude, heading, speed } = pos.coords;
+
+      let finalHeading = heading;
+      if (finalHeading == null && lastPosition) {
+        finalHeading = calculateBearing(lastPosition.lat, lastPosition.lng, latitude, longitude);
+      }
+      lastPosition = { lat: latitude, lng: longitude };
+
+      document.getElementById("positionText").textContent =
+        `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+
+      sendLocationToServer({ lat: latitude, lng: longitude, heading: finalHeading, speed });
+    },
+    (err) => {
+      console.error("Geolocation error:", err);
+      showStatus("Gagal mengambil lokasi -- pastikan izin GPS diaktifkan");
+    },
+    { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 }
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Init
+// ---------------------------------------------------------------------------
+loadRitState();
+startGPS();
+</script>
+
+</body>
+</html>
