@@ -1,0 +1,387 @@
+{
+  "routeId": "SiBulan 2",
+  "to_pakem": [
+    {
+      "name": "Bandara Adisutjipto",
+      "lat": -7.7845,
+      "lng": 110.43571
+    },
+    {
+      "name": "KKP Yogyakarta",
+      "lat": -7.78205,
+      "lng": 110.4299
+    },
+    {
+      "name": "Disnakertrans - A",
+      "lat": -7.76936,
+      "lng": 110.43117
+    },
+    {
+      "name": "SMKN 1 Depok - Jl. Raya Tajem - A",
+      "lat": -7.76524,
+      "lng": 110.43148
+    },
+    {
+      "name": "SDN 1 Depok -  A",
+      "lat": -7.76076,
+      "lng": 110.43292
+    },
+    {
+      "name": "KUA Depok - A",
+      "lat": -7.75555,
+      "lng": 110.43379
+    },
+    {
+      "name": "MAN 2 Sleman - A",
+      "lat": -7.75038,
+      "lng": 110.43455
+    },
+    {
+      "name": "UNRIYO - A",
+      "lat": -7.74633,
+      "lng": 110.43417
+    },
+    {
+      "name": "Budi Mulia Dua - A",
+      "lat": -7.74294,
+      "lng": 110.43419
+    },
+    {
+      "name": "Indomaret Pokoh Sambiroto - A",
+      "lat": -7.73555,
+      "lng": 110.43461
+    },
+    {
+      "name": "Kantor Kal. Wedomartani - A",
+      "lat": -7.7315,
+      "lng": 110.43483
+    },
+    {
+      "name": "Simpang Babadan - A",
+      "lat": -7.72315,
+      "lng": 110.43547
+    },
+    {
+      "name": "Simpang Selomartani - A",
+      "lat": -7.72233,
+      "lng": 110.43811
+    },
+    {
+      "name": "Simpang Kabunan - A",
+      "lat": -7.71859,
+      "lng": 110.43856
+    },
+    {
+      "name": "Simpang Kabunan - A",
+      "lat": -7.71859,
+      "lng": 110.43856
+    },
+    {
+      "name": "RS Kemasan - A",
+      "lat": -7.71328,
+      "lng": 110.44804
+    },
+    {
+      "name": "Simpang Kenti - A",
+      "lat": -7.70353,
+      "lng": 110.44808
+    },
+    {
+      "name": "Pasar Jangkang - A",
+      "lat": -7.70211,
+      "lng": 110.44733
+    },
+    {
+      "name": "Puskesmas Ngemplak - A",
+      "lat": -7.70293,
+      "lng": 110.44468
+    },
+    {
+      "name": "Tugu Batas Desa Yapah - A",
+      "lat": -7.7038,
+      "lng": 110.44261
+    },
+    {
+      "name": "Timur Jembatan Yapah - A",
+      "lat": -7.70505,
+      "lng": 110.43919
+    },
+    {
+      "name": "SMAN 2 Ngaglik - A",
+      "lat": -7.70486,
+      "lng": 110.43501
+    },
+    {
+      "name": "Simpang Losari - A",
+      "lat": -7.70485,
+      "lng": 110.43301
+    },
+    {
+      "name": "SPBU Mindi - A",
+      "lat": -7.70486,
+      "lng": 110.43103
+    },
+    {
+      "name": "Lap. Klidon - A",
+      "lat": -7.70422,
+      "lng": 110.42657
+    },
+    {
+      "name": "Kantor Kal. Sukoharjo - A",
+      "lat": -7.70384,
+      "lng": 110.42511
+    },
+    {
+      "name": "SDN Selomulyo - A",
+      "lat": -7.70239,
+      "lng": 110.42072
+    },
+    {
+      "name": "RSU Gramedika - B",
+      "lat": -7.70109,
+      "lng": 110.41699
+    },
+    {
+      "name": "Simpang Besi Jakal - A",
+      "lat": -7.70021,
+      "lng": 110.41539
+    },
+    {
+      "name": "YAKKUM - A",
+      "lat": -7.69559,
+      "lng": 110.41802
+    },
+    {
+      "name": "Boulevard UII",
+      "lat": -7.68751,
+      "lng": 110.41727
+    },
+    {
+      "name": "UII (Barat Jalan)",
+      "lat": -7.68732,
+      "lng": 110.41878
+    },
+    {
+      "name": "Simpang Degolan - A",
+      "lat": -7.68407,
+      "lng": 110.41917
+    },
+    {
+      "name": "Raminten - A",
+      "lat": -7.67598,
+      "lng": 110.41726
+    },
+    {
+      "name": "Dusun Kledokan - A",
+      "lat": -7.67264,
+      "lng": 110.41737
+    },
+    {
+      "name": "RS Panti Nugroho",
+      "lat": -7.66927,
+      "lng": 110.41759
+    },
+    {
+      "name": "Terminal Pakem",
+      "lat": -7.66686,
+      "lng": 110.41999
+    }
+  ],
+  "to_adisutjipto": [
+    {
+      "name": "SDN Percobaan 3 Pakem",
+      "lat": -7.6684,
+      "lng": 110.4177
+    },
+    {
+      "name": "SMPN 4 Pakem",
+      "lat": -7.66922,
+      "lng": 110.41764
+    },
+    {
+      "name": "Dusun Kledokan - B",
+      "lat": -7.67273,
+      "lng": 110.4174
+    },
+    {
+      "name": "Raminten - B",
+      "lat": -7.67615,
+      "lng": 110.41731
+    },
+    {
+      "name": "Simpang Degolan - B",
+      "lat": -7.6841,
+      "lng": 110.41921
+    },
+    {
+      "name": "Boulevard UII",
+      "lat": -7.68751,
+      "lng": 110.41727
+    },
+    {
+      "name": "UII (Timur Jalan)",
+      "lat": -7.68778,
+      "lng": 110.41881
+    },
+    {
+      "name": "YAKKUM - B",
+      "lat": -7.69549,
+      "lng": 110.41812
+    },
+    {
+      "name": "Simpang Besi Jakal - B",
+      "lat": -7.70022,
+      "lng": 110.41544
+    },
+    {
+      "name": "RSU Gramedika - A",
+      "lat": -7.70113,
+      "lng": 110.41699
+    },
+    {
+      "name": "SDN Selomulyo - B",
+      "lat": -7.70224,
+      "lng": 110.42045
+    },
+    {
+      "name": "Kantor Kal. Sukoharjo - B",
+      "lat": -7.70383,
+      "lng": 110.42523
+    },
+    {
+      "name": "Lap. Klidon - B",
+      "lat": -7.70415,
+      "lng": 110.42646
+    },
+    {
+      "name": "SPBU Mindi - B",
+      "lat": -7.70481,
+      "lng": 110.43117
+    },
+    {
+      "name": "Simpang Losari - B",
+      "lat": -7.7048,
+      "lng": 110.43314
+    },
+    {
+      "name": "SMAN 2 Ngaglik - B",
+      "lat": -7.70481,
+      "lng": 110.43499
+    },
+    {
+      "name": "Timur Jembatan Yapah - B",
+      "lat": -7.70502,
+      "lng": 110.4393
+    },
+    {
+      "name": "Tugu Batas Desa Yapah - B",
+      "lat": -7.70374,
+      "lng": 110.44265
+    },
+    {
+      "name": "Puskesmas Ngemplak - B",
+      "lat": -7.70295,
+      "lng": 110.44455
+    },
+    {
+      "name": "Pasar Jangkang - B",
+      "lat": -7.70205,
+      "lng": 110.44742
+    },
+    {
+      "name": "Simpang Kenti - B",
+      "lat": -7.70351,
+      "lng": 110.44811
+    },
+    {
+      "name": "RS Kemasan - B",
+      "lat": -7.71373,
+      "lng": 110.4478
+    },
+    {
+      "name": "Jl. Raya Kabunan - B",
+      "lat": -7.71456,
+      "lng": 110.44192
+    },
+    {
+      "name": "Simpang Kabunan - B",
+      "lat": -7.7195,
+      "lng": 110.43823
+    },
+    {
+      "name": "Simpang Selomartani - B",
+      "lat": -7.72239,
+      "lng": 110.43797
+    },
+    {
+      "name": "Simpang Babadan - B",
+      "lat": -7.72329,
+      "lng": 110.43544
+    },
+    {
+      "name": "Kantor Kal. Wedomartani - B",
+      "lat": -7.7313,
+      "lng": 110.43487
+    },
+    {
+      "name": "Indomaret Pokoh Sambiroto - B",
+      "lat": -7.73608,
+      "lng": 110.43462
+    },
+    {
+      "name": "Budi Mulia Dua - B",
+      "lat": -7.7432,
+      "lng": 110.43424
+    },
+    {
+      "name": "UNRIYO - B",
+      "lat": -7.7463,
+      "lng": 110.43422
+    },
+    {
+      "name": "MAN 2 Sleman - B",
+      "lat": -7.75041,
+      "lng": 110.43459
+    },
+    {
+      "name": "KUA Depok - B",
+      "lat": -7.75547,
+      "lng": 110.43387
+    },
+    {
+      "name": "SDN 1 Depok - B",
+      "lat": -7.76091,
+      "lng": 110.43295
+    },
+    {
+      "name": "SMKN 1 Depok - Jl. Raya Tajem - B",
+      "lat": -7.76525,
+      "lng": 110.43156
+    },
+    {
+      "name": "Disnakertrans - B",
+      "lat": -7.76786,
+      "lng": 110.43148
+    },
+    {
+      "name": "Selokan Mataram Maguwo",
+      "lat": -7.77096,
+      "lng": 110.43104
+    },
+    {
+      "name": "Binamarga",
+      "lat": -7.77444,
+      "lng": 110.4307
+    },
+    {
+      "name": "Maguwo Sambilegi",
+      "lat": -7.78341,
+      "lng": 110.43099
+    },
+    {
+      "name": "Bandara Adisutjipto",
+      "lat": -7.7845,
+      "lng": 110.43571
+    }
+  ]
+}

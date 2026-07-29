@@ -385,18 +385,56 @@ async function submitEditDelete() {
 }
 
 // ---------------------------------------------------------------------------
-// GPS + heading. Dikirim ke /api/location tiap ada update posisi baru dari
-// browser (bukan di-poll interval tetap), supaya update selalu berdasar
-// data GPS terbaru, bukan data lama yang dikirim ulang.
+// GPS + heading + halte terdekat sesuai arah. Dikirim ke /api/location tiap
+// ada update posisi baru dari browser (bukan di-poll interval tetap), supaya
+// update selalu berdasar data GPS terbaru, bukan data lama yang dikirim ulang.
 //
-// "Posisi sekarang" (nama halte terdekat SESUAI ARAH) BELUM diimplementasi
-// -- itu butuh daftar halte terurut per arah yang masih disiapkan terpisah
-// (lihat tools/build-sibulan2-directions.js dan diskusi terkait). Untuk
-// sekarang cuma nampilin koordinat mentah, supaya minimal ada indikator
-// bahwa GPS-nya jalan.
+// Daftar halte terurut per arah (routes/SIBULAN2_stops_ordered.json) sudah
+// tersedia -- lihat catatan di README soal 2 baris data yang perlu dicek
+// manual (SDN 1 Depok, Simpang Kabunan/Jl. Raya Kabunan) sebelum dipakai
+// produksi. Kalau file ini belum ada / gagal dimuat, halaman tetap jalan
+// dan fallback ke nampilin koordinat mentah.
 // ---------------------------------------------------------------------------
+let orderedStops = null; // { to_pakem: [...], to_adisutjipto: [...] } | null
 let lastPosition = null;
-let lastStopName = null; // TODO: isi dari daftar halte terurut begitu tersedia
+let lastStopName = null;
+
+async function loadOrderedStops() {
+  try {
+    const res = await fetch("/routes/SIBULAN2_stops_ordered.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    orderedStops = await res.json();
+  } catch (err) {
+    console.warn("Gagal memuat daftar halte terurut, fallback ke koordinat mentah:", err);
+  }
+}
+
+function haversineMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// Halte terdekat, TAPI cuma dicari dari daftar arah yang lagi aktif --
+// bukan dari semua 74 halte SiBulan 2 -- supaya nggak salah nunjuk halte
+// yang searah geografis tapi arah rute-nya kebalik.
+function nearestStopForDirection(direction, lat, lng) {
+  if (!orderedStops) return null;
+  const list = orderedStops[direction];
+  if (!list || list.length === 0) return null;
+
+  let best = null;
+  for (const stop of list) {
+    const dist = haversineMeters(lat, lng, stop.lat, stop.lng);
+    if (!best || dist < best.dist) best = { name: stop.name, dist };
+  }
+  return best;
+}
 
 function lastKnownStopName() {
   return lastStopName;
@@ -440,8 +478,19 @@ function startGPS() {
       }
       lastPosition = { lat: latitude, lng: longitude };
 
-      document.getElementById("positionText").textContent =
-        `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+      // Halte terdekat cuma bisa dicari kalau rit sudah aktif (butuh tau
+      // arahnya) dan daftar halte sudah berhasil dimuat. Kalau salah satu
+      // belum ada, fallback nampilin koordinat mentah, bukan diem kosong.
+      const nearest = currentRit ? nearestStopForDirection(currentRit.direction, latitude, longitude) : null;
+      if (nearest) {
+        lastStopName = nearest.name;
+        document.getElementById("positionText").textContent =
+          `Dekat ${nearest.name} (~${Math.round(nearest.dist)}m)`;
+      } else {
+        lastStopName = null;
+        document.getElementById("positionText").textContent =
+          `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+      }
 
       sendLocationToServer({ lat: latitude, lng: longitude, heading: finalHeading, speed });
     },
@@ -456,6 +505,7 @@ function startGPS() {
 // ---------------------------------------------------------------------------
 // Init
 // ---------------------------------------------------------------------------
+loadOrderedStops();
 loadRitState();
 startGPS();
 </script>
