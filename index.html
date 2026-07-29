@@ -495,12 +495,16 @@
   .bus-marker.zoomed-in .bus-marker-icon-far { display: none; }
   .bus-marker.zoomed-in .bus-marker-icon-near { display: block; }
 
-  /* ---- Info popup singkat pas ikon bus di-tap ---- */
-  .bus-info-popup .maplibregl-popup-content {
-    padding: 10px 14px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  /* ---- Info popup pas ikon bus di-tap -- sengaja REUSE class .glass-tag
+     / .tag-eyebrow / .popup-title yang sama persis dipakai popup halte
+     (lihat sekitar baris 4780), biar dua-duanya konsisten satu bahasa
+     visual, bukan 2 gaya popup yang beda sendiri-sendiri. Cuma tambahan
+     kecil di bawah ini buat baris info (update terakhir, kecepatan). ---- */
+  .bus-info-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 12.5px; color: #4a4a48; padding: 3px 0;
   }
-  .bus-info-title { font-size: 13px; font-weight: 700; margin: 0 0 4px; }
-  .bus-info-row { font-size: 12px; color: #555; margin: 0; }
+  .bus-info-row span:first-child { color: rgba(60,60,58,0.6); }
 
   /* Floating "-> destination" pills dropped at the origin stop and each
      final-destination endpoint (see addDestLabel) -- used by both "Show
@@ -5124,8 +5128,12 @@ const BUS_STALE_AFTER_MS = 2 * 60 * 1000;
 // bus -- sesuaikan angkanya kalau perubahannya kerasa kecepetan/kelambatan.
 const BUS_ICON_ZOOM_THRESHOLD = 15;
 
+// Warna ikon bus SENGAJA disamakan persis dengan warna resmi rute SiBulan
+// 2 (ROUTE_META["SiBulan 2"].color = "#FB8500") untuk KEDUA bus -- bus1
+// sebelumnya kepasang salah pakai warna SiBulan 1 (#FFB703), kelihatan
+// beda sendiri padahal dua-duanya jalan di rute yang sama.
 const BUS_INSTANCES = {
-  bus1: { label: "Bus 1", color: "#FFB703" },
+  bus1: { label: "Bus 1", color: "#FB8500" },
   bus2: { label: "Bus 2", color: "#FB8500" },
 };
 
@@ -5164,14 +5172,26 @@ function showBusInfoPopup(busId, coord) {
   const loc = busLatestLoc[busId];
   const updatedText = loc ? `${Math.round((Date.now() - loc.updatedAt) / 1000)}s lalu` : "-";
   const speedText = loc && loc.speed != null ? `${(loc.speed * 3.6).toFixed(0)} km/j` : "-";
+  const statusText = loc && loc.isActive ? "Aktif" : "Tidak aktif";
 
   if (busPopup) busPopup.remove();
-  busPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "bus-info-popup", offset: 18 })
+  // className "glass-popup" + struktur .glass-tag/.tag-eyebrow/.popup-title
+  // di bawah SAMA PERSIS dengan popup halte (lihat sekitar baris 4780) --
+  // sengaja disamakan, bukan cuma mirip, biar popup bus & popup halte
+  // kerasa 1 sistem, bukan 2 desain beda yang kebetulan nempel di peta
+  // yang sama.
+  busPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "glass-popup", offset: 18 })
     .setLngLat(coord)
     .setHTML(`
-      <p class="bus-info-title">${label}</p>
-      <p class="bus-info-row">Update terakhir: ${updatedText}</p>
-      <p class="bus-info-row">Kecepatan: ${speedText}</p>
+      <div class="glass-tag">
+        <div class="tag-eyebrow">Bus</div>
+        <div class="popup-title">${label}</div>
+        <div class="popup-routes">
+          <div class="bus-info-row"><span>Status</span><span>${statusText}</span></div>
+          <div class="bus-info-row"><span>Update terakhir</span><span>${updatedText}</span></div>
+          <div class="bus-info-row"><span>Kecepatan</span><span>${speedText}</span></div>
+        </div>
+      </div>
     `)
     .addTo(map);
 }
