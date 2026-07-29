@@ -460,27 +460,48 @@
   body.zoomed-out .plan-marker-compact { display: flex; }
 
   /* ---- Live bus markers (SiBulan 2 - dua armada di rute yang sama,
-     posisinya di-poll dari bot Baileys terpisah, lihat pollBusLocations
-     di bawah). Posisi marker di-update via setLngLat, elemen DOM-nya
-     tidak pernah dibuat ulang -- supaya gerakannya smooth, bukan kedip. ---- */
+     posisinya di-poll dari database lewat /api/location). Posisi marker
+     di-update via setLngLat, elemen DOM-nya tidak pernah dibuat ulang --
+     supaya gerakannya smooth, bukan kedip.
+
+     PENTING soal bug sebelumnya: kalau elemen root marker adalah <div>
+     block-level tanpa width eksplisit, MapLibre nempelinnya via
+     `position: absolute` -- karena "auto" width sebuah elemen absolute
+     dihitung dari containing block terdekat (bukan dari isi kontennya),
+     hasilnya elemen itu ngambil lebar container peta, bukan lebar
+     ikonnya sendiri (kesannya "melebar mengambang" pas di-zoom). Makanya
+     root elemen di sini WAJIB `display: inline-flex` + tanpa width auto
+     yang nurun dari block layout -- supaya ukurannya ngikutin konten
+     (ikon), titik ankernya presisi di satu koordinat, "pakem" pas zoom. ---- */
   .bus-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    text-align: center;
     transition: transform 0.4s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
-  .bus-marker-pin {
-    font-size: 22px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
-    line-height: 1;
-  }
-  .bus-marker-label {
-    font-size: 10px; font-weight: 800; color: #fff;
-    background: var(--bus-color, #888);
-    padding: 1px 7px; border-radius: 999px;
-    white-space: nowrap; margin-top: 2px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  }
+  .bus-marker svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35)); }
   .bus-marker.is-stale { opacity: 0.4; }
+
+  /* Ikon segitiga (zoom jauh) vs ikon bus (zoom deket) -- keduanya
+     dirender sekaligus di DOM, cuma satu yang display:block di satu
+     waktu, di-toggle dari JS (lihat updateBusMarkerZoomLevel) supaya
+     ganti-icon-nya instan tanpa perlu bikin ulang marker. Placeholder
+     dulu (bentuk generik) -- gampang diganti begitu SVG final ada,
+     tinggal replace isi TRIANGLE_ICON_SVG / BUS_ICON_SVG di script. */
+  .bus-marker-icon-far { display: block; }
+  .bus-marker-icon-near { display: none; }
+  .bus-marker.zoomed-in .bus-marker-icon-far { display: none; }
+  .bus-marker.zoomed-in .bus-marker-icon-near { display: block; }
+
+  /* ---- Info popup singkat pas ikon bus di-tap ---- */
+  .bus-info-popup .maplibregl-popup-content {
+    padding: 10px 14px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+  .bus-info-title { font-size: 13px; font-weight: 700; margin: 0 0 4px; }
+  .bus-info-row { font-size: 12px; color: #555; margin: 0; }
 
   /* Floating "-> destination" pills dropped at the origin stop and each
      final-destination endpoint (see addDestLabel) -- used by both "Show
@@ -5075,37 +5096,79 @@ function addPlanMarker(coord, html) {
 
 // ---------------------------------------------------------------------------
 // Live bus markers -- SiBulan 2 (Adisutjipto - Pakem), 2 armada fisik di
-// rute yang sama. Posisi didapat dari bot Baileys terpisah (lihat
-// sibulan-tracker-bot repo) yang expose GET /api/locations sebagai
-// { bus1: {lat,lng,updatedAt,...}, bus2: {...} }. Kita poll endpoint itu
-// tiap beberapa detik dan geser marker yang sudah ada -- TIDAK membuat
-// ulang elemen DOM tiap tick, biar gerakannya mulus.
+// rute yang sama. Posisi didapat dari /api/location (database), di-poll
+// tiap beberapa detik, geser marker yang sudah ada -- TIDAK membuat ulang
+// elemen DOM tiap tick, biar gerakannya mulus.
+//
+// Tampilan: icon-only, TANPA label yang selalu nempel (dulu ada bar
+// "Bus 1" yang melebar penuh layar -- itu bug CSS width, sudah dibenerin,
+// tapi sekalian didesain ulang: default clean cuma ikon, info muncul pas
+// di-tap). Ikon ganti otomatis sesuai level zoom peta: segitiga pas zoom
+// jauh, bus pas zoom deket. SVG di bawah ini PLACEHOLDER -- tinggal ganti
+// isi TRIANGLE_ICON_SVG / BUS_ICON_SVG begitu SVG final ada, tidak perlu
+// ubah logic lain.
 // ---------------------------------------------------------------------------
 
-// GANTI dengan URL bot kamu setelah deploy ke Railway, contoh:
-// "https://sibulan-tracker-bot-production.up.railway.app/api/locations"
 const BUS_API_URL = "/api/location";
 const BUS_POLL_INTERVAL_MS = 5000;
 // Kalau sebuah bus belum kirim update lebih dari ini, marker-nya dibikin
 // pudar (is-stale) supaya kelihatan datanya lagi nggak fresh, bukan
 // dihilangkan (driver mungkin cuma masuk terowongan/sinyal jelek sebentar).
 const BUS_STALE_AFTER_MS = 2 * 60 * 1000;
+// Level zoom peta (bukan zoom device) di mana ikon ganti dari segitiga ke
+// bus -- sesuaikan angkanya kalau perubahannya kerasa kecepetan/kelambatan.
+const BUS_ICON_ZOOM_THRESHOLD = 15;
 
 const BUS_INSTANCES = {
   bus1: { label: "Bus 1", color: "#FFB703" },
   bus2: { label: "Bus 2", color: "#FB8500" },
 };
 
+// Placeholder -- segitiga generik menghadap ke atas (nanti di-rotate lewat
+// heading). Ganti isi string SVG ini kapan saja SVG final sudah ada.
+const TRIANGLE_ICON_SVG = (color) => `
+  <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="9,1 17,16 1,16" fill="${color}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" />
+  </svg>
+`;
+// Placeholder -- lingkaran + emoji bus. Ganti isi string SVG ini kapan
+// saja SVG final ada (idealnya bentuk bus beneran, bukan emoji).
+const BUS_ICON_SVG = (color) => `
+  <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="15" cy="15" r="13" fill="${color}" stroke="#fff" stroke-width="2" />
+    <text x="15" y="20" font-size="14" text-anchor="middle">🚌</text>
+  </svg>
+`;
+
 let busMarkers = {}; // { bus1: maplibregl.Marker, bus2: maplibregl.Marker }
+let busLatestLoc = {}; // { bus1: {lat,lng,heading,speed,updatedAt}, bus2: {...} } -- dipakai isi popup info
+let busPopup = null; // cuma 1 popup kebuka dalam satu waktu
 
 function busMarkerHtml(busId) {
-  const { label, color } = BUS_INSTANCES[busId];
+  const { color } = BUS_INSTANCES[busId];
   return `
-    <div class="bus-marker" style="--bus-color:${color}">
-      <div class="bus-marker-pin">🚌</div>
-      <div class="bus-marker-label">${label}</div>
+    <div class="bus-marker" data-bus-id="${busId}">
+      <div class="bus-marker-icon-far">${TRIANGLE_ICON_SVG(color)}</div>
+      <div class="bus-marker-icon-near">${BUS_ICON_SVG(color)}</div>
     </div>
   `;
+}
+
+function showBusInfoPopup(busId, coord) {
+  const { label } = BUS_INSTANCES[busId];
+  const loc = busLatestLoc[busId];
+  const updatedText = loc ? `${Math.round((Date.now() - loc.updatedAt) / 1000)}s lalu` : "-";
+  const speedText = loc && loc.speed != null ? `${(loc.speed * 3.6).toFixed(0)} km/j` : "-";
+
+  if (busPopup) busPopup.remove();
+  busPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "bus-info-popup", offset: 18 })
+    .setLngLat(coord)
+    .setHTML(`
+      <p class="bus-info-title">${label}</p>
+      <p class="bus-info-row">Update terakhir: ${updatedText}</p>
+      <p class="bus-info-row">Kecepatan: ${speedText}</p>
+    `)
+    .addTo(map);
 }
 
 function ensureBusMarker(busId, coord) {
@@ -5115,12 +5178,31 @@ function ensureBusMarker(busId, coord) {
   }
   const wrap = document.createElement("div");
   wrap.innerHTML = busMarkerHtml(busId).trim();
-  const marker = new maplibregl.Marker({ element: wrap.firstElementChild, anchor: "center" })
+  const el = wrap.firstElementChild;
+
+  el.addEventListener("click", (e) => {
+    e.stopPropagation(); // jangan sampai tap ikon ke-anggep tap peta kosong
+    showBusInfoPopup(busId, busMarkers[busId].getLngLat());
+  });
+
+  const marker = new maplibregl.Marker({ element: el, anchor: "center", rotationAlignment: "map" })
     .setLngLat(coord)
     .addTo(map);
   busMarkers[busId] = marker;
+  updateBusMarkerZoomLevel(marker); // set kelas zoom awal begitu marker dibuat
   return marker;
 }
+
+// Toggle kelas "zoomed-in" (segitiga <-> bus) sesuai level zoom peta saat
+// ini. Dipanggil sekali per marker baru, dan tiap kali peta di-zoom.
+function updateBusMarkerZoomLevel(marker) {
+  const el = marker.getElement();
+  el.classList.toggle("zoomed-in", map.getZoom() >= BUS_ICON_ZOOM_THRESHOLD);
+}
+
+map.on("zoom", () => {
+  Object.values(busMarkers).forEach(updateBusMarkerZoomLevel);
+});
 
 async function pollBusLocations() {
   try {
@@ -5131,10 +5213,18 @@ async function pollBusLocations() {
     for (const busId of Object.keys(BUS_INSTANCES)) {
       const loc = data[busId];
       if (!loc) continue; // belum pernah kirim lokasi sama sekali
+      busLatestLoc[busId] = loc;
 
       const marker = ensureBusMarker(busId, [loc.lng, loc.lat]);
       const isStale = Date.now() - loc.updatedAt > BUS_STALE_AFTER_MS;
       marker.getElement().classList.toggle("is-stale", isStale);
+      // Putar ikon sesuai arah jalan bus, kalau datanya ada. Pakai
+      // marker.setRotation() (API resmi MapLibre), BUKAN set style.transform
+      // manual -- transform di elemen marker juga dipakai MapLibre buat
+      // naruh posisinya, kalau ditimpa manual posisinya bisa geser.
+      if (loc.heading != null) {
+        marker.setRotation(loc.heading);
+      }
     }
   } catch (err) {
     // Sengaja cuma di-log, bukan ditampilkan ke user -- kegagalan poll
