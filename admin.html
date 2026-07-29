@@ -55,6 +55,8 @@
   .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
   .legend-row:last-child { margin-bottom: 0; }
   .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .legend-toggle { cursor: pointer; user-select: none; }
+  .legend-toggle input { margin: 0; cursor: pointer; }
 
   .empty-msg { font-size: 13px; color: #999; padding: 12px 0; }
 </style>
@@ -90,8 +92,14 @@
   <div class="map-wrap">
     <div id="map"></div>
     <div class="legend">
-      <div class="legend-row"><div class="legend-dot" style="background:#1D9E75;"></div>Naik (makin besar = makin banyak)</div>
-      <div class="legend-row"><div class="legend-dot" style="background:#E24B4A;"></div>Turun (makin besar = makin banyak)</div>
+      <label class="legend-row legend-toggle">
+        <input type="checkbox" id="showNaikToggle" checked onchange="renderEventMarkers(window.lastEvents || [])" />
+        <div class="legend-dot" style="background:#1D9E75;"></div>Naik (makin besar = makin banyak)
+      </label>
+      <label class="legend-row legend-toggle">
+        <input type="checkbox" id="showTurunToggle" checked onchange="renderEventMarkers(window.lastEvents || [])" />
+        <div class="legend-dot" style="background:#E24B4A;"></div>Turun (makin besar = makin banyak)
+      </label>
     </div>
   </div>
 </div>
@@ -114,6 +122,26 @@ const map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl(), "top-right");
 
+// Garis rute SiBulan 2 (file GeoJSON yang sama dipakai index.html) --
+// cuma buat konteks visual, tidak interaktif. Dimuat sebelum titik
+// naik/turun supaya garisnya di bawah tumpukan, titik-titiknya di atas.
+async function loadRouteLine() {
+  try {
+    const res = await fetch("/routes/SiBulan%202.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const geojson = await res.json();
+    map.addSource("sibulan2-route", { type: "geojson", data: geojson });
+    map.addLayer({
+      id: "sibulan2-route-line",
+      type: "line",
+      source: "sibulan2-route",
+      paint: { "line-color": "#FB8500", "line-width": 3, "line-opacity": 0.55 },
+    });
+  } catch (err) {
+    console.warn("Gagal memuat garis rute SiBulan 2:", err);
+  }
+}
+
 let eventMarkers = [];
 let selectedRitId = null; // null = tampilkan semua rit
 
@@ -130,11 +158,18 @@ function radiusForCount(count) {
 
 function renderEventMarkers(events) {
   clearEventMarkers();
-  const filtered = selectedRitId
-    ? events.filter((e) => e.rit_id === selectedRitId)
-    : events;
+  const showNaik = document.getElementById("showNaikToggle").checked;
+  const showTurun = document.getElementById("showTurunToggle").checked;
 
-  for (const e of filtered) {
+  let filtered = selectedRitId ? events.filter((e) => e.rit_id === selectedRitId) : events;
+  filtered = filtered.filter((e) => (e.action === "naik" ? showNaik : showTurun));
+
+  // Render naik dulu, baru turun -- supaya titik turun (yang menurut
+  // laporan sering ketutupan) ada DI ATAS tumpukan secara default, bukan
+  // urutan acak sesuai waktu kejadian.
+  const ordered = [...filtered.filter((e) => e.action === "naik"), ...filtered.filter((e) => e.action === "turun")];
+
+  for (const e of ordered) {
     const r = radiusForCount(e.count);
     const color = e.action === "naik" ? "#1D9E75" : "#E24B4A";
     const el = document.createElement("div");
@@ -210,7 +245,10 @@ async function loadData() {
   renderEventMarkers(data.events);
 }
 
-map.on("load", loadData);
+map.on("load", () => {
+  loadRouteLine();
+  loadData();
+});
 </script>
 
 </body>

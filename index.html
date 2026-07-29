@@ -509,6 +509,9 @@
     font-size: 12.5px; color: rgba(60,60,58,0.75); margin: -4px 0 9px;
   }
   .popup-bus-direction strong { color: #1c1c1a; font-weight: 700; }
+  .bus-popup-title {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
 
   /* Floating "-> destination" pills dropped at the origin stop and each
      final-destination endpoint (see addDestLabel) -- used by both "Show
@@ -5230,7 +5233,10 @@ function showBusInfoPopup(busId, coord) {
     .setHTML(`
       <div class="glass-tag">
         <div class="tag-eyebrow">Bus</div>
-        <div class="popup-title">(SiBulan 2) - ${label}</div>
+        <div class="popup-title bus-popup-title">
+          <span class="route-badge" style="color:#FB8500; background:#FB850022; border-color:#FB850055;">SiBulan 2</span>
+          <span>${label}</span>
+        </div>
         <div class="popup-bus-direction">${directionText}</div>
         <div class="popup-routes">
           <div class="bus-info-row"><span>Posisi</span><span>${positionText}</span></div>
