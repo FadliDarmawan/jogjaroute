@@ -46,7 +46,12 @@
     width: 100%;
   }
   .direction-row { margin-bottom: 4px; }
-  .position-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+  .position-row { display: flex; align-items: center; gap: 8px; }
+  .stop-select {
+    font-size: 13px; color: var(--text-secondary); border: none; background: transparent;
+    padding: 0; -webkit-appearance: none; appearance: none; max-width: 100%;
+  }
+  .position-hint { font-size: 12px; color: #999; margin-top: 2px; }
   .passenger-label { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; text-align: center; }
   .passenger-count { font-size: 48px; font-weight: 700; margin: 0 0 16px; text-align: center; }
 
@@ -147,8 +152,11 @@
       </select>
     </div>
     <div class="position-row" id="positionRow" style="display:none;">
-      <span id="positionText">Menunggu GPS...</span>
+      <select class="stop-select" id="stopSelect" onchange="onStopSelectChange(this.value)">
+        <option value="__auto__">Otomatis (ikut GPS)</option>
+      </select>
     </div>
+    <div class="position-hint" id="positionHint" style="display:none;">Menunggu GPS...</div>
   </div>
 
   <!-- ==== RIT PICKER (tampil sebelum rit dimulai) ==== -->
@@ -251,6 +259,7 @@ function renderRitState() {
   const ritBadge = document.getElementById("ritBadge");
   const directionRow = document.getElementById("directionRow");
   const positionRow = document.getElementById("positionRow");
+  const positionHint = document.getElementById("positionHint");
   const ritPickerCard = document.getElementById("ritPickerCard");
   const activeSection = document.getElementById("activeRitSection");
 
@@ -260,12 +269,15 @@ function renderRitState() {
     directionRow.style.display = "block";
     document.getElementById("directionSelect").value = currentRit.direction;
     positionRow.style.display = "flex";
+    positionHint.style.display = "block";
+    populateStopSelect();
     ritPickerCard.style.display = "none";
     activeSection.style.display = "block";
   } else {
     ritBadge.style.display = "none";
     directionRow.style.display = "none";
     positionRow.style.display = "none";
+    positionHint.style.display = "none";
     ritPickerCard.style.display = "block";
     activeSection.style.display = "none";
   }
@@ -288,6 +300,9 @@ async function setDirection(direction) {
   }
   const data = await res.json();
   currentRit = data.rit;
+  manualStopOverride = null; // pilihan manual sebelumnya mungkin tidak ada di arah baru
+  populateStopSelect();
+  updateNearestStopDisplay();
 }
 
 // Rit ganjil -> ke Pakem, rit genap -> balik ke Adisutjipto. Ini cuma
@@ -312,6 +327,7 @@ async function startRit(ritNumber) {
   currentRit = data.rit;
   currentEvents = [];
   pendingCounts = { naik: 0, turun: 0 };
+  manualStopOverride = null;
   renderRitState();
   renderPending();
   renderHistory();
@@ -493,12 +509,14 @@ async function submitEditDelete() {
 let orderedStops = null; // { to_pakem: [...], to_adisutjipto: [...] } | null
 let lastPosition = null;
 let lastStopName = null;
+let manualStopOverride = null; // nama halte kalau kru pilih manual, null = ikut GPS
 
 async function loadOrderedStops() {
   try {
     const res = await fetch("/routes/SIBULAN2_stops_ordered.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     orderedStops = await res.json();
+    if (currentRit) populateStopSelect(); // kalau rit sudah aktif duluan sebelum ini selesai load
   } catch (err) {
     console.warn("Gagal memuat daftar halte terurut, fallback ke koordinat mentah:", err);
   }
@@ -531,6 +549,27 @@ function nearestStopForDirection(direction, lat, lng) {
   return best;
 }
 
+// Isi ulang pilihan dropdown dengan halte-halte SESUAI ARAH RIT YANG LAGI
+// AKTIF SAJA (bukan gabungan 2 arah) -- supaya kru nggak bisa salah pilih
+// halte yang arahnya kebalik. Dipanggil tiap rit mulai & tiap arah diganti.
+function populateStopSelect() {
+  const select = document.getElementById("stopSelect");
+  if (!orderedStops || !currentRit) {
+    select.innerHTML = '<option value="__auto__">Otomatis (ikut GPS)</option>';
+    return;
+  }
+  const list = orderedStops[currentRit.direction] || [];
+  const options = ['<option value="__auto__">Otomatis (ikut GPS)</option>']
+    .concat(list.map((s) => `<option value="${s.name}">${s.name}</option>`));
+  select.innerHTML = options.join("");
+  select.value = manualStopOverride || "__auto__";
+}
+
+function onStopSelectChange(value) {
+  manualStopOverride = value === "__auto__" ? null : value;
+  updateNearestStopDisplay();
+}
+
 function lastKnownStopName() {
   return lastStopName;
 }
@@ -558,6 +597,39 @@ async function sendLocationToServer(loc) {
   }
 }
 
+// Dipanggil tiap ada posisi GPS baru, DAN tiap arah/pilihan manual diganti
+// -- supaya perubahan langsung kelihatan hasilnya, tidak perlu nunggu
+// update GPS berikutnya (yang kalau bus lagi diem, bisa lama).
+//
+// Kalau kru sudah pilih halte manual (manualStopOverride terisi), itu YANG
+// DIPAKAI apa adanya -- GPS tetap terus dikirim ke server di background
+// (posisi bus di peta index.html tetap akurat), cuma NAMA HALTE yang
+// dipakai buat catatan naik/turun ikut pilihan manual, bukan hasil GPS.
+function updateNearestStopDisplay() {
+  const hint = document.getElementById("positionHint");
+
+  if (manualStopOverride) {
+    lastStopName = manualStopOverride;
+    hint.textContent = "Dipilih manual";
+    return;
+  }
+  if (!lastPosition) {
+    hint.textContent = "Menunggu GPS...";
+    return;
+  }
+
+  const nearest = currentRit
+    ? nearestStopForDirection(currentRit.direction, lastPosition.lat, lastPosition.lng)
+    : null;
+  if (nearest) {
+    lastStopName = nearest.name;
+    hint.textContent = `Dekat ${nearest.name} (~${Math.round(nearest.dist)}m)`;
+  } else {
+    lastStopName = null;
+    hint.textContent = `${lastPosition.lat.toFixed(5)}, ${lastPosition.lng.toFixed(5)}`;
+  }
+}
+
 function startGPS() {
   if (!("geolocation" in navigator)) {
     showStatus("Browser ini tidak mendukung GPS");
@@ -573,20 +645,7 @@ function startGPS() {
       }
       lastPosition = { lat: latitude, lng: longitude };
 
-      // Halte terdekat cuma bisa dicari kalau rit sudah aktif (butuh tau
-      // arahnya) dan daftar halte sudah berhasil dimuat. Kalau salah satu
-      // belum ada, fallback nampilin koordinat mentah, bukan diem kosong.
-      const nearest = currentRit ? nearestStopForDirection(currentRit.direction, latitude, longitude) : null;
-      if (nearest) {
-        lastStopName = nearest.name;
-        document.getElementById("positionText").textContent =
-          `Dekat ${nearest.name} (~${Math.round(nearest.dist)}m)`;
-      } else {
-        lastStopName = null;
-        document.getElementById("positionText").textContent =
-          `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
-      }
-
+      updateNearestStopDisplay();
       sendLocationToServer({ lat: latitude, lng: longitude, heading: finalHeading, speed });
     },
     (err) => {
