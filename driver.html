@@ -89,7 +89,9 @@
   .rit-btn {
     height: 56px; font-size: 16px; font-weight: 600; border-radius: 10px;
     border: 1px solid var(--border); background: #fafafa; color: #1a1a1a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   }
+  .rit-btn-time { font-size: 11px; font-weight: 500; color: var(--text-muted); }
   .rit-btn:active { transform: scale(0.97); }
 
   /* ---- Passenger counter ---- */
@@ -222,9 +224,9 @@
   <div class="card" id="ritPickerCard">
     <p class="rit-picker-title">Mulai rit</p>
     <div class="rit-buttons">
-      <button class="rit-btn" data-rit="1" onclick="startRit(1)">Rit 1</button>
-      <button class="rit-btn" data-rit="2" onclick="startRit(2)">Rit 2</button>
-      <button class="rit-btn" data-rit="3" onclick="startRit(3)">Rit 3</button>
+      <button class="rit-btn" data-rit="1" onclick="startRit(1)">Rit 1<span class="rit-btn-time">06:00</span></button>
+      <button class="rit-btn" data-rit="2" onclick="startRit(2)">Rit 2<span class="rit-btn-time">13:00</span></button>
+      <button class="rit-btn" data-rit="3" onclick="startRit(3)">Rit 3<span class="rit-btn-time">15:00</span></button>
     </div>
   </div>
 
@@ -455,15 +457,25 @@ async function setDirection(direction) {
   updateNearestStopDisplay();
 }
 
-// Rit ganjil -> ke Pakem, rit genap -> balik ke Adisutjipto. Ini cuma
-// SARAN default berdasar pola bolak-balik biasa -- kru bisa override lewat
-// dropdown arah kapan saja (lihat setDirection).
-function suggestedDirection(ritNumber) {
-  return ritNumber % 2 === 1 ? "to_pakem" : "to_adisutjipto";
-}
+// Pola operasional sebenarnya: 1 rit = 1 PP penuh (A -> B -> A), BUKAN
+// sekali jalan doang. Bus 1 selalu MULAI dari Adisutjipto (jadi tiap rit
+// dimulai dengan arah ke Pakem dulu), Bus 2 selalu mulai dari Pakem (tiap
+// rit dimulai dengan arah ke Adisutjipto dulu) -- ini FIXED per bus, sama
+// sekali TIDAK bergantung nomor rit (bukan ganjil/genap kayak asumsi
+// sebelumnya). Nomor rit (1/2/3) di sini cuma label buat rit ke berapa
+// hari itu (dijadwalkan 06:00, 13:00, 15:00), bukan penentu arah.
+//
+// Arah ini cuma dipakai sebagai NILAI AWAL rit -- begitu kru sampai di
+// ujung dan mulai jalan balik (leg kedua dalam rit yang sama), kru WAJIB
+// switch manual lewat dropdown arah (lihat setDirection), karena sistem
+// tidak otomatis deteksi kapan bus sudah balik arah.
+const BUS_HOME_DIRECTION = {
+  bus1: "to_pakem",        // Bus 1 start dari Adisutjipto -> awal rit ke Pakem
+  bus2: "to_adisutjipto",  // Bus 2 start dari Pakem -> awal rit ke Adisutjipto
+};
 
 async function startRit(ritNumber) {
-  const direction = suggestedDirection(ritNumber);
+  const direction = BUS_HOME_DIRECTION[BUS_ID] || "to_pakem";
   const res = await fetch("/api/rit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

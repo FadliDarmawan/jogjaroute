@@ -16,6 +16,7 @@ module.exports = async function handler(req, res) {
       const rows = await sql`
         SELECT
           bl.*,
+          r.route_id,
           r.direction,
           r.rit_number,
           CASE WHEN r.id IS NULL THEN NULL ELSE COALESCE((
@@ -35,6 +36,7 @@ module.exports = async function handler(req, res) {
           speed: row.speed,
           isActive: row.is_active,
           updatedAt: new Date(row.updated_at).getTime(),
+          routeId: row.route_id, // dipakai filter bus per rute di index.html
           direction: row.direction, // 'to_pakem' | 'to_adisutjipto' | null (belum ada rit aktif)
           ritNumber: row.rit_number,
           passengerCount: row.passenger_count == null ? null : Number(row.passenger_count),

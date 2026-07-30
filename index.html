@@ -275,6 +275,16 @@
     text-transform: uppercase; color: #fff; background: rgba(28,28,26,0.85);
     padding: 2px 7px; border-radius: 999px;
   }
+  .stop-bus-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 50%; font-size: 10px;
+    flex: none; margin-right: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    animation: stop-bus-badge-pulse 2s ease-in-out infinite;
+  }
+  @keyframes stop-bus-badge-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
   .no-service {
     font-size: 12px; color: rgba(40,40,38,0.5); font-style: italic;
   }
@@ -1574,6 +1584,14 @@ const ROUTE_DIRECTIONS = {
   "Transgama 1": { start: "GSP", wayback: "Fakultas Peternakan", end: "GSP" },
   "Transgama 2": { start: "GSP", wayback: "Fakultas Teknik", end: "GSP" },
   "Transgama 3": { start: "GSP", wayback: "TILC", end: "GSP" },
+  // Wayback point ("Terminal Pakem") divalidasi terpisah lewat proyeksi
+  // GPS ke garis rute (lihat tools/build-sibulan2-directions.js dan
+  // routes/SIBULAN2_stops_ordered.json) -- percobaan split otomatis
+  // berdasarkan geometri gagal (jalur berangkat/pulang tumpang tindih di
+  // data GPS), makanya titik ini di-set manual dari hasil crosswalk
+  // Sibulan2.txt + STOP_ORIENTATION, bukan dari deteksi algoritmik biasa
+  // yang dipakai rute lain di atas.
+  "SiBulan 2": { start: "Bandara Adisutjipto", wayback: "Terminal Pakem", end: "Bandara Adisutjipto" },
 };
 
 const ROUTE_WAYPOINTS = Object.fromEntries(
@@ -4304,6 +4322,17 @@ function renderRouteDetailList(id) {
       stops = stops.filter(s => s.vertex >= Math.min(lo, hi) && s.vertex <= Math.max(lo, hi));
     }
   }
+  // Halte mana yang ada bus-nya SEKARANG -- dicocokkan dari nearestStopName
+  // yang di-cache tiap poll (lihat pollBusLocations), dibatasi ke bus yang
+  // route_id-nya cocok rute ini DAN (leg "all" atau arahnya cocok leg yang
+  // lagi dibuka) -- filter yang SAMA persis dipakai busShouldBeVisible,
+  // jadi badge di daftar ini konsisten sama bus yang kelihatan di peta.
+  const busesAtStop = {}; // { [stopName]: [{busId,color}, ...] }
+  for (const [busId, loc] of Object.entries(busLatestLoc)) {
+    if (!loc || !loc.nearestStopName || !busShouldBeVisible(loc)) continue;
+    (busesAtStop[loc.nearestStopName] ||= []).push({ busId, color: BUS_INSTANCES[busId].color });
+  }
+
   // Re-rendering this list (e.g. every time a stop row is clicked, to
   // update the passed/current highlighting) used to reset scrollTop to 0
   // via the innerHTML replacement below -- which felt like the whole
@@ -4319,12 +4348,17 @@ function renderRouteDetailList(id) {
       ? [...new Set(stopEntry.services.filter(x => x.route !== id).map(x => x.route))]
       : [];
     const badges = transferIds.map(routeBadgeHtml).join("");
+    const busesHere = busesAtStop[s.name] || [];
+    const busBadges = busesHere
+      .map(b => `<span class="stop-bus-badge" style="background:${b.color}" title="${BUS_INSTANCES[b.busId].label} ada di sini">🚌</span>`)
+      .join("");
     const passed = routeDetailCurrentVertex != null && s.vertex < routeDetailCurrentVertex;
     const current = s.vertex === routeDetailCurrentVertex;
     const rowClass = ["route-detail-row", passed ? "is-passed" : "", current ? "is-current" : ""]
       .filter(Boolean).join(" ");
     return `<button class="${rowClass}" data-name="${s.name}" data-vertex="${s.vertex}">
       <span class="route-detail-index">${i + 1}</span>
+      ${busBadges}
       <span class="route-detail-name">${stopTitleHtml(s.name)}</span>
       ${hub}
       ${badges ? `<span class="route-detail-badges">${badges}</span>` : ""}
@@ -4345,6 +4379,7 @@ function applyRouteDetailLeg(id, leg) {
   setSelectedStop(null);
   renderRouteDetailTabs(id);
   renderRouteDetailList(id);
+  updateBusMarkerVisibility(); // rute/arah baru dibuka -- filter bus langsung, jangan nunggu poll berikutnya
 
   const meta = ROUTE_META[id];
   const shape = ROUTE_SHAPES[id];
@@ -4465,7 +4500,23 @@ function openRouteDetail(id) {
   routeDetailTitle.textContent = hours ? `Stops along this route · ${hours}` : "Stops along this route";
   renderRouteSwitcher(id);
   applyRouteDetailLeg(id, "all"); // also renders the tabs + list and fits the map
+  scrollRouteDetailToBus(id);
   return true;
+}
+
+// Sekali aja pas rute baru dibuka (bukan tiap refresh tick -- itu udah
+// dijaga sendiri lewat prevScrollTop di renderRouteDetailList), geser
+// daftar halte ke baris yang ada badge bus-nya, biar nggak perlu nyari
+// manual di antara puluhan halte.
+function scrollRouteDetailToBus(id) {
+  const hasBus = Object.entries(busLatestLoc).some(
+    ([busId, loc]) => loc && loc.routeId === id && loc.nearestStopName
+  );
+  if (!hasBus) return;
+  requestAnimationFrame(() => {
+    const badgeEl = routeDetailList.querySelector(".stop-bus-badge");
+    if (badgeEl) badgeEl.closest(".route-detail-row")?.scrollIntoView({ block: "center" });
+  });
 }
 
 function closeRouteDetail() {
@@ -4482,6 +4533,7 @@ function closeRouteDetail() {
   setRouteOverview(null);
   setStopsFilter(null);
   setSelectedStop(null);
+  updateBusMarkerVisibility(); // balik ke plain view -- semua bus tampil lagi
 }
 
 // Called from a stop popup's "-> destination" button (see showPopup) in
@@ -5281,6 +5333,48 @@ map.on("zoom", () => {
   Object.values(busMarkers).forEach(updateBusMarkerZoomLevel);
 });
 
+// ---------------------------------------------------------------------------
+// Filter bus marker mana yang ditampilin, NGIKUT state route-detail yang
+// SUDAH ADA di app ini (routeIdFromHash() + routeDetailLeg) -- bukan bikin
+// sumber kebenaran baru yang terpisah:
+//   - Nggak ada rute dibuka (plain view)        -> semua bus ditampilin.
+//   - Rute dibuka, tab "Full route"              -> cuma bus yang route_id-nya
+//                                                    cocok sama rute itu.
+//   - Rute dibuka, tab arah ("up"/"down")         -> ditambah filter arah:
+//     "up" = leg start->wayback (ke arah wayback point, "to_pakem" untuk
+//     SiBulan 2), "down" = leg wayback->end ("to_adisutjipto").
+// ---------------------------------------------------------------------------
+function busShouldBeVisible(loc) {
+  const routeId = routeIdFromHash();
+  if (!routeId) return true; // plain view -- tampilkan semua bus
+
+  if (!loc.routeId || loc.routeId !== routeId) return false; // bus ini bukan di rute yang lagi dibuka
+
+  if (routeDetailLeg === "all") return true;
+  const wantDirection = routeDetailLeg === "up" ? "to_pakem" : "to_adisutjipto";
+  return loc.direction === wantDirection;
+}
+
+function updateBusMarkerVisibility() {
+  for (const [busId, marker] of Object.entries(busMarkers)) {
+    const loc = busLatestLoc[busId];
+    const visible = loc ? busShouldBeVisible(loc) : false;
+    marker.getElement().style.display = visible ? "" : "none";
+  }
+}
+
+// Kalau panel detail rute lagi kebuka buat rute yang sama kayak bus-bus
+// ini, refresh daftar haltenya supaya badge bus (lihat renderRouteDetailList)
+// ikut update posisinya tiap tick -- bukan cuma pas panel pertama dibuka.
+// renderRouteDetailList sendiri sudah save/restore scrollTop, jadi aman
+// dipanggil berulang tanpa bikin daftar "lompat" ke atas.
+function refreshRouteDetailBusBadgesIfOpen() {
+  const routeId = routeIdFromHash();
+  if (routeId && routeDetailPanel.style.display !== "none") {
+    renderRouteDetailList(routeId);
+  }
+}
+
 async function pollBusLocations() {
   try {
     const res = await fetch(BUS_API_URL);
@@ -5290,6 +5384,11 @@ async function pollBusLocations() {
     for (const busId of Object.keys(BUS_INSTANCES)) {
       const loc = data[busId];
       if (!loc) continue; // belum pernah kirim lokasi sama sekali
+      // Halte terdekat (sesuai arah) di-cache di sini setiap tick -- dipakai
+      // buat badge bus di daftar halte (renderRouteDetailList) TANPA perlu
+      // hitung ulang tiap render, dan tanpa nunggu popup di-tap dulu.
+      const nearest = loc.direction ? nearestStopNameForBus(loc.direction, loc.lat, loc.lng) : null;
+      loc.nearestStopName = nearest ? nearest.name : null;
       busLatestLoc[busId] = loc;
 
       const marker = ensureBusMarker(busId, [loc.lng, loc.lat]);
@@ -5315,14 +5414,15 @@ async function pollBusLocations() {
       }
     }
 
-    // Tombol "cari bus" cuma ada gunanya kalau minimal 1 bus punya posisi.
-    // Marker bus SENDIRI selalu ada & live di peta apapun rute yang lagi
-    // difilter/ditampilkan -- yang berubah cuma framing kamera peta (mis.
-    // milih rute lain memicu map.fitBounds ke rute itu, jadi posisi bus
-    // yang di luar area itu keluar dari layar). Tombol ini nge-fix itu
-    // dengan geser kamera ke posisi bus, terlepas dari filter yang aktif.
-    if (Object.keys(busMarkers).length > 0) {
+    updateBusMarkerVisibility();
+    refreshRouteDetailBusBadgesIfOpen();
+
+    // Tombol "cari bus" cuma ada gunanya kalau minimal 1 bus punya posisi
+    // DAN lagi ditampilin (nggak ke-filter sama rute/arah yang aktif).
+    if (Object.values(busMarkers).some((m) => m.getElement().style.display !== "none")) {
       document.getElementById("locateBusBtn").style.display = "flex";
+    } else {
+      document.getElementById("locateBusBtn").style.display = "none";
     }
   } catch (err) {
     // Sengaja cuma di-log, bukan ditampilkan ke user -- kegagalan poll
