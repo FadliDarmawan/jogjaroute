@@ -1,0 +1,75 @@
+Bandara Adisutjipto
+KKP Yogyakarta
+Disnakertrans - A
+SMKN 1 Depok - Jl. Raya Tajem - A
+SDN 1 Depok -  A
+KUA Depok - A
+MAN 2 Sleman - A
+UNRIYO - A
+Budi Mulia Dua - A
+Indomaret Pokoh Sambiroto - A
+Kantor Kal. Wedomartani - A
+Simpang Babadan - A
+Simpang Selomartani - A
+Simpang Kabunan - A
+Jl. Raya Kabunan - A
+RS Kemasan - A
+Simpang Kenti - A
+Pasar Jangkang - A
+Puskesmas Ngemplak - A
+Tugu Batas Desa Yapah - A
+Timur Jembatan Yapah - A
+SMAN 2 Ngaglik - A
+Simpang Losari - A
+SPBU Mindi - A
+Lap. Klidon - A
+Kantor Kal. Sukoharjo - A
+SDN Selomulyo - A
+RSU Gramedika - B
+Simpang Besi Jakal - A
+YAKKUM - A
+Boulevard UII
+UII (Barat Jalan)
+Simpang Degolan - A
+Raminten - A
+Dusun Kledokan - A
+RS Panti Nugroho
+Terminal Pakem
+SDN Percobaan 3 Pakem
+SMPN 4 Pakem
+Dusun Kledokan - B
+Raminten - B
+Simpang Degolan - B
+Boulevard UII
+UII (Timur Jalan)
+YAKKUM - B
+Simpang Besi Jakal - B
+RSU Gramedika - A
+SDN Selomulyo - B
+Kantor Kal. Sukoharjo - B
+Lap. Klidon - B
+SPBU Mindi - B
+Simpang Losari - B
+SMAN 2 Ngaglik - B
+Timur Jembatan Yapah - B
+Tugu Batas Desa Yapah - B
+Puskesmas Ngemplak - B
+Pasar Jangkang - B
+Simpang Kenti - B
+RS Kemasan - B
+Jl. Raya Kabunan - B
+Simpang Kabunan - B
+Simpang Selomartani - B
+Simpang Babadan - B
+Kantor Kal. Wedomartani - B
+Indomaret Pokoh Sambiroto - B
+Budi Mulia Dua - B
+UNRIYO - B
+MAN 2 Sleman - B
+KUA Depok - B
+SDN 1 Depok - B
+SMKN 1 Depok - Jl. Raya Tajem - B
+Disnakertrans - B
+Selokan Mataram Maguwo
+Binamarga
+Maguwo Sambilegi

@@ -72,9 +72,9 @@
       "lng": 110.43856
     },
     {
-      "name": "Simpang Kabunan - A",
-      "lat": -7.71859,
-      "lng": 110.43856
+      "name": "Jl. Raya Kabunan - A",
+      "lat": -7.7132,
+      "lng": 110.44284
     },
     {
       "name": "RS Kemasan - A",
@@ -377,11 +377,6 @@
       "name": "Maguwo Sambilegi",
       "lat": -7.78341,
       "lng": 110.43099
-    },
-    {
-      "name": "Bandara Adisutjipto",
-      "lat": -7.7845,
-      "lng": 110.43571
     }
   ]
 }

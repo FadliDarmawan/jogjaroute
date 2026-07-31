@@ -1,3 +1,16 @@
+// DEPRECATED -- lihat tools/sibulan2.txt + tools/14.txt dan
+// `node build-route-shapes.js "SiBulan 2" ... --order=tools/sibulan2.txt`
+// (dan sama buat rute "14") sebagai gantinya. Script INI menghasilkan
+// pembagian yang SALAH (66 halte ke arah Pakem, cuma 8 ke arah
+// Adisutjipto) karena jalur berangkat & pulang SiBulan 2 banyak yang
+// tumpang tindih di data GPS-nya, jadi proyeksi nearest-point independen
+// (tanpa urutan yang udah dikonfirmasi) nggak reliable buat kasus ini.
+// build-route-shapes.js --order menyelesaikan masalah yang sama dengan
+// cara yang benar: forward-only matching sepanjang urutan yang SUDAH
+// dikonfirmasi manual (dari Sibulan2.txt), bukan nebak dari geometri
+// doang. File ini dibiarkan ada sebagai catatan kenapa pendekatan itu
+// gagal, bukan buat dipakai lagi.
+//
 // Bikin routes/SIBULAN2_stops_ordered.json: daftar halte SiBulan 2 terurut
 // per arah, dipakai halaman /driver buat nentuin "posisi sekarang" yang
 // bener sesuai arah rit (bukan cuma halte terdekat garis lurus).
