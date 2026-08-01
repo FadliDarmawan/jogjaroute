@@ -1,36 +1,35 @@
 Terminal Jombor
-Indogrosir (Timur Jalan)
-Jogja City Mall (Timur Jalan)
+Indogrosir
+Jogja City Mall - A
 Atakrib Jl. Magelang
-TVRI (Timur Jalan)
-Karangwaru (Timur Jalan)
+TVRI - A
+Karangwaru - A
 Borobudur Plaza
-SMKN 3 (Utara Jalan)
-Fisipol (Barat Jalan)
-SMPN 1 (Timur Jalan)
+SMKN 3
+Fisipol UGM - A
+SMPN 1 - B
 Cik Di Tiro
-Bulog 
+Bulog
 Kridosono
 AA YKPN
 Demangan
 De Britto
-Ambarukmo (Utara Jalan)
+Ambarukmo - B
 Janti Selatan
 Janti Utara
 Sahid J-Walk
-Dishub DIY (Barat Jalan)
-Babarsari (Selatan Jalan)
-STIE YKPN (Barat Jalan)
+Dishub DIY - A
+Babarsari - A
+STIE YKPN - A
 UPN Veteran
-Pakuwon Mall (Selatan Jalan)
+Pakuwon Mall - A
 Terminal Condongcatur
 Manggung
-Hokben Jakal (Timur Jalan)
+Hokben Jakal - A
 McD Jakal
-FKG UGM (Selatan Jalan)
-RS Sardjito (Barat Jalan)
-Teknik UGM (Selatan Jalan)
-SPBU Monjali (Barat Jalan)
-PDAM Monjali (Barat Jalan)
-Monjali (Selatan Jalan)
-Terminal Jombor
+FKG UGM - B
+RS Sardjito - B
+Teknik UGM - A
+SPBU Monjali - B
+PDAM Monjali - B
+Monjali - B

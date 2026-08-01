@@ -1,40 +1,42 @@
 Terminal Giwangan
-Pasar Giwangan (Barat Jalan)
-Gudang SGM (Barat Jalan)
+Pasar Giwangan - A
+Gudang SGM - A
 SMK Muh 3
 Pramuka
 Pandeyan
-UTY Glagahsari (Barat Jalan)
-Kusumanegara (Utara Jalan)
-SMKN 5 (Selatan Jalan)
-Timoho (Barat Jalan)
-APMD (Barat Jalan)
-UIN Sunan Kalijaga (Barat Jalan)
+UTY Glagahsari - B
+Olive Glagahsari
+SGM Kusumanegara - A
+SMKN 5 - B
+Timoho - B
+APMD - B
+UIN Sunan Kalijaga - B
 Gedung Wanita
 RRI Gejayan
 Plaza UNY
+Ombudsman
 Santren
-Prayan (Barat Jalan)
-SPBU Concat (Barat Jalan)
+Prayan - A
+SPBU Concat - A
 Terminal Condongcatur
 Manggung
-Hokben Jakal (Timur Jalan)
+Hokben Jakal - A
 McD Jakal
 Biologi UGM
-RS Sardjito (Timur Jalan)
-FKG UGM (Utara Jalan)
-GIK UGM (Timur Jalan)
+RS Sardjito - A
+FKG UGM - A
+GIK UGM
 MAN 1
 PDIN
 Bulog
 Kridosono
 Lempuyangan
-Hayam Wuruk (Timur Jalan)
+Hayam Wuruk - B
 Pakualaman
-Lapas Wirogunan (Timur Jalan)
+Lapas Wirogunan - B
 STSRD Visi Tamansiswa
 STIE Kerjasama
+Polsek Umbulharjo
 UAD Jl. Pramuka
-Gudang SGM (Timur Jalan)
-Pasar Giwangan (Timur Jalan)
-Terminal Giwangan
+Gudang SGM - B
+Pasar Giwangan - B

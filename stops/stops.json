@@ -712,13 +712,6 @@
         ]
       },
       {
-        "route": "4A",
-        "is_departure_hub": false,
-        "destinations": [
-          "Kridsono"
-        ]
-      },
-      {
         "route": "4B",
         "is_departure_hub": false,
         "destinations": [
@@ -768,13 +761,6 @@
       },
       {
         "route": "3A",
-        "is_departure_hub": false,
-        "destinations": [
-          "Bulog"
-        ]
-      },
-      {
-        "route": "4A",
         "is_departure_hub": false,
         "destinations": [
           "Bulog"
@@ -1293,6 +1279,13 @@
       {
         "route": "2A",
         "is_departure_hub": false
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Kridosono"
+        ]
       }
     ]
   },
@@ -1331,6 +1324,13 @@
       {
         "route": "2A",
         "is_departure_hub": false
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - B"
+        ]
       }
     ]
   },
@@ -1462,19 +1462,6 @@
     ]
   },
   {
-    "point": "110.37932 -7.78235",
-    "stop_name": "Galeria Mall",
-    "services": [
-      {
-        "route": "4B",
-        "is_departure_hub": false,
-        "destinations": [
-          "Lembah UGM - B"
-        ]
-      }
-    ]
-  },
-  {
     "point": "110.39105 -7.81689",
     "stop_name": "Gambiran - A",
     "services": [
@@ -1538,17 +1525,17 @@
         ]
       },
       {
-        "route": "4B",
-        "is_departure_hub": false,
-        "destinations": [
-          "RRI Gejayan"
-        ]
-      },
-      {
         "route": "5B",
         "is_departure_hub": false,
         "destinations": [
           "LPP"
+        ]
+      },
+      {
+        "route": "4B",
+        "is_departure_hub": false,
+        "destinations": [
+          "RRI Gejayan"
         ]
       }
     ]
@@ -3345,6 +3332,13 @@
         "destinations": [
           "Eks Menara Kopi - B"
         ]
+      },
+      {
+        "route": "L1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Eks Menara Kopi - B"
+        ]
       }
     ]
   },
@@ -3579,13 +3573,6 @@
     "services": [
       {
         "route": "1A",
-        "is_departure_hub": false,
-        "destinations": [
-          "Superindo Urip Sumoharjo"
-        ]
-      },
-      {
-        "route": "4B",
         "is_departure_hub": false,
         "destinations": [
           "Superindo Urip Sumoharjo"
@@ -4883,7 +4870,15 @@
   {
     "point": "110.38840 -7.77953",
     "stop_name": "Pasar Demangan",
-    "services": []
+    "services": [
+      {
+        "route": "4A",
+        "is_departure_hub": "false",
+        "destinations": [
+          "Demangan"
+        ]
+      }
+    ]
   },
   {
     "point": "110.32381 -7.80063",
@@ -6278,13 +6273,6 @@
         ]
       },
       {
-        "route": "4A",
-        "is_departure_hub": false,
-        "destinations": [
-          "SMPN 1 - B"
-        ]
-      },
-      {
         "route": "12",
         "is_departure_hub": false,
         "destinations": [
@@ -6489,7 +6477,13 @@
         "route": "2B",
         "is_departure_hub": false,
         "destinations": [
-          "Samirono",
+          "Samirono"
+        ]
+      },
+      {
+        "route": "4A",
+        "is_departure_hub": false,
+        "destinations": [
           "Pasar Demangan"
         ]
       },
@@ -7769,13 +7763,6 @@
         ]
       },
       {
-        "route": "4A",
-        "is_departure_hub": false,
-        "destinations": [
-          "Cik Di Tiro"
-        ]
-      },
-      {
         "route": "5A",
         "is_departure_hub": false,
         "destinations": [
@@ -8370,13 +8357,6 @@
         "is_departure_hub": false,
         "destinations": [
           "RS Bethesda"
-        ]
-      },
-      {
-        "route": "4B",
-        "is_departure_hub": false,
-        "destinations": [
-          "Galeria Mall"
         ]
       },
       {
@@ -9809,12 +9789,22 @@
   {
     "point": "110.37392 -7.83142",
     "stop_name": "Wojo (Randubelang) - A",
-    "services": []
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false
+      }
+    ]
   },
   {
     "point": "110.37385 -7.83019",
     "stop_name": "Wojo (Randubelang) - B",
-    "services": []
+    "services": [
+      {
+        "route": "11",
+        "is_departure_hub": false
+      }
+    ]
   },
   {
     "point": "110.40641 -7.79862",

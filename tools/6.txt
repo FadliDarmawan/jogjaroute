@@ -1,20 +1,20 @@
 Park and Ride Gamping
 PKU Gamping
-Pasar Gamping (Utara)
-Universitas BSI (Timur)
-UMY (Timur)
-Tamantirto (Timur)
+Pasar Gamping - A
+Universitas BSI - B
+UMY - B
+Tamantirto - B
 Universitas Alma Ata
-Lapangan Kasihan (Timur)
-Simpang Diklat DIY (Utara)
-Madukismo (Barat)
-SMAN 1 Kasihan (Barat)
-SMK Seni (Barat)
-Pasar Legi (Barat)
-Muallimin (Utara)
+Lap. Kasihan - B
+Simpang Diklat DIY - B
+Madukismo - B
+SMAN 1 Kasihan - A
+SMK Seni - B
+Pasar Legi - A
+Mualimin - A
 Tejokusuman
 Ngabean
-KHA Dahlan (Utara)
+KHA Dahlan - B
 Taman Pintar
 Suryotomo
 Progo
@@ -22,19 +22,18 @@ Jl. Mataram
 Teras 2
 Malioboro 1
 Malioboro 2
-Malioboro 3 
-KHA Dahlan (Selatan)
+Malioboro 3
+KHA Dahlan - A
 Ngabean
-Muallimin (Selatan)
-Pasar Legi (Timur)
-SMK Seni (Timur)
-SMAN 1 Kasihan (Timur)
-Madukismo (Timur)
-Simpang Diklat DIY (Selatan)
-Lap. Kasihan (Barat)
-Tamantirto (Barat)
-UMY (Barat)
-Universitas BSI (Barat)
-Pasar Gamping (Selatan)
-BPD Gamping 
-Park and Ride Gamping
+Mualimin - B
+Pasar Legi - B
+SMK Seni - A
+SMAN 1 Kasihan - B
+Madukismo - A
+Simpang Diklat DIY - A
+Lap. Kasihan - A
+Tamantirto - A
+UMY - A
+Universitas BSI - A
+Pasar Gamping - B
+BPD Gamping

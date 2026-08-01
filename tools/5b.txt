@@ -1,29 +1,29 @@
-Terminal Jombor 
-Monjali (Utara)
-PDAM Monjali (Timur)
-SPBU Monjali (Timur)
-Teknik UGM (Utara)
-RS Sardjito (Timur)
-FKG UGM (Utara)
+Terminal Jombor
+Monjali - A
+PDAM Monjali - A
+SPBU Monjali - A
+Teknik UGM - B
+RS Sardjito - A
+FKG UGM - A
 Hotel Vidi
-Hokben Jakal (Barat)
+Hokben Jakal - B
 Kentungan
 Terminal Condongcatur
-Pakuwon Mall (Utara)
-RS JIH 
+Pakuwon Mall - B
+RS JIH
 Stikes Guna Bangsa
-STIE YKPN (Timur)
-Babarsari (Utara)
-Dishub DIY (Timur)
+STIE YKPN - B
+Babarsari - B
+Dishub DIY - B
 Mirota Babarsari
 Transmart
 Kanwil DJPb
-Maguwo Sambilegi 
+Maguwo Sambilegi
 Bandara Adisutjipto
 Hyundai
 Jayakarta
 Janti Selatan
-Ambarukmo (Selatan)
+Ambarukmo - A
 Gedung Wanita
 LPP
 Superindo Urip Sumoharjo
@@ -32,13 +32,12 @@ Bulog
 Kridosono
 Jl. Suroto
 Dr. Yap
-SMPN 1 (Barat)
-Fisipol (Timur)
-SMKN 3 (Selatan)
-Kricak (Barat)
-Karangwaru (Barat)
-TVRI (Barat)
-Daytrans Jl. Magelang 
-Jogja City Mall
+SMPN 1 - A
+Fisipol UGM - B
+SMPN 6
+Kricak
+Karangwaru - B
+TVRI- B
+Daytrans Jl. Magelang
+Jogja City Mall - B
 MMTC Yogyakarta
-Terminal Jombor

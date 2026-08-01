@@ -1,17 +1,17 @@
 Terminal Giwangan
-Pasar Giwangan (Barat Jalan)
-Gudang SGM (Barat Jalan)
-Tegal Turi (Selatan Jalan)
-Wirosaban
-Widya Wiwaha (Barat Jalan)
-Lowanu (Barat Jalan)
-Museum Perjuangan 
+Pasar Giwangan - A
+Gudang SGM - A
+Tegal Turi - B
+Nitikan
+Widya Wiwaha - B
+Lowanu - B
+Museum Perjuangan
 Jokteng Wetan
-Plengkung Gading (Selatan Jalan)
+Plengkung Gading - B
 SMAN 7
 Tejokusuman
 Ngabean
-KHA Dahlan (Utara Jalan)
+KHA Dahlan - B
 Bhayangkara
 Pasar Pathuk
 Sosrowijayan
@@ -20,37 +20,37 @@ Jlagran
 Badran
 SMPN 14
 Pasar Kranggan Selatan
-Jend. Sudirman (Utara Jalan)
+Jend. Sudirman - B
 Dr. Yap
-SMPN 1 (Barat Jalan)
+SMPN 1 - A
 Vokasi UGM
-FKG UGM (Selatan Jalan)
-RS Sardjito (Barat Jalan)
+FKG UGM - B
+RS Sardjito - B
 MM UGM
 Hotel Vidi
-Hokben Jakal (Barat Jalan)
+Hokben Jakal - B
 Kentungan
 Terminal Condongcatur
-Pakuwon Mall (Utara Jalan)
+Pakuwon Mall - B
 RS JIH
 Stikes Guna Bangsa
-Polsek Depok Timur (Utara Jalan)
-Instiper (Utara Jalan)
+Polsek Depok Timur - B
+Instiper - B
 SMKN 1 Depok - Ring Road Utara
 Binamarga
 Maguwo Sambilegi
 Bandara Adisutjipto
 Hyundai
 Jayakarta
+Pasar Angkasa
 RS Hardjolukito
 Wonocatur
 BKPM
-Banguntapan (Timur Jalan)
+Banguntapan - B
 Poltekkes BSI
-Kehutanan (Timur Jalan)
+Kehutanan - B
 Pegadaian
-Lap. Karang (Selatan Jalan)
-Tegal Gendu (Selatan Jalan)
-Gudang SGM (Timur Jalan)
-Pasar Giwangan (Timur Jalan)
-Terminal Giwangan
+Lap. Karang - B
+Tegal Gendu - B
+Gudang SGM - B
+Pasar Giwangan - B

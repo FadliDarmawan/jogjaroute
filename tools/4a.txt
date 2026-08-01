@@ -1,45 +1,46 @@
 Terminal Giwangan
-Pasar Giwangan (Barat Jalan)
-Gudang SGM (Barat Jalan)
+Pasar Giwangan - A
+Gudang SGM - A
 SMK Muh 3
 Pramuka
 Pasar Sepeda
 Nyutran Tamansiswa
-Lapas Wirogunan (Barat Jalan)
+Lapas Wirogunan - A
+Pasar Sentul
 Museum Biologi
-Hayam Wuruk (Barat Jalan)
+Hayam Wuruk - A
 Pasar Lempuyangan
 Stasiun Lempuyangan
 Kridosono
 UKDW
 RS Bethesda
 Dr. Yap
-SMPN 1 (Barat Jalan)
-Vokasi UGM (Barat Jalan)
-FKG UGM (Selatan Jalan)
-RS Sardjito (Barat Jalan)
+SMPN 1 - A
+Vokasi UGM
+FKG UGM - B
+RS Sardjito - B
 MM UGM
 Hotel Vidi
-Hokben Jakal (Barat Jalan)
+Hokben Jakal - B
 Kentungan
 Terminal Condongcatur
-SPBU Concat (Timur Jalan)
-Prayan (Timur Jalan)
+SPBU Concat - B
+Prayan - B
 Susteran Novisiat
+Makam Santren
 Sanata Dharma
 Pasar Demangan
 Demangan
 De Britto
-UIN Sunan Kalijaga (Timur Jalan)
-APMD (Timur Jalan)
-Timoho (Timur Jalan)
-SMKN 5 (Utara Jalan)
-Kusumanegara (Selatan Jalan)
-UTY Glagahsari (Timur Jalan)
+UIN Sunan Kalijaga - A
+APMD - A
+Timoho - A
+SMKN 5 - A
+SGM Kusumanegara - B
+UTY Glagahsari - A
 Makam Prajurit
 XT Square
 Polsek Umbulharjo
 UAD Jl. Pramuka
-Gudang SGM (Timur Jalan)
-Pasar Giwangan (Timur Jalan)
-Terminal Giwangan
+Gudang SGM - B
+Pasar Giwangan - B
