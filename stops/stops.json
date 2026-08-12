@@ -2215,6 +2215,9 @@
         "destinations": [
           "Kridosono"
         ]
+      },
+      {
+        "route": "11"
       }
     ]
   },
@@ -7520,7 +7523,7 @@
   },
   {
     "point": "110.29114 -7.76209",
-    "stop_name": "SMK Negeri 2 Godean",
+    "stop_name": "SMKN 2 Godean",
     "services": [
       {
         "route": "13",

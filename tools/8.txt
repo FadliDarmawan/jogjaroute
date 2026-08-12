@@ -1,0 +1,47 @@
+Terminal Jombor
+UTY Ring Road Utara - A
+Dusun Ngawen
+Westlake - A
+Perumahan Nogotirto
+Demak Ijo - A
+Metro Nogotirto - A
+Kantor Pos Demak Ijo - A
+SDN 1 Demak Ijo - A
+Pasar Tlogorejo - A
+McD
+Mirota Godean - A
+BKD - A
+Pasar Pingit - A
+Pasar Kranggan Selatan
+Mangkubumi 1
+Mangkubumi 2
+Eks Menara Kopi - A
+Kridosono
+Eks Menara Kopi - B
+Malioboro 1
+Malioboro 2
+Malioboro 3
+KHA Dahlan - A
+Ngabean
+KHA Dahlan - B
+Bhayangkara
+Pasar Pathuk
+Sosrowijayan
+Stasiun Yogyakarta
+Jlagran
+Badran
+SMPN 14
+Pasar Pingit - B
+BKD - B
+Mirota Godean - B
+Dentes Godean
+Pasar Tlogorejo - B
+SDN 1 Demak Ijo - B
+Kantor Pos Demak Ijo - B
+Metro Nogotirto - B
+Kompi Senapan-C
+Demak Ijo - B
+Nogosaren
+Universitas Aisyiyah
+Westlake - B
+UTY Ring Road Utara - B
