@@ -9922,7 +9922,7 @@
     "stop_name": "GSP",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": true,
         "destinations": [
           "Perpustakaan"
@@ -9949,7 +9949,7 @@
     "stop_name": "Perpustakaan",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "Fakultas Kehutanan"
@@ -9962,7 +9962,7 @@
     "stop_name": "Fakultas Kehutanan",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "Fakultas Pertanian"
@@ -9975,7 +9975,7 @@
     "stop_name": "Fakultas Pertanian",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "Fakultas Peternakan"
@@ -9988,7 +9988,7 @@
     "stop_name": "Fakultas Peternakan",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "Wisdom Park"
@@ -10001,7 +10001,7 @@
     "stop_name": "Wisdom Park",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "Fakultas Ilmu Budaya"
@@ -10014,7 +10014,7 @@
     "stop_name": "Fakultas Ilmu Budaya",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "University Club"
@@ -10027,7 +10027,7 @@
     "stop_name": "University Club",
     "services": [
       {
-        "route": "Transgama1",
+        "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
           "GSP"
