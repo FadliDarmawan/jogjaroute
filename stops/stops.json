@@ -10040,8 +10040,20 @@
     "stop_name": "University Club",
     "services": [
       {
-        "route": "Transgama 1",
+        "route": "Transgama1",
         "is_departure_hub": false,
+        "destinations": [
+          "GSP"
+        ]
+      },
+      {
+        "route": "Transgama 2",
+        "destinations": [
+          "GSP"
+        ]
+      },
+      {
+        "route": "Transgama 3",
         "destinations": [
           "GSP"
         ]
