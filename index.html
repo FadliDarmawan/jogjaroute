@@ -482,28 +482,11 @@
      ikonnya sendiri (kesannya "melebar mengambang" pas di-zoom). Makanya
      root elemen di sini WAJIB `display: inline-flex` + tanpa width auto
      yang nurun dari block layout -- supaya ukurannya ngikutin konten
-     (ikon), titik ankernya presisi di satu koordinat, "pakem" pas zoom.
-
-     PENTING soal bug KEDUA (beda dari di atas): MapLibre naruh anchor
-     marker di titik PUSAT bounding-box elemen root ini. Ikon far
-     (segitiga, 18x18) dan near (bus, 30x30) beda ukuran, dan cuma satu
-     yang display:block di satu waktu (lihat bawah) -- kalau .bus-marker
-     dibiarkan ngikutin ukuran konten yang lagi tampil (kayak sebelumnya),
-     bounding-box-nya BERUBAH pas nyebrangin BUS_ICON_ZOOM_THRESHOLD,
-     otomatis titik pusatnya ikut geser beberapa px persis pas itu --
-     kelihatan "loncat"/"geser" pas zoom in-out, beda dari titik halte
-     (WebGL circle layer) yang radiusnya berubah tapi koordinat pusatnya
-     TIDAK PERNAH disentuh sama sekali. Makanya di sini ukurannya
-     di-FIX (bukan ngikutin konten) sebesar ikon terbesar, dan kedua ikon
-     ditumpuk di sel grid yang sama (grid-area 1/1) supaya keduanya
-     selalu center persis di titik yang sama -- toggle display cuma
-     ganti ikon mana yang kelihatan, TIDAK PERNAH mengubah ukuran/anchor
-     container-nya. ---- */
+     (ikon), titik ankernya presisi di satu koordinat, "pakem" pas zoom. ---- */
   .bus-marker {
-    display: grid;
-    place-items: center;
-    width: 30px;  /* = ukuran ikon terbesar (BUS_ICON_SVG) -- lihat catatan di atas */
-    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -514,13 +497,11 @@
   /* Ikon segitiga (zoom jauh) vs ikon bus (zoom deket) -- keduanya
      dirender sekaligus di DOM, cuma satu yang display:block di satu
      waktu, di-toggle dari JS (lihat updateBusMarkerZoomLevel) supaya
-     ganti-icon-nya instan tanpa perlu bikin ulang marker. grid-area: 1/1
-     numpuk keduanya di sel grid yang sama persis (lihat catatan bug
-     kedua di .bus-marker di atas) -- placeholder dulu (bentuk generik),
-     gampang diganti begitu SVG final ada, tinggal replace isi
-     TRIANGLE_ICON_SVG / BUS_ICON_SVG di script. */
-  .bus-marker-icon-far { grid-area: 1 / 1; display: block; }
-  .bus-marker-icon-near { grid-area: 1 / 1; display: none; }
+     ganti-icon-nya instan tanpa perlu bikin ulang marker. Placeholder
+     dulu (bentuk generik) -- gampang diganti begitu SVG final ada,
+     tinggal replace isi TRIANGLE_ICON_SVG / BUS_ICON_SVG di script. */
+  .bus-marker-icon-far { display: block; }
+  .bus-marker-icon-near { display: none; }
   .bus-marker.zoomed-in .bus-marker-icon-far { display: none; }
   .bus-marker.zoomed-in .bus-marker-icon-near { display: block; }
 
