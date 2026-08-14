@@ -12,7 +12,12 @@
 // stateless/short-lived per invocation, tidak didesain buat nahan koneksi
 // WebSocket lama. Pola paling cocok di sini: connect -> join -> tunggu 1
 // pesan data -> putus -- bukan nahan koneksi terus-terusan.
-const WebSocket = require("ws");
+//
+// CATATAN: require("ws") sengaja DI DALAM handler (bukan di top-level file)
+// dan dibungkus try/catch -- kalau paket "ws" gagal ke-load di server (misal
+// belum ke-install beneran di build Vercel), ini akan balikin JSON error
+// yang jelas ("Modul ws gagal di-load...") daripada function crash mentah2
+// dan browser cuma dapat 500 polos tanpa keterangan.
 
 const UGM_WS_URL = "wss://armada.smartcampus.ugm.ac.id/gps/ws";
 const JOIN_PAYLOAD = { type: "join", username: "user1", room: "room1" };
@@ -38,7 +43,7 @@ let cache = { data: null, fetchedAt: 0 };
 const CACHE_TTL_MS = 4000;
 const WS_TIMEOUT_MS = 8000;
 
-function fetchFromUgmWs() {
+function fetchFromUgmWs(WebSocket) {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(UGM_WS_URL);
     let settled = false;
@@ -112,13 +117,27 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method tidak didukung" });
   }
 
+  // require() di sini, bukan di top-level file -- lihat catatan di atas
+  // kenapa. Kalau ini gagal, balas JSON yang jelas daripada crash mentah.
+  let WebSocket;
+  try {
+    WebSocket = require("ws");
+  } catch (err) {
+    console.error("Gagal load modul 'ws':", err);
+    return res.status(500).json({
+      error: "Modul 'ws' gagal di-load di server",
+      detail: err.message,
+      hint: "Pastikan 'ws' ada di dependencies package.json DAN package-lock.json sudah diupdate (npm install lokal dulu), lalu redeploy.",
+    });
+  }
+
   const now = Date.now();
   if (cache.data && now - cache.fetchedAt < CACHE_TTL_MS) {
     return res.status(200).json(cache.data);
   }
 
   try {
-    const inner = await fetchFromUgmWs();
+    const inner = await fetchFromUgmWs(WebSocket);
     const normalized = normalize(inner);
     cache = { data: normalized, fetchedAt: now };
     return res.status(200).json(normalized);
@@ -130,6 +149,9 @@ module.exports = async function handler(req, res) {
     if (cache.data) {
       return res.status(200).json(cache.data);
     }
-    return res.status(502).json({ error: "Gagal terhubung ke sumber data armada UGM" });
+    return res.status(502).json({
+      error: "Gagal terhubung ke sumber data armada UGM",
+      detail: err.message,
+    });
   }
 };
