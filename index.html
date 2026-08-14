@@ -5530,6 +5530,12 @@ const ARMADA_UGM_INSTANCES = {
 let armadaUgmMarkers = {}; // { "4": maplibregl.Marker, ... } key = deviceid
 let armadaUgmLatestLoc = {};
 let armadaUgmPopup = null; // 1 popup kebuka dalam satu waktu, terpisah dari busPopup SiBulan
+// deviceId yang popup-nya lagi kebuka -- null kalau tidak ada. Dipakai
+// pollArmadaUgmLocations() buat tau popup mana yang perlu ikut digeser
+// tiap tick, supaya popup tidak "ketinggalan" saat marker-nya sudah
+// pindah ke posisi baru (bug: dulu popup cuma di-setLngLat SEKALI pas
+// dibuka, tidak pernah di-update lagi walau bus-nya terus jalan).
+let armadaUgmPopupDeviceId = null;
 
 function armadaUgmMarkerHtml(deviceId) {
   return `
@@ -5540,30 +5546,44 @@ function armadaUgmMarkerHtml(deviceId) {
   `;
 }
 
-function showArmadaUgmPopup(deviceId, coord) {
+function armadaUgmPopupHtml(deviceId) {
   const { label } = ARMADA_UGM_INSTANCES[deviceId];
   const loc = armadaUgmLatestLoc[deviceId];
-  const updatedText = loc ? `${Math.round((Date.now() - loc.updatedAt) / 1000)}s lalu` : "-";
+  // Math.max(0, ...) -- tanpa ini kadang muncul "-1s lalu" kalau jam
+  // server (tempat updatedAt di-set, lihat api/armada-ugm.js) sedikit
+  // lebih cepat dari jam device -- bukan bug data, cuma clock skew biasa,
+  // tapi kelihatan aneh kalau dibiarkan minus.
+  const updatedText = loc ? `${Math.max(0, Math.round((Date.now() - loc.updatedAt) / 1000))}s lalu` : "-";
+  return `
+    <div class="glass-tag">
+      <div class="tag-eyebrow">Bus</div>
+      <div class="popup-title bus-popup-title">
+        <span class="route-badge" style="color:${ARMADA_UGM_COLOR}; background:${ARMADA_UGM_COLOR}22; border-color:${ARMADA_UGM_COLOR}55;">Armada UGM</span>
+        <span>${label}</span>
+      </div>
+      <div class="popup-routes">
+        <div class="bus-info-row"><span>Updated</span><span>${updatedText}</span></div>
+      </div>
+    </div>
+  `;
+}
 
+function showArmadaUgmPopup(deviceId, coord) {
   if (armadaUgmPopup) armadaUgmPopup.remove();
   // Struktur .glass-tag/.tag-eyebrow/.popup-title sama seperti popup bus
   // SiBulan & popup halte -- lihat komentar di showBusInfoPopup soal
   // kenapa disamakan persis.
   armadaUgmPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "glass-popup", offset: 18 })
     .setLngLat(coord)
-    .setHTML(`
-      <div class="glass-tag">
-        <div class="tag-eyebrow">Bus</div>
-        <div class="popup-title bus-popup-title">
-          <span class="route-badge" style="color:${ARMADA_UGM_COLOR}; background:${ARMADA_UGM_COLOR}22; border-color:${ARMADA_UGM_COLOR}55;">Armada UGM</span>
-          <span>${label}</span>
-        </div>
-        <div class="popup-routes">
-          <div class="bus-info-row"><span>Updated</span><span>${updatedText}</span></div>
-        </div>
-      </div>
-    `)
+    .setHTML(armadaUgmPopupHtml(deviceId))
     .addTo(map);
+  armadaUgmPopupDeviceId = deviceId;
+  // Reset penanda begitu popup ditutup (klik X, atau klik peta kosong
+  // karena closeOnClick) -- supaya pollArmadaUgmLocations() berhenti
+  // nyoba geser popup yang sudah tidak ada.
+  armadaUgmPopup.on("close", () => {
+    if (armadaUgmPopupDeviceId === deviceId) armadaUgmPopupDeviceId = null;
+  });
 }
 
 function ensureArmadaUgmMarker(deviceId, coord) {
@@ -5622,6 +5642,13 @@ async function pollArmadaUgmLocations() {
       const marker = ensureArmadaUgmMarker(deviceId, [loc.lng, loc.lat]);
       const isStale = Date.now() - loc.updatedAt > ARMADA_UGM_STALE_AFTER_MS;
       marker.getElement().classList.toggle("is-stale", isStale);
+
+      // Kalau popup bus ini lagi kebuka, ikutkan posisinya + refresh teks
+      // "Updated Xs lalu" -- ini yang benerin bug "popup floating"
+      // (popup ketinggalan di posisi lama saat bus-nya sudah jalan).
+      if (armadaUgmPopup && armadaUgmPopupDeviceId === deviceId) {
+        armadaUgmPopup.setLngLat([loc.lng, loc.lat]).setHTML(armadaUgmPopupHtml(deviceId));
+      }
     }
 
     updateArmadaUgmMarkerVisibility();
