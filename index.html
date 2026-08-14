@@ -1199,6 +1199,23 @@ const ROUTE_META = {
     color: "#1b5e20",
     agency: "Transgama",
     schedule: { type: "weekday-only", hours: ["06:00 - 16:00"]}
+  },
+
+  // Live GPS 5 bus kampus (Bus A-E) dari WebSocket Armada Smart Campus UGM
+  // hasil reverse engineering (lihat
+  // README_Reverse_Engineering_GPS_Armada_UGM.md dan api/armada-ugm.js).
+  // SENGAJA agency-nya dipisah dari "Transgama" (bukan digabung ke 3 rute
+  // Transgama di atas) walau nama halte-nya cocok (GSP, Perpustakaan, dll)
+  // -- karena belum diverifikasi bus mana jalan di rute Transgama yang
+  // mana, jadi jangan buru-buru mengasosiasikannya. Belum ada file
+  // routes/Armada UGM.json (belum ada data polyline live), jadi entry ini
+  // cuma dipakai buat filter/label marker bus, bukan gambar garis rute --
+  // pola yang sama seperti "SiBulan 1" sebelum data lengkapnya ada.
+  "Armada UGM": {
+    title: "Live GPS 5 Bus Kampus (Bus A\u2013E)",
+    color: "#00897B",
+    agency: "Smart Campus UGM",
+    schedule: { type: "weekday-only", hours: ["06:00 - 16:00"] } // TENTATIF, ikut asumsi jam operasional Transgama -- belum dikonfirmasi ke pengelola
   }
 };
 // Explicit display order — NOT Object.keys(ROUTE_META). JS silently
@@ -1207,7 +1224,7 @@ const ROUTE_META = {
 // "L1", regardless of how the object literal was written. That reordering
 // is exactly what made the rail show 6, 8, 9, 10...15, 1A, 1B, 2A... instead
 // of the intended 1A, 1B, 2A, ... 15, L1 sequence.
-const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SiBulan 1", "SiBulan 2", "Transgama 1", "Transgama 2", "Transgama 3"];
+const ROUTE_IDS = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6", "8", "9", "10", "11", "12", "13", "14", "15", "L1", "SiBulan 1", "SiBulan 2", "Transgama 1", "Transgama 2", "Transgama 3", "Armada UGM"];
 window.ROUTE_META = ROUTE_META;
 window.ROUTE_IDS = ROUTE_IDS;
 
@@ -5469,6 +5486,154 @@ function locateBuses() {
 
 pollBusLocations();
 setInterval(pollBusLocations, BUS_POLL_INTERVAL_MS);
+
+// ---------------------------------------------------------------------------
+// Live bus markers -- Armada Smart Campus UGM (5 bus kampus, Bus A-E).
+// Sumber data: WebSocket UGM hasil reverse engineering, TAPI browser di
+// sini TIDAK connect langsung ke wss://armada.smartcampus.ugm.ac.id --
+// lewat proxy /api/armada-ugm (lihat api/armada-ugm.js) yang jadi WS
+// client-nya, supaya:
+//   1. Tidak tergantung origin/CORS/WebSocket policy server UGM ngizinin
+//      domain kita atau tidak (lihat README section 15).
+//   2. Frontend cukup fetch() JSON biasa, pola pollingnya sama persis
+//      seperti pollBusLocations() SiBulan di atas -- gampang dirawat
+//      bareng.
+//
+// Reuse dari blok SiBulan di atas: TRIANGLE_ICON_SVG, BUS_ICON_SVG (ikon
+// sama), updateBusMarkerZoomLevel (baca map.getZoom(), generik, tidak
+// spesifik SiBulan).
+//
+// BELUM ada: mapping bus ini jalan di rute Transgama yang mana (arah/leg),
+// jadi TIDAK ada filter arah kayak busShouldBeVisible() SiBulan -- kelima
+// bus ditampilkan bareng selama "Armada UGM" kepilih / tidak ada rute
+// dibuka. Device ID -> nama bus (Bus A-E) juga hasil reverse engineering,
+// belum dikonfirmasi resmi -- lihat README_Reverse_Engineering_GPS_Armada_UGM.md.
+// ---------------------------------------------------------------------------
+
+const ARMADA_UGM_API_URL = "/api/armada-ugm";
+const ARMADA_UGM_POLL_INTERVAL_MS = 5000;
+// Sama seperti BUS_STALE_AFTER_MS SiBulan -- marker dipudarkan (is-stale),
+// bukan dihilangkan, kalau lama tidak ada update baru.
+const ARMADA_UGM_STALE_AFTER_MS = 2 * 60 * 1000;
+
+const ARMADA_UGM_COLOR = ROUTE_META["Armada UGM"].color;
+// Key = deviceid dari WebSocket UGM (lihat api/armada-ugm.js untuk mapping
+// ke nama). Label di sini dipakai buat popup saja.
+const ARMADA_UGM_INSTANCES = {
+  "4":  { label: "Bus A" },
+  "11": { label: "Bus B" },
+  "8":  { label: "Bus C" },
+  "10": { label: "Bus D" },
+  "9":  { label: "Bus E" },
+};
+
+let armadaUgmMarkers = {}; // { "4": maplibregl.Marker, ... } key = deviceid
+let armadaUgmLatestLoc = {};
+let armadaUgmPopup = null; // 1 popup kebuka dalam satu waktu, terpisah dari busPopup SiBulan
+
+function armadaUgmMarkerHtml(deviceId) {
+  return `
+    <div class="bus-marker" data-armada-ugm-id="${deviceId}">
+      <div class="bus-marker-icon-far">${TRIANGLE_ICON_SVG(ARMADA_UGM_COLOR)}</div>
+      <div class="bus-marker-icon-near">${BUS_ICON_SVG(ARMADA_UGM_COLOR)}</div>
+    </div>
+  `;
+}
+
+function showArmadaUgmPopup(deviceId, coord) {
+  const { label } = ARMADA_UGM_INSTANCES[deviceId];
+  const loc = armadaUgmLatestLoc[deviceId];
+  const updatedText = loc ? `${Math.round((Date.now() - loc.updatedAt) / 1000)}s lalu` : "-";
+
+  if (armadaUgmPopup) armadaUgmPopup.remove();
+  // Struktur .glass-tag/.tag-eyebrow/.popup-title sama seperti popup bus
+  // SiBulan & popup halte -- lihat komentar di showBusInfoPopup soal
+  // kenapa disamakan persis.
+  armadaUgmPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "glass-popup", offset: 18 })
+    .setLngLat(coord)
+    .setHTML(`
+      <div class="glass-tag">
+        <div class="tag-eyebrow">Bus</div>
+        <div class="popup-title bus-popup-title">
+          <span class="route-badge" style="color:${ARMADA_UGM_COLOR}; background:${ARMADA_UGM_COLOR}22; border-color:${ARMADA_UGM_COLOR}55;">Armada UGM</span>
+          <span>${label}</span>
+        </div>
+        <div class="popup-routes">
+          <div class="bus-info-row"><span>Updated</span><span>${updatedText}</span></div>
+        </div>
+      </div>
+    `)
+    .addTo(map);
+}
+
+function ensureArmadaUgmMarker(deviceId, coord) {
+  if (armadaUgmMarkers[deviceId]) {
+    armadaUgmMarkers[deviceId].setLngLat(coord);
+    return armadaUgmMarkers[deviceId];
+  }
+  const wrap = document.createElement("div");
+  wrap.innerHTML = armadaUgmMarkerHtml(deviceId).trim();
+  const el = wrap.firstElementChild;
+
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showArmadaUgmPopup(deviceId, armadaUgmMarkers[deviceId].getLngLat());
+  });
+
+  const marker = new maplibregl.Marker({ element: el, anchor: "center", rotationAlignment: "map" })
+    .setLngLat(coord)
+    .addTo(map);
+  armadaUgmMarkers[deviceId] = marker;
+  updateBusMarkerZoomLevel(marker); // fungsi generik dari blok SiBulan, cuma baca map.getZoom()
+  return marker;
+}
+
+map.on("zoom", () => {
+  Object.values(armadaUgmMarkers).forEach(updateBusMarkerZoomLevel);
+});
+
+// Tidak ada konsep arah/leg buat armada ini (lihat catatan di atas), jadi
+// visibility-nya cuma soal "rute mana yang lagi dibuka", bukan diturunkan
+// dari arah seperti busShouldBeVisible() SiBulan.
+function armadaUgmShouldBeVisible() {
+  const routeId = routeIdFromHash();
+  if (!routeId) return true; // plain view -- tampilkan semua
+  return routeId === "Armada UGM";
+}
+
+function updateArmadaUgmMarkerVisibility() {
+  const visible = armadaUgmShouldBeVisible();
+  for (const marker of Object.values(armadaUgmMarkers)) {
+    marker.getElement().style.display = visible ? "" : "none";
+  }
+}
+
+async function pollArmadaUgmLocations() {
+  try {
+    const res = await fetch(ARMADA_UGM_API_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    for (const deviceId of Object.keys(ARMADA_UGM_INSTANCES)) {
+      const loc = data[deviceId];
+      if (!loc) continue; // device ini belum pernah kirim posisi di payload terakhir
+      armadaUgmLatestLoc[deviceId] = loc;
+
+      const marker = ensureArmadaUgmMarker(deviceId, [loc.lng, loc.lat]);
+      const isStale = Date.now() - loc.updatedAt > ARMADA_UGM_STALE_AFTER_MS;
+      marker.getElement().classList.toggle("is-stale", isStale);
+    }
+
+    updateArmadaUgmMarkerVisibility();
+  } catch (err) {
+    // Sengaja cuma di-log -- kegagalan poll sesekali (proxy lagi cold
+    // start, atau WS UGM lagi nggak respon) nggak perlu ganggu user.
+    console.error("Gagal memuat lokasi armada UGM:", err);
+  }
+}
+
+pollArmadaUgmLocations();
+setInterval(pollArmadaUgmLocations, ARMADA_UGM_POLL_INTERVAL_MS);
 
 // Wraps a marker's full-detail card together with a small always-available
 // "compact pin" version. Both are rendered every time; CSS (driven by the
