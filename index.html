@@ -5546,6 +5546,16 @@ function armadaUgmMarkerHtml(deviceId) {
   `;
 }
 
+// Hapus SEMUA elemen popup Armada UGM dari DOM secara paksa, bukan cuma
+// andalkan variabel armadaUgmPopup. Ditemukan lewat testing: klik icon bus
+// berkali-kali bisa bikin beberapa popup numpuk di posisi berbeda-beda
+// (armadaUgmPopup.remove() doang ternyata tidak selalu cukup reliable buat
+// nyingkirin instance sebelumnya) -- kelihatan kayak "icon floating/drift"
+// padahal itu kartu popup yang ketinggalan, bukan icon bus-nya sendiri.
+function removeAllArmadaUgmPopups() {
+  document.querySelectorAll(".armada-ugm-popup").forEach((el) => el.remove());
+}
+
 function armadaUgmPopupHtml(deviceId) {
   const { label } = ARMADA_UGM_INSTANCES[deviceId];
   const loc = armadaUgmLatestLoc[deviceId];
@@ -5569,11 +5579,11 @@ function armadaUgmPopupHtml(deviceId) {
 }
 
 function showArmadaUgmPopup(deviceId, coord) {
-  if (armadaUgmPopup) armadaUgmPopup.remove();
+  removeAllArmadaUgmPopups(); // paksa bersih -- lihat catatan di removeAllArmadaUgmPopups()
   // Struktur .glass-tag/.tag-eyebrow/.popup-title sama seperti popup bus
   // SiBulan & popup halte -- lihat komentar di showBusInfoPopup soal
   // kenapa disamakan persis.
-  armadaUgmPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "glass-popup", offset: 18 })
+  armadaUgmPopup = new maplibregl.Popup({ closeButton: true, closeOnClick: true, className: "glass-popup armada-ugm-popup", offset: 18 })
     .setLngLat(coord)
     .setHTML(armadaUgmPopupHtml(deviceId))
     .addTo(map);
