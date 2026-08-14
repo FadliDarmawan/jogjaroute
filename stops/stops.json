@@ -9978,7 +9978,20 @@
         "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
-          "Fakultas Peternakan"
+          "Kantong Parkir Agro"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38143286847028, -7.7719758914497445",
+    "stop_name": "Taman Humaniora",
+    "services": [
+      {
+        "route": "Transgama 1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Ilmu Budaya"
         ]
       }
     ]
@@ -10004,7 +10017,7 @@
         "route": "Transgama 1",
         "is_departure_hub": false,
         "destinations": [
-          "Fakultas Ilmu Budaya"
+          "Taman Humaniora"
         ]
       }
     ]
@@ -10031,6 +10044,19 @@
         "is_departure_hub": false,
         "destinations": [
           "GSP"
+        ]
+      }
+    ]
+  },
+  {
+    "point": "110.38307190845606, -7.766974176718826",
+    "stop_name": "Kantong Parkir Agro",
+    "services": [
+      {
+        "route": "Transgama 1",
+        "is_departure_hub": false,
+        "destinations": [
+          "Fakultas Peternakan"
         ]
       }
     ]
