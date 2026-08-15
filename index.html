@@ -490,6 +490,18 @@
     position: relative;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    /* width/height TETAP -- ditambahkan setelah analisis video frame-by-frame
+       nunjukin marker "meledak menjauh" persis 1 frame di momen icon far
+       (18x18) ganti ke icon near (30x30), pas nyebrang BUS_ICON_ZOOM_THRESHOLD.
+       Sebelum ini, ukuran box ngikutin icon yang lagi tampil (18 vs 30),
+       jadi anchor MapLibre (pusat box ini) ikut geser pas box-nya berubah
+       ukuran di frame yang sama. Dikunci ke ukuran icon terbesar supaya
+       box-nya konstan -- inline-flex + align/justify-content:center di atas
+       tetap dipertahankan (itu yang sudah terbukti aman dari bug "melebar
+       mengambang" sebelumnya), cuma nambah 2 baris ini, TIDAK ganti ke
+       display:grid/restrukturisasi lain supaya risikonya seminimal mungkin. */
+    width: 30px;
+    height: 30px;
   }
   .bus-marker svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35)); }
   .bus-marker.is-stale { opacity: 0.4; }
