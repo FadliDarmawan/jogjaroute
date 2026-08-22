@@ -4014,11 +4014,24 @@ const stopInfoDestBtn = document.getElementById("stop-info-dest-btn");
 // path uses — junction/hub-loop stops just fall back to no destination
 // text for now, same as those cases already do elsewhere without a
 // resolvable single leg end.
+// Dipakai showPopup's "close" handler: true selama kita SENGAJA nutup
+// popup sebagai bagian dari transisi yang mesti mempertahankan tag
+// "stopPopup" di history (buka panel info, klik destinasi, dst) -- bukan
+// dismiss organik (klik area kosong peta) yang justru harus membersihkan
+// tag itu supaya hardware back nggak salah munculin popup yang memang
+// udah ditutup sengaja. Lihat showPopup + ketiga tempat yang men-set ini.
+let suppressStopPopupTagClear = false;
+
 window.openStopInfoPanel = function (stopName) {
   const stopEntry = STOPS.find(s => s.name === stopName);
   if (!stopEntry) return;
 
-  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+  if (window.currentStopPopup) {
+    suppressStopPopupTagClear = true; // pertahankan tag "stopPopup" -- lihat deklarasi flag ini
+    window.currentStopPopup.remove();
+    window.currentStopPopup = null;
+    suppressStopPopupTagClear = false;
+  }
   highlightAllRoutesForStop(stopName);
   // Popup.remove() above fires its "close" handler, which clears the
   // selected-stop highlight along with everything else -- reassert it
@@ -4214,7 +4227,12 @@ window.highlightRouteToHubLoop = function (routeId, fromStopName) {
   // for the plain (non-hub-loop) destination pick -- this is reached from
   // the same kind of popup "-> destination" button, so it had the exact
   // same "popup stays open and blocks the line" bug.
-  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+  if (window.currentStopPopup) {
+    suppressStopPopupTagClear = true; // pertahankan tag "stopPopup" -- lihat deklarasi flag ini
+    window.currentStopPopup.remove();
+    window.currentStopPopup = null;
+    suppressStopPopupTagClear = false;
+  }
   if (fromStopName) {
     const fromEntry = STOPS.find(s => s.name === fromStopName);
     if (fromEntry) setSelectedStop([fromEntry.lon, fromEntry.lat], fromStopName);
@@ -4610,15 +4628,27 @@ window.openRouteDetailFromStop = function (routeId, fromStopName, toStopName) {
   // holding this stop's coords + full services list (the popup itself
   // doesn't stash them anywhere retrievable).
   const returnStop = { coords: [stopEntry.lon, stopEntry.lat], name: fromStopName, services: stopEntry.services };
-  if (window.currentStopPopup) { window.currentStopPopup.remove(); window.currentStopPopup = null; }
+  if (window.currentStopPopup) {
+    suppressStopPopupTagClear = true; // pertahankan tag "stopPopup" -- lihat deklarasi flag ini
+    window.currentStopPopup.remove();
+    window.currentStopPopup = null;
+    suppressStopPopupTagClear = false;
+  }
 
-  // Changes the URL without going through the normal hashchange ->
-  // applyHash() path -- that path is asynchronous (the hashchange event
-  // fires on a later tick), so calling openRouteDetail() ourselves right
+  // Changes the URL WITHOUT going through the normal hashchange ->
+  // applyHash() path (that path is asynchronous -- the hashchange event
+  // fires on a later tick -- so calling openRouteDetail() ourselves right
   // below stays perfectly in sync with the rest of this function instead
   // of racing a second, delayed openRouteDetail() call triggered by the
-  // hash assignment.
-  history.replaceState(null, "", location.pathname + location.search + `#/routes/${encodeURIComponent(routeId)}`);
+  // hash assignment).
+  //
+  // pushState (NOT replaceState) on purpose: this needs to become a real,
+  // separate history entry stacked ON TOP of the Home entry we just tagged
+  // with the stopPopup info above (via showPopup's replaceState) -- so
+  // that hardware/gesture back has somewhere to land instead of exiting
+  // the app outright. See the popstate listener near applyHash for the
+  // other half of this.
+  history.pushState({ type: "routeFromStop" }, "", location.pathname + location.search + `#/routes/${encodeURIComponent(routeId)}`);
   if (!openRouteDetail(routeId)) return;
   if (resolved) {
     applyRouteDetailLeg(routeId, resolved.leg);
@@ -4632,11 +4662,40 @@ window.openRouteDetailFromStop = function (routeId, fromStopName, toStopName) {
 // The single entry point for reacting to the current hash — called once
 // after routes finish loading (map "load" handler below) and again on
 // every hashchange (back/forward, the switcher, a pasted link).
+//
+// suppressApplyHashOnce: set by the popstate listener right below while
+// it's restoring a tagged stop popup -- a hashchange for that SAME
+// back/forward navigation fires too (same event loop turn, order between
+// the two isn't guaranteed across browsers), and if it ran its own default
+// closeRouteDetail() afterwards, that would wipe the setSelectedStop
+// highlight showPopup just set. Reset on a setTimeout(0) rather than
+// immediately so it stays true regardless of which of the two events
+// (popstate vs hashchange) happens to fire second.
+let suppressApplyHashOnce = false;
 function applyHash() {
+  if (suppressApplyHashOnce) return;
   const id = routeIdFromHash();
   if (!id || !openRouteDetail(id)) closeRouteDetail();
 }
 window.addEventListener("hashchange", applyHash);
+
+// Other half of the "back from a stop-opened route detail should return
+// to that exact stop popup, not exit the app" fix -- see showPopup
+// (tags the Home entry via replaceState) and openRouteDetailFromStop
+// (pushState's a real new entry on top of it). Landing back on that
+// tagged entry (hardware/gesture back, or history.back() from anywhere)
+// fires this with the stashed stop info, so we can reconstruct the exact
+// popup instead of leaving a blank map -- or worse, letting the browser
+// fall through to whatever was open before this app entirely.
+window.addEventListener("popstate", (e) => {
+  if (e.state && e.state.type === "stopPopup" && e.state.stop) {
+    suppressApplyHashOnce = true;
+    closeRouteDetail();
+    const { coords, name, services } = e.state.stop;
+    showPopup(coords, name, services);
+    setTimeout(() => { suppressApplyHashOnce = false; }, 0);
+  }
+});
 
 routeBack.addEventListener("click", () => {
   // Opened from a stop popup's "-> destination" button -- go back to
@@ -4908,8 +4967,26 @@ function showPopup(coords, name, services) {
         </div>
       </div>
     `)
-    .on("close", () => { setActiveSegment(null); setBeforeSegment(null); setRouteDimming(null); setStopsFilter(null); setSelectedStop(null); })
+    // Kalau popup ini ditutup ORGANIK (klik area kosong peta -- MapLibre
+    // auto-close popup by default), bersihin tag "stopPopup" di history
+    // entry sekarang, supaya nanti hardware back TIDAK salah muncul lagi
+    // popup yang memang udah sengaja ditutup. Tapi kalau .remove() ini
+    // dipanggil sebagai BAGIAN dari transisi yang justru harus MEMPERTAHANKAN
+    // tag itu (buka panel info, klik destinasi -> route detail, dst),
+    // pemanggilnya set suppressStopPopupTagClear = true dulu -- lihat
+    // ketiga tempat yang melakukan itu.
+    .on("close", () => {
+      setActiveSegment(null); setBeforeSegment(null); setRouteDimming(null); setStopsFilter(null); setSelectedStop(null);
+      if (!suppressStopPopupTagClear) history.replaceState(null, "", location.hash || "#/");
+    })
     .addTo(map);
+  // Tag entry HISTORY yang lagi aktif sekarang dengan popup ini, supaya
+  // kalau user nanti pencet back (hardware/gesture) dan balik lagi ke
+  // entry ini, popstate listener di bawah tahu harus munculin popup halte
+  // ini lagi -- bukan cuma nutup semuanya / keluar aplikasi. Pakai
+  // replaceState (bukan pushState) karena ini bukan navigasi baru, cuma
+  // nempelin catatan ke entry yang SUDAH ada.
+  history.replaceState({ type: "stopPopup", stop: { coords, name, services } }, "", location.hash || "#/");
 }
 
 // ---- 3. Search ------------------------------------------------------
